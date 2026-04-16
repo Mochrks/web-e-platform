@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   BAUHAUS DESIGN SYSTEM
+   Principles: Functional, Minimal, Geometric
+   ======================================== */
+
+:root {
+  /* Elegant Purple Palette */
+  --primary-hue: 262;
+  --primary-sat: 83%;
+  --primary-light: 58%;
+
+  --background: 0 0% 100%;
+  --foreground: var(--primary-hue) 50% 10%;
+
+  --card: 0 0% 100%;
+  --card-foreground: var(--primary-hue) 50% 10%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: var(--primary-hue) 50% 10%;
+
+  --primary: var(--primary-hue) var(--primary-sat) var(--primary-light);
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: var(--primary-hue) 20% 96%;
+  --secondary-foreground: var(--primary-hue) var(--primary-sat) 20%;
+
+  --accent: var(--primary-hue) 30% 94%;
+  --accent-foreground: var(--primary-hue) var(--primary-sat) 30%;
+
+  --muted: var(--primary-hue) 15% 96%;
+  --muted-foreground: var(--primary-hue) 10% 45%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: var(--primary-hue) 20% 90%;
+  --input: var(--primary-hue) 20% 90%;
+  --ring: var(--primary-hue) var(--primary-sat) var(--primary-light);
+
+  --radius: 0.75rem;
+
+  /* Chart Colors */
+  --chart-1: var(--primary-hue) var(--primary-sat) 60%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+}
+
+.dark {
+  --background: var(--primary-hue) 50% 3%;
+  --foreground: var(--primary-hue) 10% 98%;
+
+  --card: var(--primary-hue) 40% 6%;
+  --card-foreground: var(--primary-hue) 10% 98%;
+
+  --popover: var(--primary-hue) 40% 6%;
+  --popover-foreground: var(--primary-hue) 10% 98%;
+
+  --primary: var(--primary-hue) var(--primary-sat) 65%;
+  --primary-foreground: var(--primary-hue) 50% 5%;
+
+  --secondary: var(--primary-hue) 30% 12%;
+  --secondary-foreground: var(--primary-hue) 10% 98%;
+
+  --accent: var(--primary-hue) 30% 15%;
+  --accent-foreground: var(--primary-hue) 10% 98%;
+
+  --muted: var(--primary-hue) 30% 12%;
+  --muted-foreground: var(--primary-hue) 10% 65%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: var(--primary-hue) 10% 98%;
+
+  --border: var(--primary-hue) 30% 18%;
+  --input: var(--primary-hue) 30% 18%;
+  --ring: var(--primary-hue) var(--primary-sat) 65%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground shrink-0;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Simple Elegant Card */
+  .bauhaus-card {
+    @apply bg-card border border-border p-6 rounded-xl shadow-sm;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bauhaus-card:hover {
+    @apply shadow-md border-primary/20 bg-accent/5;
+    transform: translateY(-4px);
+  }
+
+  /* Simple Elegant Button */
+  .bauhaus-btn {
+    @apply font-semibold tracking-wide rounded-full px-8 py-3 text-base;
+    @apply transition-all duration-300 ease-in-out;
+    @apply shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30;
+  }
+
+  .bauhaus-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .bauhaus-btn:active {
+    transform: translateY(0);
+  }
+
+  /* Typography */
+  .bauhaus-heading {
+    @apply text-5xl md:text-7xl font-bold tracking-tight text-foreground;
+    line-height: 1.1;
+  }
+
+  .bauhaus-subheading {
+    @apply text-2xl md:text-3xl font-semibold tracking-tight;
+  }
+
+  /* Dividers */
+  .bauhaus-divider {
+    @apply h-[1px] bg-border my-8;
+  }
+
+  .bauhaus-divider-vertical {
+    @apply w-[1px] bg-border mx-8;
+  }
+
+  /* Accent Blocks - Repurposed to Purple */
+  .bauhaus-accent-red,
+  .bauhaus-accent-blue,
+  .bauhaus-accent-yellow {
+    @apply bg-primary text-primary-foreground border-none;
+  }
+
+  .bauhaus-accent-blue {
+    @apply bg-violet-100 text-violet-900 border-none dark:bg-violet-900/30 dark:text-violet-100;
+  }
+
+  .bauhaus-accent-yellow {
+    @apply bg-indigo-100 text-indigo-900 border-none dark:bg-indigo-900/30 dark:text-indigo-100;
+  }
+
+  /* Elegant Progress Bar */
+  .bauhaus-progress {
+    @apply h-3 bg-muted rounded-full overflow-hidden border-none;
+  }
+
+  .bauhaus-progress-fill {
+    @apply h-full bg-primary rounded-full transition-all duration-500;
+  }
+
+  /* Voice Waveform - Refined */
+  .voice-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 32px;
+  }
+
+  .voice-wave-bar {
+    width: 3px;
+    background: hsl(var(--primary));
+    border-radius: 10px;
+    animation: wave 1.2s ease-in-out infinite;
+  }
+
+  .voice-wave-bar:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .voice-wave-bar:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .voice-wave-bar:nth-child(4) {
+    animation-delay: 0.45s;
+  }
+  .voice-wave-bar:nth-child(5) {
+    animation-delay: 0.6s;
+  }
+
+  @keyframes wave {
+    0%,
+    100% {
+      height: 6px;
+    }
+    50% {
+      height: 24px;
+      opacity: 0.7;
+    }
+  }
+
+  /* Code Editor Modern */
+  .bauhaus-code-editor {
+    @apply border border-border rounded-xl shadow-lg;
+  }
+
+  /* Timer Modern */
+  .bauhaus-timer {
+    @apply font-mono text-3xl font-bold tabular-nums;
+    @apply border border-primary/20 rounded-2xl px-6 py-2;
+    @apply bg-primary/10 text-primary;
+  }
+
+  /* Stage Indicator - Modern Steps */
+  .stage-indicator {
+    @apply flex items-center gap-2;
+  }
+
+  .stage-dot {
+    @apply w-3 h-3 rounded-full bg-muted border border-border;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .stage-dot.active {
+    @apply bg-primary scale-125 shadow-lg shadow-primary/30;
+  }
+
+  .stage-dot.completed {
+    @apply bg-primary/60;
+  }
+
+  /* Chart modern */
+  .radar-chart-container {
+    @apply border border-border p-8 rounded-2xl bg-card shadow-sm;
+  }
+
+  /* Score Modern */
+  .score-display {
+    @apply text-8xl font-bold;
+    @apply bg-primary text-primary-foreground;
+    @apply rounded-3xl p-12 text-center;
+    @apply shadow-2xl shadow-primary/20;
+  }
+
+  /* Elegant Grid */
+  .bauhaus-asymmetric {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .bauhaus-asymmetric {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@layer utilities {
+  /* Text Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animation Utilities */
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Border Utilities */
+  .border-3 {
+    border-width: 3px;
+  }
+
+  .border-4 {
+    border-width: 4px;
+  }
+
+  .border-6 {
+    border-width: 6px;
+  }
+}
