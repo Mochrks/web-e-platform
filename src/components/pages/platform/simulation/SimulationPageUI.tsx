@@ -1,15 +1,17 @@
 'use client';
 
-import React from 'react';
-import InterviewSimulator from './components/interview/simulator';
-import InterviewResults from './components/interview/results';
+import React, { useState, useEffect, useCallback } from 'react';
+import InterviewSimulator from './components/simulator';
+import InterviewResults from './components/results';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import Badge from '@/components/shared/Badge';
+import Badge from '@/components/shared/components/Badge';
 import { BookOpen, Rocket, ShieldCheck, Zap } from 'lucide-react';
 import { useSimulationPageHook } from './SimulationPageHook';
+import SidebarInterview from './components/shared/SidebarInterview';
+import { InterviewStage } from '@/data/interviewData';
 
 export default function SimulationPageUI() {
   const {
@@ -18,10 +20,22 @@ export default function SimulationPageUI() {
     setInterviewName,
     answers,
     overallScore,
+    currentInterviewStage,
+    setCurrentInterviewStage,
+    completedInterviewStages,
+    setCompletedInterviewStages,
     handleStart,
     handleComplete,
     handleRestart,
   } = useSimulationPageHook();
+
+  const handleStageChange = useCallback(
+    (stage: InterviewStage, completed: InterviewStage[]) => {
+      setCurrentInterviewStage(stage);
+      setCompletedInterviewStages(completed);
+    },
+    [setCurrentInterviewStage, setCompletedInterviewStages]
+  );
 
   return (
     <div className="max-w-7xl mx-auto space-y-10">
@@ -100,25 +114,38 @@ export default function SimulationPageUI() {
       )}
 
       {stage === 'simulating' && (
-        <div className="animate-fade-in">
-          <div className="mb-10 flex flex-col md:flex-row justify-between items-center gap-6 bg-card border border-border p-8 rounded-[2.5rem] shadow-sm">
-            <div>
-              <p className="text-xs font-black text-primary uppercase tracking-widest mb-1">
-                Current Session
-              </p>
-              <h2 className="text-3xl font-black tracking-tight">
-                {interviewName}
-              </h2>
-            </div>
-            <Button
-              variant="ghost"
-              onClick={handleRestart}
-              className="rounded-xl font-bold text-rose-500 hover:bg-rose-500/5"
-            >
-              End Session
-            </Button>
+        <div className="animate-fade-in grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-4 hidden lg:block">
+            <SidebarInterview
+              currentStage={currentInterviewStage}
+              completedStages={completedInterviewStages}
+            />
           </div>
-          <InterviewSimulator onComplete={handleComplete} />
+
+          <div className="lg:col-span-8 space-y-10">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6 bg-card border border-border p-8 rounded-[2.5rem] shadow-sm">
+              <div>
+                <p className="text-xs font-black text-primary uppercase tracking-widest mb-1">
+                  Current Session
+                </p>
+                <h2 className="text-3xl font-black tracking-tight text-foreground/80">
+                  {interviewName}
+                </h2>
+              </div>
+              <Button
+                variant="ghost"
+                onClick={handleRestart}
+                className="rounded-xl font-bold text-rose-500 hover:bg-rose-500/5 transition-colors"
+              >
+                End Session
+              </Button>
+            </div>
+
+            <InterviewSimulator
+              onComplete={handleComplete}
+              onStageChange={handleStageChange}
+            />
+          </div>
         </div>
       )}
 

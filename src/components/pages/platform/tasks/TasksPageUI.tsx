@@ -14,7 +14,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import TaskStatBlock from './components/TaskStatBlock';
-import SkillItem from '@/components/shared/SkillItem';
+import SkillItem from '@/components/shared/components/SkillItem';
 import { useTasksPageHook } from './TasksPageHook';
 
 export default function TasksPageUI() {

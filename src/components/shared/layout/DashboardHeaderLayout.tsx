@@ -8,9 +8,8 @@ import {
   Command,
   ChevronDown,
   Settings,
-  User,
+  Menu,
   LogOut,
-  Shield,
   Sparkles,
 } from 'lucide-react';
 import {
@@ -22,7 +21,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
 import DashboardSidebarLayout from './DashboardSidebarLayout';
 import { ModeToggle } from '@/components/shared/theme/ModeToggle';
 import TalentAvatar from '@/components/shared/avatar';

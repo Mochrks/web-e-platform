@@ -15,6 +15,9 @@ import {
   evaluateAnswer,
   analyzeVoiceResponse,
   evaluateCode,
+  VoiceAnalysis,
+  CodeEvaluation,
+  AnswerEvaluation,
 } from '@/lib/interviewUtils';
 
 export interface Answer {
@@ -22,9 +25,12 @@ export interface Answer {
   answer: string;
   score: number;
   feedback: string;
+  keywordMatch?: number;
+  depth?: number;
+  relevance?: number;
   duration?: number;
-  voiceAnalysis?: any;
-  codeEvaluation?: any;
+  voiceAnalysis?: VoiceAnalysis;
+  codeEvaluation?: CodeEvaluation;
 }
 
 export const useInterviewSimulatorHook = (
@@ -65,11 +71,17 @@ export const useInterviewSimulatorHook = (
   const isLastStage = currentStage === 'final';
 
   useEffect(() => {
-    if (currentStage === 'coding' && 'starterCode' in (currentQuestion || {})) {
+    const questions = getCurrentQuestions();
+    const currentQuestion = questions[currentQuestionIndex];
+    if (
+      currentStage === 'coding' &&
+      currentQuestion &&
+      'starterCode' in currentQuestion
+    ) {
       const challenge = currentQuestion as CodeChallenge;
       setCurrentCode(challenge.starterCode[selectedLanguage]);
     }
-  }, [currentQuestionIndex, selectedLanguage, currentStage, currentQuestion]);
+  }, [currentQuestionIndex, selectedLanguage, currentStage]);
 
   const resetCurrentAnswer = () => {
     setCurrentAnswer('');
@@ -78,36 +90,12 @@ export const useInterviewSimulatorHook = (
     setCodeOutput('');
   };
 
-  const handleCompleteStage = () => {
-    const newCompletedStages = [...completedStages, currentStage];
-    setCompletedStages(newCompletedStages);
-
-    const stageOrder: InterviewStage[] = [
-      'behavioral',
-      'technical',
-      'coding',
-      'final',
-    ];
-    const currentIndex = stageOrder.indexOf(currentStage);
-
-    if (currentIndex < stageOrder.length - 1) {
-      setCurrentStage(stageOrder[currentIndex + 1]);
-      setCurrentQuestionIndex(0);
-      resetCurrentAnswer();
-    } else {
-      const overallScore = Math.round(
-        answers.reduce((sum, a) => sum + a.score, 0) / answers.length
-      );
-      onComplete(answers, overallScore);
-    }
-  };
-
   const handleSubmitAnswer = () => {
     const question = currentQuestion as Question;
     let answerText = currentAnswer;
-    let evaluation: any;
-    let voiceAnalysis: any;
-    let codeEval: any;
+    let evaluation: AnswerEvaluation | CodeEvaluation;
+    let voiceAnalysis: VoiceAnalysis | undefined;
+    let codeEval: CodeEvaluation | undefined;
 
     if (question.type === 'voice' && voiceTranscript) {
       answerText = voiceTranscript;
@@ -133,6 +121,11 @@ export const useInterviewSimulatorHook = (
         feedback: isCorrect
           ? 'Correct!'
           : `Incorrect. The correct answer is: ${correctOption?.text}`,
+        keywordMatch: isCorrect ? 100 : 0,
+        depth: 100,
+        relevance: isCorrect ? 100 : 0,
+        matchedKeywords: [],
+        missedKeywords: [],
       };
     } else {
       evaluation = evaluateAnswer(answerText, question.keywords || []);
@@ -143,6 +136,10 @@ export const useInterviewSimulatorHook = (
       answer: answerText,
       score: evaluation.score,
       feedback: evaluation.feedback,
+      keywordMatch:
+        'keywordMatch' in evaluation ? evaluation.keywordMatch : undefined,
+      depth: 'depth' in evaluation ? evaluation.depth : undefined,
+      relevance: 'relevance' in evaluation ? evaluation.relevance : undefined,
       duration: recordingDuration,
       voiceAnalysis,
       codeEvaluation: codeEval,

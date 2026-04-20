@@ -33,7 +33,7 @@ export default function CodeEditor({
   onReset,
   output = '',
   isRunning = false,
-}: CodeEditorProps) {
+}: Readonly<CodeEditorProps>) {
   const [code, setCode] = useState(initialCode);
 
   const handleEditorChange = (value: string | undefined) => {

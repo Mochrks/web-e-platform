@@ -6,26 +6,18 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import {
-  ClipboardList,
   PlayCircle,
   History,
   Zap,
   CheckCircle2,
-  XCircle,
   FileText,
   Calendar,
   Layers,
 } from 'lucide-react';
-import { useTasksHook } from './TaskPageHook';
+import { useTasksHook } from './TaskPageHookV2';
 
 export default function TaskPageUI() {
-  const {
-    tasks,
-    attempts,
-    handleLaunchTask,
-    handleCompleteAttempt,
-    selectedTask,
-  } = useTasksHook();
+  const { tasks, attempts, handleLaunchTask } = useTasksHook();
 
   const getTaskAttempts = (taskId: string) =>
     attempts.filter((a) => a.taskId === taskId);

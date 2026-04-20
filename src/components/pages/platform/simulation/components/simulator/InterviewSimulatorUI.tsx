@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -12,22 +12,24 @@ import {
   CheckCircle,
   BookOpen,
 } from 'lucide-react';
-import StageIndicator from '../shared/StageIndicator';
 import Timer from '../shared/Timer';
 import VoiceInteraction from './VoiceInteraction';
 import CodeEditor from './CodeEditor';
-import { Question, CodeChallenge } from '@/data/interviewData';
+import { Question, CodeChallenge, InterviewStage } from '@/data/interviewData';
 import { useInterviewSimulatorHook, Answer } from './InterviewSimulatorHook';
 
 interface InterviewSimulatorUIProps {
   onComplete: (answers: Answer[], overallScore: number) => void;
+  onStageChange?: (stage: InterviewStage, completed: InterviewStage[]) => void;
 }
 
 export default function InterviewSimulatorUI({
   onComplete,
+  onStageChange,
 }: InterviewSimulatorUIProps) {
   const {
     currentStage,
+    completedStages,
     currentQuestionIndex,
     currentAnswer,
     setCurrentAnswer,
@@ -49,6 +51,12 @@ export default function InterviewSimulatorUI({
     handleVoiceTranscript,
     handleRecordingComplete,
   } = useInterviewSimulatorHook(onComplete);
+
+  useEffect(() => {
+    if (onStageChange) {
+      onStageChange(currentStage, completedStages);
+    }
+  }, [currentStage, completedStages, onStageChange]);
 
   const renderQuestion = () => {
     if (currentStage === 'coding') {

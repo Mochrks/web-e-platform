@@ -18,6 +18,11 @@ const initialState: SidebarState = {
       path: '/platform/dashboard',
       icon: 'LayoutDashboard',
     },
+    {
+      title: 'AI Simulation',
+      path: '/platform/simulation',
+      icon: 'Zap',
+    },
     { title: 'Leaderboard', path: '/platform/leaderboard', icon: 'Trophy' },
     {
       title: 'My Allocations',

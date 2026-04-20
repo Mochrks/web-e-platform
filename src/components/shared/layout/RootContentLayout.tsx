@@ -8,10 +8,10 @@ import { Toaster } from 'sonner';
 export default function RootLayoutContent({
   children,
   fontClassName,
-}: {
+}: Readonly<{
   children: React.ReactNode;
   fontClassName: string;
-}) {
+}>) {
   return (
     <Providers>
       <ThemeProvider

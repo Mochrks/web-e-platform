@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import TalentAvatar from '@/components/shared/avatar';
 import DashboardStatCard from './components/DashboardStatCard';
-import SkillItem from '@/components/shared/SkillItem';
+import SkillItem from '@/components/shared/components/SkillItem';
 import {
   Users,
   CheckCircle,

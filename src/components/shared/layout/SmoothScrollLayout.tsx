@@ -6,9 +6,9 @@ import gsap from 'gsap';
 
 export default function SmoothScroll({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {

@@ -1,5 +1,4 @@
-'use client';
-import TaskPageUI from './TaskPageUI';
-export default function TaskPage() {
-  return <TaskPageUI />;
+import TasksPageUI from './TasksPageUI';
+export default function TasksPage() {
+  return <TasksPageUI />;
 }

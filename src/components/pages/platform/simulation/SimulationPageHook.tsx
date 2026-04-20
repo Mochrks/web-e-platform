@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Answer } from './components/interview/simulator/InterviewSimulatorHook';
+import { Answer } from './components/simulator/InterviewSimulatorHook';
+import { InterviewStage } from '@/data/interviewData';
 
 export const useSimulationPageHook = () => {
   const [stage, setStage] = useState<'setup' | 'simulating' | 'results'>(
@@ -10,6 +11,13 @@ export const useSimulationPageHook = () => {
   const [interviewName, setInterviewName] = useState('');
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [overallScore, setOverallScore] = useState(0);
+
+  // New state for tracking specific interview stages
+  const [currentInterviewStage, setCurrentInterviewStage] =
+    useState<InterviewStage>('behavioral');
+  const [completedInterviewStages, setCompletedInterviewStages] = useState<
+    InterviewStage[]
+  >([]);
 
   const handleStart = () => {
     if (!interviewName.trim()) return;
@@ -27,6 +35,8 @@ export const useSimulationPageHook = () => {
     setAnswers([]);
     setOverallScore(0);
     setInterviewName('');
+    setCurrentInterviewStage('behavioral');
+    setCompletedInterviewStages([]);
   };
 
   return {
@@ -35,6 +45,10 @@ export const useSimulationPageHook = () => {
     setInterviewName,
     answers,
     overallScore,
+    currentInterviewStage,
+    setCurrentInterviewStage,
+    completedInterviewStages,
+    setCompletedInterviewStages,
     handleStart,
     handleComplete,
     handleRestart,

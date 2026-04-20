@@ -24,9 +24,10 @@ import {
 import { useAppDispatch, useAppSelector } from '@/store';
 import { logout } from '@/store/slices/authSlice';
 import { toast } from 'sonner';
+import TalentAvatar from '@/components/shared/avatar';
 
 // Helper for dynamic icons
-const IconMap: any = {
+const IconMap: Record<string, React.ReactNode> = {
   LayoutDashboard: <LayoutDashboard className="w-5 h-5" />,
   BookOpen: <BookOpen className="w-5 h-5" />,
   CheckSquare: <CheckSquare className="w-5 h-5" />,
@@ -40,6 +41,7 @@ const IconMap: any = {
   Trophy: <Trophy className="w-5 h-5" />,
   Award: <Award className="w-5 h-5" />,
   Briefcase: <Briefcase className="w-5 h-5" />,
+  Zap: <Zap className="w-5 h-5" />,
 };
 
 export default function DashboardSidebarLayout({
@@ -50,7 +52,7 @@ export default function DashboardSidebarLayout({
   const pathname = usePathname();
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { role } = useAppSelector((state) => state.auth);
+  const { role, user } = useAppSelector((state) => state.auth);
   const { employeeMenu, adminMenu } = useAppSelector((state) => state.sidebar);
   const [isMounted, setIsMounted] = React.useState(false);
 
