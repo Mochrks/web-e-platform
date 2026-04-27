@@ -15,7 +15,7 @@ export default function DashboardStatCard({
   label,
   value,
   trend,
-}: DashboardStatCardProps) {
+}: Readonly<DashboardStatCardProps>) {
   return (
     <Card className="p-8 rounded-[2.5rem] border-border bg-card flex flex-col justify-between hover:border-primary/50 transition-all cursor-default group shadow-sm">
       <div className="flex items-center justify-between mb-6">

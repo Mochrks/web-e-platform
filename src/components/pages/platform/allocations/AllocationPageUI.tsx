@@ -9,24 +9,19 @@ import { Button } from '@/components/ui/button';
 import {
   Briefcase,
   MapPin,
-  Clock,
   Search,
   ChevronRight,
   TrendingUp,
-  Users,
   Building2,
   Calendar,
   Layers,
   Star,
   Monitor,
-  Ghost,
   CheckCircle2,
   MessageCircle,
-  Code2,
   ArrowLeft,
   History as HistoryIcon,
   User,
-  ExternalLink,
 } from 'lucide-react';
 import { useAllocationsHook } from './AllocationPageHook';
 

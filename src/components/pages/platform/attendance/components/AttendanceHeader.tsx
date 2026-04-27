@@ -13,7 +13,7 @@ interface AttendanceHeaderProps {
 export default function AttendanceHeader({
   isClockedIn,
   onClockAction,
-}: AttendanceHeaderProps) {
+}: Readonly<AttendanceHeaderProps>) {
   return (
     <div className="bg-card border border-border p-10 rounded-[3rem] shadow-sm flex flex-col lg:flex-row justify-between items-center gap-10 overflow-hidden relative">
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import {
   Zap,
   BookOpen,
@@ -15,16 +15,12 @@ import {
   Award,
   Briefcase,
   Settings,
-  LogOut,
   LayoutDashboard,
   Fingerprint,
   BarChart3,
   Users,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { logout } from '@/store/slices/authSlice';
-import { toast } from 'sonner';
-import TalentAvatar from '@/components/shared/avatar';
 
 // Helper for dynamic icons
 const IconMap: Record<string, React.ReactNode> = {
@@ -46,13 +42,11 @@ const IconMap: Record<string, React.ReactNode> = {
 
 export default function DashboardSidebarLayout({
   isMobile,
-}: {
+}: Readonly<{
   isMobile?: boolean;
-}) {
+}>) {
   const pathname = usePathname();
-  const router = useRouter();
-  const dispatch = useAppDispatch();
-  const { role, user } = useAppSelector((state) => state.auth);
+  const { role } = useAppSelector((state) => state.auth);
   const { employeeMenu, adminMenu } = useAppSelector((state) => state.sidebar);
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -61,12 +55,6 @@ export default function DashboardSidebarLayout({
   }, []);
 
   const menuItems = role === 'admin' ? adminMenu : employeeMenu;
-
-  const handleLogout = () => {
-    dispatch(logout());
-    toast.success('Logged out successfully');
-    router.push('/');
-  };
 
   if (!isMounted) {
     return (

@@ -27,6 +27,7 @@ import TalentAvatar from '@/components/shared/avatar';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 import { logout } from '@/store/slices/authSlice';
+import { openChat } from '@/store/slices/chatSlice';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
@@ -44,6 +45,11 @@ export default function DashboardHeaderLayout() {
     dispatch(logout());
     toast.success('Logged out successfully');
     router.push('/');
+  };
+
+  const handleOpenChat = () => {
+    dispatch(openChat());
+    toast.info('Chat assistant opened');
   };
 
   if (!isMounted) {
@@ -94,6 +100,7 @@ export default function DashboardHeaderLayout() {
         {/* Quick AI Action */}
         <button
           type="button"
+          onClick={handleOpenChat}
           className="hidden lg:flex items-center gap-2 px-6 py-2.5 bg-primary/10 text-primary rounded-xl font-bold text-xs hover:bg-primary hover:text-white transition-all group"
         >
           <Sparkles className="w-4 h-4 group-hover:animate-spin" />

@@ -4,6 +4,7 @@ import React from 'react';
 import { ThemeProvider } from '@/components/shared/theme/theme-provider';
 import Providers from '@/providers';
 import { Toaster } from 'sonner';
+import ChatWidget from '@/components/shared/chat';
 
 export default function RootLayoutContent({
   children,
@@ -21,6 +22,7 @@ export default function RootLayoutContent({
         disableTransitionOnChange
       >
         <div className={fontClassName}>{children}</div>
+        <ChatWidget />
         <Toaster richColors position="top-right" />
       </ThemeProvider>
     </Providers>

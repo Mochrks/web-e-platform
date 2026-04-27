@@ -12,7 +12,7 @@ export default function TaskStatBlock({
   label,
   value,
   color,
-}: TaskStatBlockProps) {
+}: Readonly<TaskStatBlockProps>) {
   return (
     <div className="p-6 bg-muted/30 border border-border rounded-[2rem] min-w-[140px] text-center">
       <span className="block text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2">

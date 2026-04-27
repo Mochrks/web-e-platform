@@ -1,14 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import DashboardSidebarLayout from './DashboardSidebarLayout';
 import DashboardHeaderLayout from './DashboardHeaderLayout';
+import { useAppSelector } from '@/store';
+import { useRouter } from 'next/navigation';
 
 export default function PlatformLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
+  const { isOnboarded } = useAppSelector((state) => state.onboarding);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isOnboarded) {
+      router.push('/onboarding');
+    }
+  }, [isOnboarded, router]);
+
+  if (!isOnboarded) {
+    return null; // or a loading spinner
+  }
   return (
     <div className="flex min-h-screen bg-background text-foreground antialiased selection:bg-primary/20">
       {/* Sidebar - Fixed on the left */}

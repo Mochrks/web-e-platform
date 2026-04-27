@@ -38,7 +38,7 @@ export default function NoteModal({
   onSave,
   onUpdateEditingNote,
   isExisting,
-}: NoteModalProps) {
+}: Readonly<NoteModalProps>) {
   if (!editingNote) return null;
 
   return (

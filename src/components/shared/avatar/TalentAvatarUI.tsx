@@ -20,7 +20,7 @@ export default function TalentAvatarUI({
   hasGlasses = true,
   isAnimated = true,
   className = '',
-}: TalentAvatarProps) {
+}: Readonly<TalentAvatarProps>) {
   return (
     <div
       className={`relative flex items-center justify-center ${className}`}

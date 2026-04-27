@@ -34,7 +34,7 @@ export default function CalendarGrid({
   selectedDate,
   sessions,
   onDateClick,
-}: CalendarGridProps) {
+}: Readonly<CalendarGridProps>) {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
@@ -69,12 +69,14 @@ export default function CalendarGrid({
         const daySessions = sessions.filter((s) => isSameDay(s.date, cloneDay));
 
         days.push(
-          <div
+          <button
             key={day.toString()}
+            type="button"
             className={`
-              h-32 md:h-40 p-4 border border-border/50 transition-all cursor-pointer relative group flex flex-col justify-between
+              text-left w-full h-32 md:h-40 p-4 border border-border/50 transition-all relative group flex flex-col justify-between
               ${!isCurrentMonth ? 'bg-muted/20 opacity-20' : 'bg-card hover:bg-muted/30'}
               ${isSelected ? 'bg-primary/5 border-primary/50 relative z-10 shadow-inner' : ''}
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:z-20
             `}
             onClick={() => onDateClick(cloneDay)}
           >
@@ -104,7 +106,7 @@ export default function CalendarGrid({
                 </div>
               )}
             </div>
-          </div>
+          </button>
         );
         day = addDays(day, 1);
       }

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Card } from '@/components/ui/card';
-import { BarChart3, Activity, ShieldCheck, AlertCircle } from 'lucide-react';
+import { Activity } from 'lucide-react';
 import { useMonitoringPageHook } from './MonitoringPageHook';
 
 export default function MonitoringPageUI() {

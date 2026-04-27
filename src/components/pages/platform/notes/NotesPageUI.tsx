@@ -101,15 +101,18 @@ export default function NotesPageUI() {
                 }
               >
                 <div className="flex items-center gap-3">
-                  {item.label === 'All Notes' ? (
-                    <StickyNote className="w-4 h-4" />
-                  ) : item.label === 'Technical Prep' ? (
-                    <Star className="w-4 h-4" />
-                  ) : item.label === 'Behavioral Tips' ? (
-                    <Tag className="w-4 h-4" />
-                  ) : (
-                    <Share2 className="w-4 h-4" />
-                  )}
+                  {(() => {
+                    switch (item.label) {
+                      case 'All Notes':
+                        return <StickyNote className="w-4 h-4" />;
+                      case 'Technical Prep':
+                        return <Star className="w-4 h-4" />;
+                      case 'Behavioral Tips':
+                        return <Tag className="w-4 h-4" />;
+                      default:
+                        return <Share2 className="w-4 h-4" />;
+                    }
+                  })()}
                   <span className="text-sm font-bold tracking-tight">
                     {item.label}
                   </span>

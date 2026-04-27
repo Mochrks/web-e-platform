@@ -18,7 +18,9 @@ interface AttendanceLogsProps {
   logs: AttendanceLog[];
 }
 
-export default function AttendanceLogs({ logs }: AttendanceLogsProps) {
+export default function AttendanceLogs({
+  logs,
+}: Readonly<AttendanceLogsProps>) {
   return (
     <div className="xl:col-span-2 space-y-8">
       <div className="flex items-center justify-between px-4">

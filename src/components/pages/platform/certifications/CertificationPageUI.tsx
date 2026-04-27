@@ -4,16 +4,7 @@ import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import {
-  Award,
-  ExternalLink,
-  BookOpen,
-  Clock,
-  Zap,
-  CheckCircle2,
-  Lock,
-  Search,
-} from 'lucide-react';
+import { Award, BookOpen, Clock, Zap, CheckCircle2, Lock } from 'lucide-react';
 import { useCertificationsHook } from './CertificationPageHook';
 
 export default function CertificationPageUI() {

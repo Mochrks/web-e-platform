@@ -29,7 +29,7 @@ export default function NoteCard({
   onEdit,
   onDelete,
   onToggleStar,
-}: NoteCardProps) {
+}: Readonly<NoteCardProps>) {
   const isGrid = viewMode === 'grid';
 
   return (

@@ -7,7 +7,10 @@ interface SkillItemProps {
   percent: number;
 }
 
-export default function SkillItem({ label, percent }: SkillItemProps) {
+export default function SkillItem({
+  label,
+  percent,
+}: Readonly<SkillItemProps>) {
   return (
     <div className="space-y-2">
       <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-muted-foreground">

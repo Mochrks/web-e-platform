@@ -137,13 +137,16 @@ export default function DashboardPageUI() {
                 className="flex items-center gap-6 p-6 rounded-3xl hover:bg-muted/50 transition-all border border-transparent hover:border-border group"
               >
                 <div className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                  {item.type === 'Assessment' ? (
-                    <CheckCircle />
-                  ) : item.type === 'Meeting' ? (
-                    <MessageSquare />
-                  ) : (
-                    <Zap />
-                  )}
+                  {(() => {
+                    switch (item.type) {
+                      case 'Assessment':
+                        return <CheckCircle />;
+                      case 'Meeting':
+                        return <MessageSquare />;
+                      default:
+                        return <Zap />;
+                    }
+                  })()}
                 </div>
                 <div className="flex-1">
                   <p className="font-bold text-lg text-foreground tracking-tight">
