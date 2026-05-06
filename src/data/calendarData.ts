@@ -1,14 +1,6 @@
 import { addDays } from 'date-fns';
 
-export interface Session {
-  id: number;
-  title: string;
-  time: string;
-  mentor: string;
-  type: string;
-  location: string;
-  date: Date;
-}
+import { Session } from '@/types/data';
 
 export const initialSessions: Session[] = [
   {

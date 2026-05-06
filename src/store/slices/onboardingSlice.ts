@@ -1,20 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type Division =
-  | 'IT'
-  | 'Finance'
-  | 'Sales'
-  | 'Marketing'
-  | 'HR'
-  | 'Operations';
-export type CompanyType = 'Internal' | 'Outsource';
-
-interface OnboardingState {
-  division: Division | null;
-  companyType: CompanyType | null;
-  isOnboarded: boolean;
-  step: number;
-}
+import { Division, CompanyType, OnboardingState } from '@/types/onboarding';
 
 const initialState: OnboardingState = {
   division: null,

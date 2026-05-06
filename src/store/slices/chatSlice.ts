@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface ChatState {
-  isOpen: boolean;
-}
+import { ChatState } from '@/types/chat';
 
 const initialState: ChatState = {
   isOpen: false,

@@ -20,7 +20,7 @@ import {
   BarChart3,
   Users,
 } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from '@/store';
+import { useAppSelector } from '@/store';
 
 // Helper for dynamic icons
 const IconMap: Record<string, React.ReactNode> = {
@@ -111,7 +111,7 @@ export default function DashboardSidebarLayout({
                   `}
                 >
                   <div className="shrink-0 transition-transform group-hover:scale-110">
-                    {IconMap[item.icon as string] || (
+                    {IconMap[item.icon] || (
                       <LayoutDashboard className="w-5 h-5" />
                     )}
                   </div>

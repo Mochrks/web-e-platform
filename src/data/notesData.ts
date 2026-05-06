@@ -1,12 +1,4 @@
-export interface Note {
-  id: number;
-  title: string;
-  content: string;
-  date: Date;
-  tag: string;
-  color: string;
-  isStarred: boolean;
-}
+import { Note } from '@/types/data';
 
 export const initialNotes: Note[] = [
   {

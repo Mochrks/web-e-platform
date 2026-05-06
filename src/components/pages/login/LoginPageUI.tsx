@@ -4,7 +4,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Terminal, Lock, User, ArrowRight, Github, Chrome } from 'lucide-react';
+import { Terminal, Lock, User, ArrowRight } from 'lucide-react';
+import { GithubIcon, GoogleIcon } from '@/components/shared/icons';
 import { Card } from '@/components/ui/card';
 import { ModeToggle } from '@/components/shared/theme/ModeToggle';
 import TalentAvatar from '@/components/shared/avatar';
@@ -171,14 +172,14 @@ export default function LoginPageUI() {
                 variant="outline"
                 className="h-14 rounded-2xl border-border bg-muted/30 hover:bg-muted/50 text-foreground font-bold gap-3 transition-all hover:border-primary/20"
               >
-                <Github className="w-5 h-5" /> GitHub
+                <GithubIcon className="w-5 h-5" /> GitHub
               </Button>
               <Button
                 type="button"
                 variant="outline"
                 className="h-14 rounded-2xl border-border bg-muted/30 hover:bg-muted/50 text-foreground font-bold gap-3 transition-all hover:border-primary/20"
               >
-                <Chrome className="w-5 h-5" /> Google
+                <GoogleIcon className="w-5 h-5" /> Google
               </Button>
             </div>
           </form>

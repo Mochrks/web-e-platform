@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use(
   (config) => {
     // Add Authorization token if available in localStorage/cookies
     const token =
-      typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      globalThis.window === undefined ? null : localStorage.getItem('token');
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }

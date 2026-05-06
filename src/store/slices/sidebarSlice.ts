@@ -1,15 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface MenuItem {
-  title: string;
-  path: string;
-  icon: string;
-}
-
-interface SidebarState {
-  employeeMenu: MenuItem[];
-  adminMenu: MenuItem[];
-}
+import { MenuItem, SidebarState } from '@/types/sidebar';
 
 const initialState: SidebarState = {
   employeeMenu: [
