@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Clock, AlertCircle } from 'lucide-react';
-import { formatTime } from '@/lib/interviewUtils';
+import { formatTime } from '@/lib/interview';
 
 interface TimerProps {
   totalSeconds: number;

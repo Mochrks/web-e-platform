@@ -4,7 +4,7 @@
 // ========================================
 
 import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
+import autoTable, { UserOptions } from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import {
   Document,
@@ -19,6 +19,15 @@ import {
 } from 'docx';
 
 import { InterviewReport } from '@/types/report';
+
+export type { InterviewReport };
+
+// Extend jsPDF type to include autoTable properties
+interface jsPDFWithAutoTable extends jsPDF {
+  lastAutoTable: {
+    finalY: number;
+  };
+}
 
 // ========================================
 // CSV EXPORT
@@ -148,7 +157,7 @@ export function downloadExcel(
 // ========================================
 
 export function generatePDF(report: InterviewReport): jsPDF {
-  const doc = new jsPDF();
+  const doc = new jsPDF() as jsPDFWithAutoTable;
   let yPos = 20;
 
   // Title
@@ -180,18 +189,19 @@ export function generatePDF(report: InterviewReport): jsPDF {
   doc.text('Stage Scores', 20, yPos);
   yPos += 5;
 
-  autoTable(doc, {
+  const stageTableOptions: UserOptions = {
     startY: yPos,
     head: [['Stage', 'Score']],
     body: report.stages.map((s) => [s.stage, s.score.toString()]),
     theme: 'grid',
     headStyles: { fillColor: [220, 53, 69] },
-  });
+  };
 
-  yPos = (doc as any).lastAutoTable.finalY + 15;
+  autoTable(doc, stageTableOptions);
+  yPos = doc.lastAutoTable.finalY + 15;
 
   // Detailed Responses
-  report.stages.forEach((stage, index) => {
+  report.stages.forEach((stage) => {
     if (yPos > 250) {
       doc.addPage();
       yPos = 20;
@@ -202,7 +212,7 @@ export function generatePDF(report: InterviewReport): jsPDF {
     doc.text(`${stage.stage} (Score: ${stage.score}/100)`, 20, yPos);
     yPos += 5;
 
-    autoTable(doc, {
+    const detailedTableOptions: UserOptions = {
       startY: yPos,
       head: [['Question', 'Score', 'Feedback']],
       body: stage.questions.map((q) => [
@@ -217,9 +227,10 @@ export function generatePDF(report: InterviewReport): jsPDF {
         1: { cellWidth: 20 },
         2: { cellWidth: 80 },
       },
-    });
+    };
 
-    yPos = (doc as any).lastAutoTable.finalY + 10;
+    autoTable(doc, detailedTableOptions);
+    yPos = doc.lastAutoTable.finalY + 10;
   });
 
   // Strengths and Weaknesses
@@ -287,7 +298,7 @@ export function downloadPDF(
 // ========================================
 
 export async function generateDOCX(report: InterviewReport): Promise<Blob> {
-  const children: any[] = [];
+  const children: (Paragraph | Table)[] = [];
 
   // Title
   children.push(

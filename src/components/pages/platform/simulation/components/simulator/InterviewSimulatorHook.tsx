@@ -1,24 +1,28 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
-  InterviewStage,
-  Question,
-  CodeChallenge,
-  ProgrammingLanguage,
   behavioralQuestions,
   technicalQuestions,
   codingChallenges,
   finalQuestions,
 } from '@/data/interviewData';
 import {
+  InterviewStage,
+  Question,
+  CodeChallenge,
+  ProgrammingLanguage,
+} from '@/types/interview';
+import {
   evaluateAnswer,
   analyzeVoiceResponse,
   evaluateCode,
+} from '@/lib/interview';
+import {
   VoiceAnalysis,
   CodeEvaluation,
   AnswerEvaluation,
-} from '@/lib/interviewUtils';
+} from '@/types/analysis';
 
 export interface Answer {
   questionId: string;
@@ -50,7 +54,7 @@ export const useInterviewSimulatorHook = (
   const [voiceTranscript, setVoiceTranscript] = useState('');
   const [recordingDuration, setRecordingDuration] = useState(0);
 
-  const getCurrentQuestions = (): (Question | CodeChallenge)[] => {
+  const getCurrentQuestions = useCallback((): (Question | CodeChallenge)[] => {
     switch (currentStage) {
       case 'behavioral':
         return behavioralQuestions.slice(0, 5);
@@ -63,7 +67,7 @@ export const useInterviewSimulatorHook = (
       default:
         return [];
     }
-  };
+  }, [currentStage]);
 
   const questions = getCurrentQuestions();
   const currentQuestion = questions[currentQuestionIndex];
@@ -81,7 +85,12 @@ export const useInterviewSimulatorHook = (
       const challenge = currentQuestion as CodeChallenge;
       setCurrentCode(challenge.starterCode[selectedLanguage]);
     }
-  }, [currentQuestionIndex, selectedLanguage, currentStage]);
+  }, [
+    currentQuestionIndex,
+    selectedLanguage,
+    currentStage,
+    getCurrentQuestions,
+  ]);
 
   const resetCurrentAnswer = () => {
     setCurrentAnswer('');

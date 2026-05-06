@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ShirtType, PantsType, ShoeType, AvatarState } from '@/types/avatar';
+import { AvatarState } from '@/types/avatar';
 
 const initialState: AvatarState = {
   shirtColor: '#3b82f6',

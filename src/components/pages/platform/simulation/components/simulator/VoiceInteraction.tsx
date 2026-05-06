@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Mic, MicOff, Volume2, VolumeX, Play } from 'lucide-react';
-import { VoiceService } from '@/lib/interviewUtils';
+import { VoiceService } from '@/lib/interview';
 
 interface VoiceInteractionProps {
   questionText: string;

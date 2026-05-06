@@ -1,9 +1,12 @@
 import '@/styles/globals.css';
-import { Outfit } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import RootLayoutContent from '@/components/shared/layout/RootContentLayout';
 import { Metadata } from 'next';
 
-const outfit = Outfit({ subsets: ['latin'] });
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -77,9 +80,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${outfit.className} min-h-screen bg-background antialiased`}
+        className={`${plusJakartaSans.className} min-h-screen bg-background antialiased`}
       >
-        <RootLayoutContent fontClassName={outfit.className}>
+        <RootLayoutContent fontClassName={plusJakartaSans.className}>
           {children}
         </RootLayoutContent>
       </body>

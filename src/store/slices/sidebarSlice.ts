@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { MenuItem, SidebarState } from '@/types/sidebar';
+import { SidebarState } from '@/types/sidebar';
 
 const initialState: SidebarState = {
   employeeMenu: [

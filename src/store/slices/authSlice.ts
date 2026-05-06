@@ -1,50 +1,77 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 import { User, AuthState } from '@/types/auth';
+import { getCookie, setCookie, removeCookie } from '@/lib/cookies';
 
 const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
-  token: typeof window !== 'undefined' ? localStorage.getItem('token') : null,
-  role:
-    typeof window !== 'undefined'
-      ? (localStorage.getItem('role') as any)
-      : null,
+  token: null,
+  role: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginSuccess: (
+    hydrate: (state) => {
+      const token = getCookie('token');
+      const role = getCookie('role');
+      const userStr = getCookie('user');
+
+      if (token) {
+        state.token = token;
+        state.role = role || 'employee';
+        state.isAuthenticated = true;
+        if (userStr) {
+          try {
+            state.user = JSON.parse(userStr);
+          } catch (e) {
+            state.user = null;
+          }
+        }
+      }
+    },
+    setCredentials: (
       state,
       action: PayloadAction<{
         user: User;
         token: string;
-        role: 'employee' | 'admin';
       }>
     ) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.role = action.payload.role;
+      const { user, token } = action.payload;
+      state.user = user;
+      state.token = token;
+      state.role = user.role || 'employee';
       state.isAuthenticated = true;
-      localStorage.setItem('token', action.payload.token);
-      localStorage.setItem('role', action.payload.role);
+
+      if (typeof window !== 'undefined') {
+        setCookie('token', token, 7);
+        setCookie('role', user.role || 'employee', 7);
+        setCookie('userId', user.userId.toString(), 7);
+        setCookie('user', JSON.stringify(user), 7);
+      }
     },
     logout: (state) => {
       state.user = null;
       state.token = null;
       state.role = null;
       state.isAuthenticated = false;
-      localStorage.removeItem('token');
-      localStorage.removeItem('role');
+
+      if (typeof window !== 'undefined') {
+        removeCookie('token');
+        removeCookie('role');
+        removeCookie('userId');
+        removeCookie('user');
+        localStorage.clear();
+        sessionStorage.clear();
+      }
     },
-    setUser: (state, action: PayloadAction<User | null>) => {
+    updateUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
-      state.isAuthenticated = !!action.payload;
     },
   },
 });
 
-export const { loginSuccess, logout, setUser } = authSlice.actions;
+export const { hydrate, setCredentials, logout, updateUser } =
+  authSlice.actions;
 export default authSlice.reducer;

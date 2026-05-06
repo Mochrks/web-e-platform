@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Play, RotateCcw, Code2 } from 'lucide-react';
-import { ProgrammingLanguage } from '@/data/interviewData';
+import { ProgrammingLanguage } from '@/types/interview';
 
 interface CodeEditorProps {
   language: ProgrammingLanguage;

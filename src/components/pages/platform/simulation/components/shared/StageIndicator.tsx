@@ -8,7 +8,7 @@ import {
   Briefcase,
   CheckCircle2,
 } from 'lucide-react';
-import { InterviewStage } from '@/data/interviewData';
+import { InterviewStage } from '@/types/interview';
 
 interface StageIndicatorProps {
   currentStage: InterviewStage;

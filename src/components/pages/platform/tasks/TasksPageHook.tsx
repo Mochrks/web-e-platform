@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { initialTasks, Task, taskCategories } from '@/data/tasksData';
+import { initialTasks, taskCategories } from '@/data/tasksData';
+import { Task } from '@/types/data';
 
 export const useTasksPageHook = () => {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);

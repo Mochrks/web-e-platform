@@ -9,7 +9,7 @@ import {
   CheckCircle2,
   ChevronRight,
 } from 'lucide-react';
-import { InterviewStage } from '@/data/interviewData';
+import { InterviewStage } from '@/types/interview';
 import { Card } from '@/components/ui/card';
 
 interface SidebarInterviewProps {

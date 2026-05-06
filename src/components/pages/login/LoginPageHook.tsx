@@ -1,62 +1,41 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-
-import { useAppDispatch } from '@/store';
-import { loginSuccess } from '@/store/slices/authSlice';
-import { toast } from 'sonner';
+import { useLogin, useGoogleLogin } from '@/hooks/api/useAuth';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema, LoginValues } from './LoginPageSchema';
 
 export const useLoginPageHook = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState<'employee' | 'admin'>('employee');
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
-  const dispatch = useAppDispatch();
+  const { mutateAsync: login, isPending: isLoggingIn } = useLogin();
+  const { handleGoogleLogin } = useGoogleLogin();
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const form = useForm<LoginValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      identifier: '',
+      password: '',
+    },
+    mode: 'onChange',
+  });
 
-    // Dummy authentication
-    setTimeout(() => {
-      if (
-        (username === 'admin' && password === 'admin') ||
-        (username === 'user' && password === 'user')
-      ) {
-        const selectedRole = username === 'admin' ? 'admin' : 'employee';
-
-        dispatch(
-          loginSuccess({
-            user: {
-              name: username.charAt(0).toUpperCase() + username.slice(1),
-              username,
-            },
-            token: 'dummy-jwt-token',
-            role: selectedRole,
-          })
-        );
-
-        toast.success(`Login successful as ${selectedRole}`);
-        router.push('/platform/dashboard');
-      } else {
-        toast.error('Invalid credentials', {
-          description: 'Please use admin/admin or user/user',
-        });
-        setIsLoading(false);
-      }
-    }, 1000);
+  const handleLogin = async (values: LoginValues) => {
+    try {
+      await login(values);
+    } catch (error) {
+      // Error handled in hook
+    }
   };
 
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
   return {
-    username,
-    setUsername,
-    password,
-    setPassword,
-    role,
-    setRole,
-    isLoading,
-    handleLogin,
+    form,
+    isLoggingIn,
+    handleLogin: form.handleSubmit(handleLogin),
+    googleLogin: handleGoogleLogin,
+    showPassword,
+    togglePasswordVisibility,
   };
 };

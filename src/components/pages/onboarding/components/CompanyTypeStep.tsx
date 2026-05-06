@@ -5,7 +5,7 @@ import { Briefcase, Building2, ChevronRight, ChevronLeft } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { CompanyType } from '@/store/slices/onboardingSlice';
+import { CompanyType } from '@/types/onboarding';
 
 const companyTypes = [
   {

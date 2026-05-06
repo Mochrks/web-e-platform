@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { getCookie, setCookie, removeCookie } from '@/lib/cookies';
 import { Division, CompanyType, OnboardingState } from '@/types/onboarding';
 
 const initialState: OnboardingState = {
@@ -13,6 +14,9 @@ const onboardingSlice = createSlice({
   name: 'onboarding',
   initialState,
   reducers: {
+    hydrate: (state) => {
+      state.isOnboarded = getCookie('isOnboarded') === 'true';
+    },
     setDivision: (state, action: PayloadAction<Division>) => {
       state.division = action.payload;
     },
@@ -27,17 +31,24 @@ const onboardingSlice = createSlice({
     },
     completeOnboarding: (state) => {
       state.isOnboarded = true;
+      if (typeof window !== 'undefined') {
+        setCookie('isOnboarded', 'true', 30);
+      }
     },
     resetOnboarding: (state) => {
       state.division = null;
       state.companyType = null;
       state.isOnboarded = false;
       state.step = 1;
+      if (typeof window !== 'undefined') {
+        removeCookie('isOnboarded');
+      }
     },
   },
 });
 
 export const {
+  hydrate,
   setDivision,
   setCompanyType,
   nextStep,

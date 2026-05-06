@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { Division } from '@/store/slices/onboardingSlice';
+import { Division } from '@/types/onboarding';
 
 const divisions = [
   {
