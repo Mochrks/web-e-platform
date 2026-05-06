@@ -94,3 +94,24 @@ export const useGoogleLogin = () => {
 
   return { handleGoogleLogin };
 };
+
+export const useForgotPassword = () => {
+  return useMutation({
+    mutationFn: (email: string) => authService.forgotPassword(email),
+    onSuccess: (response: any) => {
+      toast.success(response.message || 'Reset link sent to your email.');
+    },
+  });
+};
+
+export const useResetPassword = () => {
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: (payload: any) => authService.resetPassword(payload),
+    onSuccess: (response: any) => {
+      toast.success(response.message || 'Password reset successful!');
+      router.push('/login');
+    },
+  });
+};

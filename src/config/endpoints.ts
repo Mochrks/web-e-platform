@@ -16,6 +16,14 @@ export const ENDPOINTS: Record<string, any> = {
       method: 'get',
       url: '/v1/auth/login-google',
     },
+    forgotPassword: {
+      method: 'post',
+      url: '/v1/auth/forgot-password',
+    },
+    resetPassword: {
+      method: 'post',
+      url: '/v1/auth/reset-password',
+    },
   },
   user: {
     profile: {

@@ -15,6 +15,7 @@ import {
   ArrowRight,
   Eye,
   EyeOff,
+  Loader2,
 } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { ModeToggle } from '@/components/shared/theme/ModeToggle';
@@ -262,7 +263,10 @@ export default function RegisterPageUI() {
               className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-black text-lg shadow-xl shadow-primary/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isRegistering ? (
-                'Creating Account...'
+                <>
+                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  Creating Account...
+                </>
               ) : (
                 <>
                   Register Now <ArrowRight className="w-5 h-5 ml-2" />

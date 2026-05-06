@@ -18,4 +18,16 @@ export const authService = {
     const response = await API('auth.logout');
     return response.data;
   },
+  forgotPassword: async (email: string): Promise<any> => {
+    const response = await API('auth.forgotPassword', {
+      data: { email },
+    });
+    return response.data;
+  },
+  resetPassword: async (payload: any): Promise<any> => {
+    const response = await API('auth.resetPassword', {
+      data: payload,
+    });
+    return response.data;
+  },
 };
