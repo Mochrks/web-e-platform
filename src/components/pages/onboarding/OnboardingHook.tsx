@@ -8,9 +8,8 @@ import {
   nextStep,
   prevStep,
   completeOnboarding,
-  Division,
-  CompanyType,
 } from '@/store/slices/onboardingSlice';
+import { Division, CompanyType } from '@/types/onboarding';
 
 export function useOnboardingHook() {
   const router = useRouter();

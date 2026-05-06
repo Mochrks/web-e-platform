@@ -1,11 +1,4 @@
-export interface Task {
-  id: number;
-  title: string;
-  cat: string;
-  xp: number;
-  status: 'pending' | 'done';
-  deadline: string;
-}
+import { Task } from '@/types/data';
 
 export const initialTasks: Task[] = [
   {

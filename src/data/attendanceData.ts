@@ -1,11 +1,4 @@
-export interface AttendanceLog {
-  id: number;
-  date: string;
-  clockIn: string;
-  clockOut: string;
-  status: 'Present' | 'Late' | 'Absent';
-  location: string;
-}
+import { AttendanceLog } from '@/types/data';
 
 export const initialAttendanceLogs: AttendanceLog[] = [
   {

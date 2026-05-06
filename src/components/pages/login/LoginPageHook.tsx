@@ -1,62 +1,102 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import {
+  useLogin,
+  useGoogleLogin,
+  useForgotPassword,
+  useResetPassword,
+} from '@/hooks/api/useAuth';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema, LoginValues } from './LoginPageSchema';
+import { useSearchParams } from 'next/navigation';
 
-import { useAppDispatch } from '@/store';
-import { loginSuccess } from '@/store/slices/authSlice';
-import { toast } from 'sonner';
+export type AuthView = 'login' | 'forgot' | 'reset';
 
 export const useLoginPageHook = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState<'employee' | 'admin'>('employee');
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
-  const dispatch = useAppDispatch();
+  const searchParams = useSearchParams();
+  const [view, setView] = useState<AuthView>('login');
+  const [token, setToken] = useState<string | null>(null);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+  const { mutateAsync: login, isPending: isLoggingIn } = useLogin();
+  const { mutateAsync: forgotPassword, isPending: isSendingForgot } =
+    useForgotPassword();
+  const { mutateAsync: resetPassword, isPending: isResettingPassword } =
+    useResetPassword();
+  const { handleGoogleLogin } = useGoogleLogin();
 
-    // Dummy authentication
-    setTimeout(() => {
-      if (
-        (username === 'admin' && password === 'admin') ||
-        (username === 'user' && password === 'user')
-      ) {
-        const selectedRole = username === 'admin' ? 'admin' : 'employee';
+  const [showPassword, setShowPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
-        dispatch(
-          loginSuccess({
-            user: {
-              name: username.charAt(0).toUpperCase() + username.slice(1),
-              username,
-            },
-            token: 'dummy-jwt-token',
-            role: selectedRole,
-          })
-        );
+  useEffect(() => {
+    const action = searchParams.get('action');
+    const tokenParam = searchParams.get('token');
 
-        toast.success(`Login successful as ${selectedRole}`);
-        router.push('/platform/dashboard');
-      } else {
-        toast.error('Invalid credentials', {
-          description: 'Please use admin/admin or user/user',
-        });
-        setIsLoading(false);
-      }
-    }, 1000);
+    if (action === 'reset' && tokenParam) {
+      setView('reset');
+      setToken(tokenParam);
+    }
+  }, [searchParams]);
+
+  const form = useForm<LoginValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      identifier: '',
+      password: '',
+    },
+    mode: 'onChange',
+  });
+
+  const handleLogin = async (values: LoginValues) => {
+    try {
+      await login(values);
+    } catch (error) {
+      // Error handled in hook
+    }
   };
 
+  const handleForgotSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!resetEmail) return;
+    try {
+      await forgotPassword(resetEmail);
+      // We can stay on the same view but show a success message (already handled by toast)
+      // Maybe return to login
+      setView('login');
+    } catch (error) {}
+  };
+
+  const handleResetSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newPassword || !token) return;
+    try {
+      await resetPassword({ token, newPassword });
+      setView('login');
+    } catch (error) {}
+  };
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
   return {
-    username,
-    setUsername,
-    password,
-    setPassword,
-    role,
-    setRole,
-    isLoading,
-    handleLogin,
+    view,
+    setView,
+    form,
+    isLoggingIn,
+    handleLogin: form.handleSubmit(handleLogin),
+    googleLogin: handleGoogleLogin,
+    showPassword,
+    togglePasswordVisibility,
+    // Forgot Password
+    resetEmail,
+    setResetEmail,
+    handleForgotSubmit,
+    isSendingForgot,
+    // Reset Password
+    newPassword,
+    setNewPassword,
+    handleResetSubmit,
+    isResettingPassword,
   };
 };

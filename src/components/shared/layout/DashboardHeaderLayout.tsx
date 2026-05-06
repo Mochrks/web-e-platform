@@ -26,14 +26,13 @@ import { ModeToggle } from '@/components/shared/theme/ModeToggle';
 import TalentAvatar from '@/components/shared/avatar';
 
 import { useAppDispatch, useAppSelector } from '@/store';
-import { logout } from '@/store/slices/authSlice';
 import { openChat } from '@/store/slices/chatSlice';
 import { useRouter } from 'next/navigation';
+import { useLogout } from '@/hooks/api/useAuth';
 import { toast } from 'sonner';
 
 export default function DashboardHeaderLayout() {
   const [isMounted, setIsMounted] = React.useState(false);
-  const router = useRouter();
   const dispatch = useAppDispatch();
   const { user, role } = useAppSelector((state) => state.auth);
 
@@ -41,10 +40,10 @@ export default function DashboardHeaderLayout() {
     setIsMounted(true);
   }, []);
 
+  const { mutate: logoutMutation } = useLogout();
+
   const handleLogout = () => {
-    dispatch(logout());
-    toast.success('Logged out successfully');
-    router.push('/');
+    logoutMutation();
   };
 
   const handleOpenChat = () => {
@@ -128,7 +127,7 @@ export default function DashboardHeaderLayout() {
               </div>
               <div className="hidden sm:block text-left">
                 <p className="text-xs font-black tracking-tight leading-none mb-0.5">
-                  {user?.name || 'Guest User'}
+                  {user?.fullName || user?.username || 'Guest User'}
                 </p>
                 <p className="text-[10px] text-primary font-black uppercase tracking-widest leading-none">
                   {role === 'admin' ? 'Administrator' : 'Employee Portal'}
@@ -146,10 +145,8 @@ export default function DashboardHeaderLayout() {
                 <span className="text-sm font-black tracking-tight">
                   Account Control
                 </span>
-                <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest">
-                  {user?.username
-                    ? `${user.username}@e-platform.pro`
-                    : 'session@e-platform.pro'}
+                <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest truncate max-w-full">
+                  {user?.email}
                 </span>
               </div>
             </DropdownMenuLabel>

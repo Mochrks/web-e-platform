@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { initialNotes, type Note, noteCollections } from '@/data/notesData';
+import { initialNotes, noteCollections } from '@/data/notesData';
+import { Note } from '@/types/data';
 
 export const useNotesPageHook = () => {
   const [notes, setNotes] = useState<Note[]>(initialNotes);

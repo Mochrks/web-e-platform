@@ -3,7 +3,8 @@
 import { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/store';
-import { updateAvatar, AvatarState } from '@/store/slices/avatarSlice';
+import { updateAvatar } from '@/store/slices/avatarSlice';
+import { AvatarState } from '@/types/avatar';
 import { toast } from 'sonner';
 
 export const useSettingsPageHook = () => {

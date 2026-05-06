@@ -514,8 +514,8 @@ export default function SettingsPageUI() {
           <div className="flex justify-end gap-3 px-4">
             <Button
               type="button"
-              variant="ghost"
-              className="rounded-xl font-bold px-8"
+              variant="outline"
+              className="rounded-xl font-bold px-8 h-14"
             >
               Discard
             </Button>

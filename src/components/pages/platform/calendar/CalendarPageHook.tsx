@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { initialSessions, Session } from '@/data/calendarData';
+import { initialSessions } from '@/data/calendarData';
+import { Session } from '@/types/data';
 import { addMonths, subMonths, isSameDay } from 'date-fns';
 
 export const useCalendarPageHook = () => {

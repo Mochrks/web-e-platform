@@ -11,7 +11,7 @@ import Badge from '@/components/shared/components/Badge';
 import { BookOpen, Rocket, ShieldCheck, Zap } from 'lucide-react';
 import { useSimulationPageHook } from './SimulationPageHook';
 import SidebarInterview from './components/shared/SidebarInterview';
-import { InterviewStage } from '@/data/interviewData';
+import { InterviewStage } from '@/types/interview';
 
 export default function SimulationPageUI() {
   const {

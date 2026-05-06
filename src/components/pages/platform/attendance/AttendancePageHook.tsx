@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { initialAttendanceLogs, AttendanceLog } from '@/data/attendanceData';
+import { initialAttendanceLogs } from '@/data/attendanceData';
+import { AttendanceLog } from '@/types/data';
 
 export const useAttendancePageHook = () => {
   const [isClockedIn, setIsClockedIn] = useState(false);

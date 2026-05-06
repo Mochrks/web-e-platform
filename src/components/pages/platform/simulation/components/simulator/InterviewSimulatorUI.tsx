@@ -15,7 +15,7 @@ import {
 import Timer from '../shared/Timer';
 import VoiceInteraction from './VoiceInteraction';
 import CodeEditor from './CodeEditor';
-import { Question, CodeChallenge, InterviewStage } from '@/data/interviewData';
+import { Question, CodeChallenge, InterviewStage } from '@/types/interview';
 import { useInterviewSimulatorHook, Answer } from './InterviewSimulatorHook';
 
 interface InterviewSimulatorUIProps {

@@ -9,7 +9,7 @@ import {
   Float as FloatDrei,
 } from '@react-three/drei';
 import * as THREE from 'three';
-import { ShirtType, PantsType, ShoeType } from '@/store/slices/avatarSlice';
+import { ShirtType, PantsType, ShoeType } from '@/types/avatar';
 
 interface TalentAvatar3DProps {
   shirtColor: string;

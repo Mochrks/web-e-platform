@@ -36,7 +36,7 @@ import {
   downloadCSV,
   downloadDOCX,
   getReportFilename,
-} from '@/lib/reportExport';
+} from '@/lib/export';
 import {
   DropdownMenu,
   DropdownMenuContent,

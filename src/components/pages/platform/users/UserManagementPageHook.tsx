@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ShirtType } from '@/store/slices/avatarSlice';
+import { ShirtType } from '@/types/avatar';
 
 export interface ManagedUser {
   id: string;

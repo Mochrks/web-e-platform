@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Answer } from './components/simulator/InterviewSimulatorHook';
-import { InterviewStage } from '@/data/interviewData';
+import { InterviewStage } from '@/types/interview';
 
 export const useSimulationPageHook = () => {
   const [stage, setStage] = useState<'setup' | 'simulating' | 'results'>(
