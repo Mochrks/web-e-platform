@@ -1,14 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  Code,
-  DollarSign,
-  TrendingUp,
-  Users,
-  Settings,
-  Users2,
-} from 'lucide-react';
+import { Code, DollarSign, Users, Settings, Users2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { Division } from '@/types/onboarding';
@@ -22,21 +15,14 @@ const divisions = [
     bg: 'bg-blue-500/10',
   },
   {
-    id: 'Finance',
+    id: 'FINANCE',
     label: 'Finance & Accounting',
     icon: DollarSign,
     color: 'text-emerald-500',
     bg: 'bg-emerald-500/10',
   },
   {
-    id: 'Sales',
-    label: 'Sales & Business',
-    icon: TrendingUp,
-    color: 'text-orange-500',
-    bg: 'bg-orange-500/10',
-  },
-  {
-    id: 'Marketing',
+    id: 'MARKETING',
     label: 'Marketing & Creative',
     icon: Users,
     color: 'text-purple-500',
@@ -50,7 +36,7 @@ const divisions = [
     bg: 'bg-pink-500/10',
   },
   {
-    id: 'Operations',
+    id: 'OPERATIONS',
     label: 'Operations',
     icon: Settings,
     color: 'text-slate-500',

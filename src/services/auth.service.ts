@@ -30,4 +30,16 @@ export const authService = {
     });
     return response.data;
   },
+  verifyEmail: async (token: string): Promise<any> => {
+    const response = await API('auth.verifyEmail', {
+      params: { token },
+    });
+    return response.data;
+  },
+  onboarding: async (payload: any): Promise<any> => {
+    const response = await API('auth.onboarding', {
+      data: payload,
+    });
+    return response.data;
+  },
 };

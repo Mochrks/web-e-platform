@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { CheckCircle2, ChevronRight } from 'lucide-react';
+import { CheckCircle2, ChevronRight, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface SuccessStepProps {
@@ -9,6 +9,7 @@ interface SuccessStepProps {
   companyType: string | null;
   onFinalize: () => void;
   onBack: () => void;
+  isLoading?: boolean;
 }
 
 export function SuccessStep({
@@ -16,6 +17,7 @@ export function SuccessStep({
   companyType,
   onFinalize,
   onBack,
+  isLoading,
 }: Readonly<SuccessStepProps>) {
   return (
     <div className="space-y-8 animate-in fade-in zoom-in-95 duration-500 text-center">
@@ -26,12 +28,12 @@ export function SuccessStep({
         <h2 className="text-3xl font-bold">You&apos;re all set!</h2>
         <p className="text-slate-500 max-w-md mx-auto">
           We&apos;ve customized the platform for{' '}
-          <span className="font-bold text-slate-900 dark:text-white">
-            {division}
+          <span className="font-bold text-slate-900 dark:text-white capitalize">
+            {division?.toLowerCase()}
           </span>{' '}
           division as an{' '}
-          <span className="font-bold text-slate-900 dark:text-white">
-            {companyType}
+          <span className="font-bold text-slate-900 dark:text-white capitalize">
+            {companyType?.toLowerCase()}
           </span>{' '}
           employee.
         </p>
@@ -40,13 +42,17 @@ export function SuccessStep({
       <div className="bg-white dark:bg-zinc-900 p-8 rounded-[2rem] border shadow-sm max-w-md mx-auto space-y-4">
         <div className="flex justify-between items-center pb-4 border-b">
           <span className="text-slate-400 text-sm font-medium">Division</span>
-          <span className="font-bold text-primary">{division}</span>
+          <span className="font-bold text-primary capitalize">
+            {division?.toLowerCase()}
+          </span>
         </div>
         <div className="flex justify-between items-center pt-2">
           <span className="text-slate-400 text-sm font-medium">
             Employee Type
           </span>
-          <span className="font-bold text-primary">{companyType}</span>
+          <span className="font-bold text-primary capitalize">
+            {companyType?.toLowerCase()}
+          </span>
         </div>
       </div>
 
@@ -55,10 +61,19 @@ export function SuccessStep({
           size="lg"
           className="rounded-2xl h-14 font-bold text-lg gap-3"
           onClick={onFinalize}
+          disabled={isLoading}
         >
-          Enter Dashboard <ChevronRight className="w-5 h-5" />
+          {isLoading ? (
+            <>
+              Processing... <Loader2 className="w-5 h-5 animate-spin" />
+            </>
+          ) : (
+            <>
+              Enter Dashboard <ChevronRight className="w-5 h-5" />
+            </>
+          )}
         </Button>
-        <Button variant="ghost" onClick={onBack}>
+        <Button variant="ghost" onClick={onBack} disabled={isLoading}>
           Change Details
         </Button>
       </div>

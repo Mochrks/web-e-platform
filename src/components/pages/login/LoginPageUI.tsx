@@ -375,7 +375,7 @@ export default function LoginPageUI() {
 
                 <Button
                   type="button"
-                  variant="ghost"
+                  variant="outline"
                   onClick={() => setView('login')}
                   className="w-full h-14 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-muted/50"
                 >

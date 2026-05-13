@@ -17,6 +17,7 @@ export default function OnboardingUI() {
     handleCompanyTypeSelect,
     handleFinalize,
     handleBack,
+    isSubmitting,
   } = useOnboardingHook();
 
   return (
@@ -70,6 +71,7 @@ export default function OnboardingUI() {
             companyType={companyType}
             onFinalize={handleFinalize}
             onBack={handleBack}
+            isLoading={isSubmitting}
           />
         )}
       </div>

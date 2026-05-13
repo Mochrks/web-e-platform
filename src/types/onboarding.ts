@@ -1,12 +1,6 @@
-export type Division =
-  | 'IT'
-  | 'Finance'
-  | 'Sales'
-  | 'Marketing'
-  | 'HR'
-  | 'Operations';
+export type Division = 'IT' | 'FINANCE' | 'HR' | 'MARKETING' | 'OPERATIONS';
 
-export type CompanyType = 'Internal' | 'Outsource';
+export type CompanyType = 'INTERNAL' | 'OUTSOURCE';
 
 export interface OnboardingState {
   division: Division | null;

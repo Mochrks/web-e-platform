@@ -9,6 +9,10 @@ import {
   setCredentials,
   logout as logoutAction,
 } from '@/store/slices/authSlice';
+import {
+  setIsOnboarded,
+  resetOnboarding,
+} from '@/store/slices/onboardingSlice';
 import ENDPOINTS from '@/config/endpoints';
 import { getBaseUrl } from '@/config/axios';
 
@@ -20,16 +24,18 @@ export const useLogin = () => {
     mutationFn: (payload: any) => authService.login(payload),
     onSuccess: (response: AuthResponse) => {
       console.log('Login successful, processing redirect...', response);
-      const { token, userId, username, email, role } = response.data;
+      const { token, userId, username, email, role, isOnboarding } =
+        response.data;
 
       const user = { userId, username, email, role };
 
       // Store in Redux (this also sets cookies automatically now)
       dispatch(setCredentials({ token, user }));
+      dispatch(setIsOnboarded(isOnboarding));
 
       toast.success(response.message || 'Login successful!');
 
-      const destination = '/platform/dashboard';
+      const destination = isOnboarding ? '/platform/dashboard' : '/onboarding';
       console.log('Login successful, pushing to:', destination);
       router.push(destination);
     },
@@ -44,9 +50,9 @@ export const useRegister = () => {
     onSuccess: (response: RegisterResponse) => {
       toast.dismiss();
       toast.success(
-        response.message || 'Registration successful! Please login.'
+        response.message || 'Registration successful! Please verify your email.'
       );
-      router.push('/login');
+      router.push('/verify-email');
     },
   });
 };
@@ -75,6 +81,7 @@ export const useLogout = () => {
       // This prevents the current page from crashing while it's still mounted
       setTimeout(() => {
         dispatch(logoutAction());
+        dispatch(resetOnboarding());
         queryClient.clear();
       }, 100);
     },
@@ -112,6 +119,30 @@ export const useResetPassword = () => {
     onSuccess: (response: any) => {
       toast.success(response.message || 'Password reset successful!');
       router.push('/login');
+    },
+  });
+};
+
+export const useVerifyEmail = () => {
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: (token: string) => authService.verifyEmail(token),
+    onSuccess: (response: any) => {
+      toast.success(response.message || 'Email verified successfully!');
+      router.push('/login');
+    },
+  });
+};
+
+export const useOnboarding = () => {
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: (payload: any) => authService.onboarding(payload),
+    onSuccess: (response: any) => {
+      toast.success(response.message || 'Onboarding completed!');
+      router.push('/platform/dashboard');
     },
   });
 };
