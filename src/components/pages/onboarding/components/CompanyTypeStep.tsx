@@ -9,13 +9,13 @@ import { CompanyType } from '@/types/onboarding';
 
 const companyTypes = [
   {
-    id: 'Internal',
+    id: 'INTERNAL',
     label: 'Internal Employee',
     description: 'Directly employed by the main organization.',
     icon: Building2,
   },
   {
-    id: 'Outsource',
+    id: 'OUTSOURCE',
     label: 'Outsource Partner',
     description: 'Contracted through an external service provider.',
     icon: Briefcase,

@@ -35,6 +35,12 @@ const onboardingSlice = createSlice({
         setCookie('isOnboarded', 'true', 30);
       }
     },
+    setIsOnboarded: (state, action: PayloadAction<boolean>) => {
+      state.isOnboarded = action.payload;
+      if (typeof window !== 'undefined') {
+        setCookie('isOnboarded', action.payload.toString(), 30);
+      }
+    },
     resetOnboarding: (state) => {
       state.division = null;
       state.companyType = null;
@@ -54,6 +60,7 @@ export const {
   nextStep,
   prevStep,
   completeOnboarding,
+  setIsOnboarded,
   resetOnboarding,
 } = onboardingSlice.actions;
 

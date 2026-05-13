@@ -24,6 +24,14 @@ export const ENDPOINTS: Record<string, any> = {
       method: 'post',
       url: '/v1/auth/reset-password',
     },
+    verifyEmail: {
+      method: 'get',
+      url: '/v1/auth/verify-email',
+    },
+    onboarding: {
+      method: 'post',
+      url: '/v1/auth/onboarding',
+    },
   },
   user: {
     profile: {
