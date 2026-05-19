@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/store';
 import {
@@ -15,11 +16,17 @@ import { useOnboarding } from '@/hooks/api/useAuth';
 export function useOnboardingHook() {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { step, division, companyType } = useAppSelector(
+  const { step, division, companyType, isOnboarded } = useAppSelector(
     (state) => state.onboarding
   );
   const { user } = useAppSelector((state) => state.auth);
   const { mutate: submitOnboarding, isPending: isSubmitting } = useOnboarding();
+
+  useEffect(() => {
+    if (isOnboarded) {
+      router.push('/platform/dashboard');
+    }
+  }, [isOnboarded, router]);
 
   const handleDivisionSelect = (id: Division) => {
     dispatch(setDivision(id));

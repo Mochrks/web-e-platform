@@ -30,11 +30,14 @@ import { openChat } from '@/store/slices/chatSlice';
 import { useRouter } from 'next/navigation';
 import { useLogout } from '@/hooks/api/useAuth';
 import { toast } from 'sonner';
+import { USER_ROLES } from '@/constants';
 
 export default function DashboardHeaderLayout() {
   const [isMounted, setIsMounted] = React.useState(false);
   const dispatch = useAppDispatch();
   const { user, role } = useAppSelector((state) => state.auth);
+  const isAdminCategories =
+    role === USER_ROLES.ADMIN || role === USER_ROLES.SUPER_ADMIN;
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -50,12 +53,6 @@ export default function DashboardHeaderLayout() {
     dispatch(openChat());
     toast.info('Chat assistant opened');
   };
-
-  if (!isMounted) {
-    return (
-      <header className="h-24 border-b border-border bg-card/50 sticky top-0 z-40 px-8 flex items-center justify-between" />
-    );
-  }
 
   return (
     <header className="h-24 border-b border-border bg-card/50 backdrop-blur-xl sticky top-0 z-40 px-6 sm:px-8 flex items-center justify-between">
@@ -125,13 +122,22 @@ export default function DashboardHeaderLayout() {
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 overflow-hidden shadow-sm">
                 <TalentAvatar size={40} />
               </div>
-              <div className="hidden sm:block text-left">
-                <p className="text-xs font-black tracking-tight leading-none mb-0.5">
-                  {user?.fullName || user?.username || 'Guest User'}
-                </p>
-                <p className="text-[10px] text-primary font-black uppercase tracking-widest leading-none">
-                  {role === 'admin' ? 'Administrator' : 'Employee Portal'}
-                </p>
+              <div className="hidden sm:block text-left w-24">
+                {!isMounted ? (
+                  <div className="space-y-1.5 mt-1">
+                    <div className="h-3 bg-slate-200 dark:bg-slate-800 rounded-md w-20 animate-pulse" />
+                    <div className="h-2.5 bg-slate-200 dark:bg-slate-800 rounded-md w-16 animate-pulse" />
+                  </div>
+                ) : (
+                  <>
+                    <p className="text-xs font-black tracking-tight leading-none mb-0.5 truncate">
+                      {user?.fullName || user?.username || 'Guest User'}
+                    </p>
+                    <p className="text-[10px] text-primary font-black uppercase tracking-widest leading-none">
+                      {isAdminCategories ? 'Administrator' : 'Employee Portal'}
+                    </p>
+                  </>
+                )}
               </div>
               <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-all group-data-[state=open]:rotate-180" />
             </button>

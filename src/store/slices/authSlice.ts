@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User, AuthState } from '@/types/auth';
 import { getCookie, setCookie, removeCookie } from '@/lib/cookies';
+import { USER_ROLES } from '@/constants';
 
 const initialState: AuthState = {
   user: null,
@@ -20,7 +21,7 @@ const authSlice = createSlice({
 
       if (token) {
         state.token = token;
-        state.role = role || 'employee';
+        state.role = role || USER_ROLES.EMPLOYEE;
         state.isAuthenticated = true;
         if (userStr) {
           try {
@@ -41,12 +42,12 @@ const authSlice = createSlice({
       const { user, token } = action.payload;
       state.user = user;
       state.token = token;
-      state.role = user.role || 'employee';
+      state.role = user.role || USER_ROLES.EMPLOYEE;
       state.isAuthenticated = true;
 
       if (typeof window !== 'undefined') {
         setCookie('token', token, 7);
-        setCookie('role', user.role || 'employee', 7);
+        setCookie('role', user.role || USER_ROLES.EMPLOYEE, 7);
         setCookie('userId', user.userId.toString(), 7);
         setCookie('user', JSON.stringify(user), 7);
       }

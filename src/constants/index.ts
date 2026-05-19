@@ -18,3 +18,9 @@ export const HTTP_STATUS = {
   NOT_FOUND: 404,
   SERVER_ERROR: 500,
 };
+
+export const USER_ROLES = {
+  EMPLOYEE: 'EMPLOYEE',
+  ADMIN: 'ADMIN',
+  SUPER_ADMIN: 'SUPER_ADMIN',
+};

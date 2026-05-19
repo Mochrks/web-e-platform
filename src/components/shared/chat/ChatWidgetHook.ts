@@ -25,6 +25,7 @@ export const useChatHook = () => {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.chat.isOpen);
   const { isOnboarded } = useAppSelector((state) => state.onboarding);
+  const { isAuthenticated } = useAppSelector((state) => state.auth);
 
   const [activeTab, setActiveTab] = useState('ai');
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
@@ -182,6 +183,7 @@ export const useChatHook = () => {
   return {
     isOpen,
     isOnboarded,
+    isAuthenticated,
     activeTab,
     setActiveTab,
     selectedContact,

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { CheckCircle2, ChevronRight, Loader2 } from 'lucide-react';
+import { CheckCircle2, ChevronRight, ChevronLeft, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface SuccessStepProps {
@@ -23,7 +23,7 @@ export function SuccessStep({
     <div className="space-y-8 animate-in fade-in zoom-in-95 duration-500 text-center">
       <div className="flex flex-col items-center gap-4">
         <div className="w-20 h-20 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center">
-          <CheckCircle2 className="w-12 h-12 animate-bounce" />
+          <CheckCircle2 className="w-12 h-12" />
         </div>
         <h2 className="text-3xl font-bold">You&apos;re all set!</h2>
         <p className="text-slate-500 max-w-md mx-auto">
@@ -73,8 +73,13 @@ export function SuccessStep({
             </>
           )}
         </Button>
-        <Button variant="ghost" onClick={onBack} disabled={isLoading}>
-          Change Details
+        <Button
+          variant="outline"
+          onClick={onBack}
+          disabled={isLoading}
+          className=" h-14 gap-2"
+        >
+          <ChevronLeft className="w-4 h-4" /> Change Details
         </Button>
       </div>
     </div>
