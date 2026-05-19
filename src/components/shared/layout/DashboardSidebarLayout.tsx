@@ -21,6 +21,7 @@ import {
   Users,
 } from 'lucide-react';
 import { useAppSelector } from '@/store';
+import { USER_ROLES } from '@/constants';
 
 // Helper for dynamic icons
 const IconMap: Record<string, React.ReactNode> = {
@@ -48,21 +49,15 @@ export default function DashboardSidebarLayout({
   const pathname = usePathname();
   const { role } = useAppSelector((state) => state.auth);
   const { employeeMenu, adminMenu } = useAppSelector((state) => state.sidebar);
-  const [isMounted, setIsMounted] = React.useState(false);
+  const isAdminCategories =
+    role === USER_ROLES.ADMIN || role === USER_ROLES.SUPER_ADMIN;
 
+  const [isMounted, setIsMounted] = React.useState(false);
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const menuItems = role === 'admin' ? adminMenu : employeeMenu;
-
-  if (!isMounted) {
-    return (
-      <aside
-        className={`w-72 bg-card border-r border-border shrink-0 flex flex-col h-screen shadow-sm ${isMobile ? 'relative' : 'hidden lg:flex fixed left-0 top-0 z-50'}`}
-      />
-    );
-  }
+  const menuItems = isAdminCategories ? adminMenu : employeeMenu;
 
   return (
     <aside
@@ -93,36 +88,47 @@ export default function DashboardSidebarLayout({
 
         <nav className="space-y-8">
           <div>
-            <div className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-4 px-2 opacity-50">
-              {role === 'admin' ? 'Admin Portal' : 'Navigation'}
+            <div className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-4 px-2 opacity-50 h-3">
+              {isMounted && (isAdminCategories ? 'Admin Portal' : 'Navigation')}
             </div>
             <div className="space-y-1">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.path + item.title}
-                  href={item.path}
-                  className={`
-                    flex items-center gap-3 p-3.5 rounded-2xl transition-all group
-                    ${
-                      pathname === item.path
-                        ? 'bg-primary text-white shadow-lg shadow-primary/15'
-                        : 'hover:bg-primary/5 text-muted-foreground hover:text-foreground'
-                    }
-                  `}
-                >
-                  <div className="shrink-0 transition-transform group-hover:scale-110">
-                    {IconMap[item.icon] || (
-                      <LayoutDashboard className="w-5 h-5" />
-                    )}
-                  </div>
-                  <span className="font-bold text-sm tracking-tight">
-                    {item.title}
-                  </span>
-                  {pathname === item.path && (
-                    <ChevronRight className="w-4 h-4 ml-auto opacity-50" />
-                  )}
-                </Link>
-              ))}
+              {!isMounted
+                ? // Skeleton loading for menu items to prevent layout shift and wrong role flash
+                  Array.from({ length: 10 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-3 p-3.5 rounded-2xl animate-pulse"
+                    >
+                      <div className="w-5 h-5 bg-slate-200 dark:bg-slate-800 rounded-md" />
+                      <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded-md w-40" />
+                    </div>
+                  ))
+                : menuItems.map((item) => (
+                    <Link
+                      key={item.path + item.title}
+                      href={item.path}
+                      className={`
+                      flex items-center gap-3 p-3.5 rounded-2xl transition-all group
+                      ${
+                        pathname === item.path
+                          ? 'bg-primary text-white shadow-lg shadow-primary/15'
+                          : 'hover:bg-primary/5 text-muted-foreground hover:text-foreground'
+                      }
+                    `}
+                    >
+                      <div className="shrink-0 transition-transform group-hover:scale-110">
+                        {IconMap[item.icon] || (
+                          <LayoutDashboard className="w-5 h-5" />
+                        )}
+                      </div>
+                      <span className="font-bold text-sm tracking-tight">
+                        {item.title}
+                      </span>
+                      {pathname === item.path && (
+                        <ChevronRight className="w-4 h-4 ml-auto opacity-50" />
+                      )}
+                    </Link>
+                  ))}
             </div>
           </div>
         </nav>

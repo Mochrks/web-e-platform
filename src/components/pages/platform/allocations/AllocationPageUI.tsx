@@ -24,6 +24,7 @@ import {
   User,
 } from 'lucide-react';
 import { useAllocationsHook } from './AllocationPageHook';
+import { USER_ROLES } from '@/constants';
 
 export default function AllocationPageUI() {
   const {
@@ -157,7 +158,7 @@ export default function AllocationPageUI() {
   }
 
   // Employee Perspective (Personal Current & History)
-  if (role === 'employee') {
+  if (role === USER_ROLES.EMPLOYEE) {
     return (
       <div className="space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">

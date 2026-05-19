@@ -25,6 +25,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { USER_ROLES } from '@/constants';
 
 export default function UserManagementPageUI() {
   const {
@@ -159,7 +160,8 @@ export default function UserManagementPageUI() {
                   </td>
                   <td className="py-6 px-4">
                     <div className="flex items-center gap-2">
-                      {user.role === 'Admin' && (
+                      {(user.role.toUpperCase() === USER_ROLES.ADMIN ||
+                        user.role.toUpperCase() === USER_ROLES.SUPER_ADMIN) && (
                         <Shield className="w-4 h-4 text-indigo-500" />
                       )}
                       <span className="font-black text-sm uppercase tracking-tighter opacity-80">

@@ -71,7 +71,7 @@ export function CompanyTypeStep({
         ))}
       </div>
       <div className="flex justify-center mt-8">
-        <Button variant="ghost" onClick={onBack} className="gap-2">
+        <Button variant="outline" onClick={onBack} className="h-14 gap-2">
           <ChevronLeft className="w-4 h-4" /> Back
         </Button>
       </div>

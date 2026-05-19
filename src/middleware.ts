@@ -3,6 +3,7 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
+  const isOnboarded = request.cookies.get('isOnboarded')?.value === 'true';
   const { pathname } = request.nextUrl;
 
   // 1. Define protected and public routes
@@ -12,6 +13,9 @@ export function middleware(request: NextRequest) {
     pathname === '/';
   const isProtectedRoute =
     pathname.startsWith('/platform') || pathname.startsWith('/onboarding');
+  const isOnboardingRoute = pathname.startsWith('/onboarding');
+
+  const isPlatformRoute = pathname.startsWith('/platform');
 
   // 2. If user is authenticated and tries to access login/register, redirect to dashboard
   if (token && isAuthRoute) {
@@ -21,6 +25,16 @@ export function middleware(request: NextRequest) {
   // 3. If user is NOT authenticated and tries to access protected routes, redirect to login
   if (!token && isProtectedRoute) {
     return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // 4. If user is authenticated AND onboarded, prevent access to /onboarding
+  if (token && isOnboarded && isOnboardingRoute) {
+    return NextResponse.redirect(new URL('/platform/dashboard', request.url));
+  }
+
+  // 5. If user is authenticated BUT NOT onboarded, prevent access to /platform
+  if (token && !isOnboarded && isPlatformRoute) {
+    return NextResponse.redirect(new URL('/onboarding', request.url));
   }
 
   return NextResponse.next();

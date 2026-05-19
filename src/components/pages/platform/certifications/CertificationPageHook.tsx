@@ -66,7 +66,9 @@ const MOCK_CERTS: Certification[] = [
   },
 ];
 
-export function useCertificationsHook(role: 'admin' | 'employee' = 'employee') {
+import { USER_ROLES } from '@/constants';
+
+export function useCertificationsHook(role: string = USER_ROLES.EMPLOYEE) {
   const [certs, setCerts] = useState<Certification[]>(MOCK_CERTS);
 
   const handleEnroll = (id: string) => {

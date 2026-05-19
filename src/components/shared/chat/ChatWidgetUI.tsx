@@ -20,6 +20,7 @@ export default function ChatWidgetUI() {
   const {
     isOpen,
     isOnboarded,
+    isAuthenticated,
     activeTab,
     setActiveTab,
     selectedContact,
@@ -37,7 +38,7 @@ export default function ChatWidgetUI() {
     onCloseChat,
   } = useChatHook();
 
-  if (!isOnboarded) return null;
+  if (!isAuthenticated || !isOnboarded) return null;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
