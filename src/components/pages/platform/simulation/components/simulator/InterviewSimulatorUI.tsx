@@ -172,7 +172,7 @@ export default function InterviewSimulatorUI({
                       relative flex items-center p-6 rounded-2xl border-2 cursor-pointer transition-all duration-200
                       ${
                         currentAnswer === option.id
-                          ? 'border-primary bg-primary/5 shadow-md scale-[1.01]'
+                          ? 'border-primary bg-primary/5  scale-[1.01]'
                           : 'border-border hover:border-primary/20 hover:bg-muted/50'
                       }
                     `}
@@ -218,7 +218,7 @@ export default function InterviewSimulatorUI({
 
   return (
     <div className="space-y-10">
-      <div className="bg-card border border-border p-10 rounded-3xl shadow-sm relative overflow-hidden">
+      <div className="bg-card border border-border p-10 rounded-3xl  relative overflow-hidden">
         <div className="flex items-center gap-2 mb-4 text-primary text-[10px] font-black uppercase tracking-[0.2em]">
           <BookOpen className="w-4 h-4" />
           Learning Path
@@ -235,7 +235,7 @@ export default function InterviewSimulatorUI({
       <div className="animate-slide-up pb-10">{renderQuestion()}</div>
 
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl z-[100]">
-        <div className="bg-white/80 dark:bg-card/80 backdrop-blur-2xl border border-primary/10 p-4 rounded-3xl shadow-2xl shadow-primary/10">
+        <div className="bg-white/80 dark:bg-card/80 backdrop-blur-2xl border border-primary/10 p-4 rounded-3xl  ">
           <div className="flex items-center justify-between gap-4">
             <Button
               onClick={handlePreviousQuestion}

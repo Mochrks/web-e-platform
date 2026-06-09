@@ -23,7 +23,7 @@ export default function AttendancePageUI() {
 
         {/* Sidebar Stats */}
         <div className="space-y-8">
-          <Card className="p-8 rounded-3xl border-border bg-card shadow-sm space-y-6">
+          <Card className="p-8 rounded-3xl border-border bg-card  space-y-6">
             <h4 className="text-xl font-black">Monthly Overview</h4>
             <div className="grid grid-cols-2 gap-4">
               <div className="p-6 rounded-2xl bg-muted/50 border border-border text-center">
@@ -50,7 +50,7 @@ export default function AttendancePageUI() {
             </div>
           </Card>
 
-          <Card className="p-8 rounded-3xl border-border bg-primary text-white shadow-xl shadow-primary/20 flex flex-col items-center text-center space-y-4">
+          <Card className="p-8 rounded-3xl border-border bg-primary text-white   flex flex-col items-center text-center space-y-4">
             <div className="p-4 bg-white/20 rounded-2xl">
               <Clock className="w-8 h-8" aria-hidden="true" />
             </div>

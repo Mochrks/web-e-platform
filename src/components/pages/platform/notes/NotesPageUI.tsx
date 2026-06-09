@@ -44,7 +44,7 @@ export default function NotesPageUI() {
 
   return (
     <div className="space-y-10 pb-20 animate-fade-in">
-      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-10 rounded-3xl shadow-sm gap-8 relative overflow-hidden">
+      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-10 rounded-3xl  gap-8 relative overflow-hidden">
         <div
           className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"
           aria-hidden="true"
@@ -60,7 +60,7 @@ export default function NotesPageUI() {
         </div>
         <Button
           onClick={() => handleOpenDialog()}
-          className="rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold h-16 px-10 shadow-2xl shadow-primary/20 transition-all hover:scale-105 active:scale-95 text-xl relative z-20"
+          className="rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold h-16 px-10   transition-all hover:scale-105 active:scale-95 text-xl relative z-20"
         >
           <Plus className="w-6 h-6 mr-3" aria-hidden="true" /> New Note
         </Button>
@@ -69,7 +69,7 @@ export default function NotesPageUI() {
       <div className="flex flex-col xl:flex-row gap-10">
         {/* Sidebar: Collections */}
         <div className="w-full xl:w-72 space-y-8">
-          <div className="bg-muted/30 p-4 rounded-2xl flex items-center gap-3 border border-border focus-within:border-primary/50 transition-all shadow-sm">
+          <div className="bg-muted/30 p-4 rounded-2xl flex items-center gap-3 border border-border focus-within:border-primary/50 transition-all ">
             <Search
               className="w-4 h-4 text-muted-foreground"
               aria-hidden="true"
@@ -94,7 +94,7 @@ export default function NotesPageUI() {
                 onClick={() => setActiveCollection(item.label)}
                 className={`
                     w-full flex items-center justify-between p-4 rounded-xl transition-all group 
-                    ${activeCollection === item.label ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-105' : 'hover:bg-muted text-muted-foreground hover:text-foreground'}
+                    ${activeCollection === item.label ? 'bg-primary text-white   scale-105' : 'hover:bg-muted text-muted-foreground hover:text-foreground'}
                    `}
                 aria-current={
                   activeCollection === item.label ? 'page' : undefined
@@ -146,7 +146,7 @@ export default function NotesPageUI() {
               <button
                 type="button"
                 onClick={() => setViewMode('grid')}
-                className={`p-3 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-muted text-primary'}`}
+                className={`p-3 rounded-xl transition-all ${viewMode === 'grid' ? 'bg-primary text-white  ' : 'bg-muted text-primary'}`}
                 aria-label="Grid view"
               >
                 <Grid className="w-4 h-4" />
@@ -154,7 +154,7 @@ export default function NotesPageUI() {
               <button
                 type="button"
                 onClick={() => setViewMode('list')}
-                className={`p-3 rounded-xl transition-all ${viewMode === 'list' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'hover:bg-muted text-muted-foreground'}`}
+                className={`p-3 rounded-xl transition-all ${viewMode === 'list' ? 'bg-primary text-white  ' : 'hover:bg-muted text-muted-foreground'}`}
                 aria-label="List view"
               >
                 <List className="w-4 h-4" />

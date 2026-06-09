@@ -54,7 +54,7 @@ export default function SidebarInterview({
   completedStages,
 }: SidebarInterviewProps) {
   return (
-    <Card className="w-full h-fit p-8 rounded-3xl border-border bg-card shadow-sm sticky top-10">
+    <Card className="w-full h-fit p-8 rounded-3xl border-border bg-card  sticky top-10">
       <div className="space-y-2 mb-10">
         <h3 className="text-2xl font-black tracking-tight">
           Interview Journey
@@ -75,7 +75,7 @@ export default function SidebarInterview({
               key={stage.id}
               className={`
                 relative p-5 rounded-3xl border transition-all duration-300 group
-                ${isActive ? 'bg-primary/5 border-primary/20 shadow-md scale-[1.02]' : 'border-transparent'}
+                ${isActive ? 'bg-primary/5 border-primary/20  scale-[1.02]' : 'border-transparent'}
                 ${isCompleted ? 'opacity-70' : ''}
               `}
             >
@@ -83,7 +83,7 @@ export default function SidebarInterview({
                 <div
                   className={`
                     w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500
-                    ${isActive ? 'bg-primary text-white shadow-lg shadow-primary/30 rotate-3' : ''}
+                    ${isActive ? 'bg-primary text-white   rotate-3' : ''}
                     ${isCompleted ? 'bg-emerald-500 text-white' : ''}
                     ${isPending ? 'bg-muted text-muted-foreground' : ''}
                   `}

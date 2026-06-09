@@ -45,7 +45,7 @@ export const CustomToast: React.FC<CustomToastProps> = ({
   return (
     <div
       className={`
-      flex items-start gap-4 p-4 rounded-3xl shadow-lg min-w-[320px] max-w-[420px]
+      flex items-start gap-4 p-4 rounded-3xl  min-w-[320px] max-w-[420px]
       border ${style.bg} ${style.border} text-white z-[9999] duration-300
     `}
     >

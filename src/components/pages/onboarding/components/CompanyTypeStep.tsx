@@ -48,7 +48,7 @@ export function CompanyTypeStep({
             className={cn(
               'cursor-pointer transition-all hover:scale-[1.01] active:scale-[0.99] border-2',
               selectedType === item.id
-                ? 'border-primary bg-primary/5 shadow-lg shadow-primary/10'
+                ? 'border-primary bg-primary/5  '
                 : 'hover:border-primary/50'
             )}
             onClick={() => onSelect(item.id)}

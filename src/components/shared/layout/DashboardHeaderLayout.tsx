@@ -143,7 +143,7 @@ export default function DashboardHeaderLayout() {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="w-80 p-2 rounded-2xl mt-2 border-border shadow-lg"
+              className="w-80 p-2 rounded-2xl mt-2 border-border "
             >
               <DropdownMenuLabel className="px-3 py-2 flex items-center justify-between">
                 <span className="text-sm font-semibold tracking-tight">
@@ -224,7 +224,7 @@ export default function DashboardHeaderLayout() {
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"
-            className="w-60 p-2 rounded-xl mt-2 border-border shadow-lg"
+            className="w-60 p-2 rounded-xl mt-2 border-border "
           >
             <DropdownMenuLabel className="px-3 py-2">
               <div className="flex flex-col gap-1">

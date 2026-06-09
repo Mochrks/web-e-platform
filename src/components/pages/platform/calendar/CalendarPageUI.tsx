@@ -46,20 +46,20 @@ export default function CalendarPageUI() {
   return (
     <div className="space-y-10 pb-20 animate-fade-in px-2">
       {/* Header Board */}
-      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-10 rounded-3xl shadow-sm gap-8 relative overflow-hidden mb-10">
+      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-10 rounded-3xl  gap-8 relative overflow-hidden mb-10">
         <div className="absolute top-0 left-0 w-32 h-32 bg-primary/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-50" />
         <div className="relative z-10 text-center md:text-left">
           <h1 className="text-4xl font-black tracking-tight mb-2">
             Training Schedule
           </h1>
           <p className="text-muted-foreground font-medium text-lg leading-relaxed font-bold max-w-xl text-balance">
-            {format(currentMonth, 'MMMM yyyy')} â€¢ {sessions.length}{' '}
-            Simulations this month
+            {format(currentMonth, 'MMMM yyyy')} • {sessions.length} Simulations
+            this month
           </p>
         </div>
         <Button
           onClick={() => setIsBookingOpen(true)}
-          className="rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold h-16 px-10 shadow-2xl shadow-primary/20 transition-all hover:scale-105 active:scale-95 text-xl"
+          className="rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold h-16 px-10   transition-all hover:scale-105 active:scale-95 text-xl"
         >
           <Plus className="w-6 h-6 mr-3" aria-hidden="true" /> Book Session
         </Button>
@@ -148,7 +148,7 @@ export default function CalendarPageUI() {
               filteredSessions.map((event: any) => (
                 <Card
                   key={event.id}
-                  className="p-8 rounded-3xl bg-card border-border shadow-sm hover:shadow-xl hover:border-primary/20 transition-all group relative overflow-hidden"
+                  className="p-8 rounded-3xl bg-card border-border  hover: hover:border-primary/20 transition-all group relative overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:scale-110 transition-transform">
                     <Video className="w-24 h-24" aria-hidden="true" />

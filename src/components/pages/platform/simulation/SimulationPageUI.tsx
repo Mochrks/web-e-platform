@@ -41,7 +41,7 @@ export default function SimulationPageUI() {
     <div className="max-w-7xl mx-auto space-y-10">
       {stage === 'setup' && (
         <div className="min-h-[70vh] flex items-center justify-center animate-fade-in">
-          <Card className="w-full max-w-2xl p-12 rounded-3xl border-border shadow-2xl relative overflow-hidden bg-white/50 backdrop-blur-xl">
+          <Card className="w-full max-w-2xl p-12 rounded-3xl border-border  relative overflow-hidden bg-white/50 backdrop-blur-xl">
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
               <BookOpen className="w-64 h-64" aria-hidden="true" />
             </div>
@@ -123,7 +123,7 @@ export default function SimulationPageUI() {
           </div>
 
           <div className="lg:col-span-8 space-y-10">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6 bg-card border border-border p-8 rounded-3xl shadow-sm">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6 bg-card border border-border p-8 rounded-3xl ">
               <div>
                 <p className="text-xs font-black text-primary uppercase tracking-widest mb-1">
                   Current Session

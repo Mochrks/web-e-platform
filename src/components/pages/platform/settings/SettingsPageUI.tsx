@@ -34,7 +34,7 @@ export default function SettingsPageUI() {
       case 'Profile & Avatar':
         return (
           <div className="space-y-10">
-            <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-10">
+            <Card className="p-10 rounded-3xl border-border bg-card  space-y-10">
               <div>
                 <h3 className="text-2xl font-black mb-1">Talent Avatar</h3>
                 <p className="text-sm text-muted-foreground font-bold">
@@ -48,7 +48,7 @@ export default function SettingsPageUI() {
                   <button
                     type="button"
                     onClick={() => handleUpdateAvatar({})}
-                    className="absolute bottom-4 right-4 p-3 bg-white dark:bg-zinc-800 rounded-2xl shadow-xl hover:rotate-180 transition-transform"
+                    className="absolute bottom-4 right-4 p-3 bg-white dark:bg-zinc-800 rounded-2xl  hover:rotate-180 transition-transform"
                   >
                     <RefreshCcw className="w-5 h-5 text-primary" />
                   </button>
@@ -102,7 +102,7 @@ export default function SettingsPageUI() {
                             onClick={() =>
                               handleUpdateAvatar({ shirtColor: c })
                             }
-                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.shirtColor === c ? 'border-primary scale-110 shadow-sm' : 'border-transparent'}`}
+                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.shirtColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
                             style={{ backgroundColor: c }}
                           />
                         ))}
@@ -128,7 +128,7 @@ export default function SettingsPageUI() {
                             onClick={() =>
                               handleUpdateAvatar({ pantsColor: c })
                             }
-                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.pantsColor === c ? 'border-primary scale-110 shadow-sm' : 'border-transparent'}`}
+                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.pantsColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
                             style={{ backgroundColor: c }}
                           />
                         ))}
@@ -154,7 +154,7 @@ export default function SettingsPageUI() {
                             onClick={() =>
                               handleUpdateAvatar({ headphoneColor: c })
                             }
-                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.headphoneColor === c ? 'border-primary scale-110 shadow-sm' : 'border-transparent'}`}
+                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.headphoneColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
                             style={{ backgroundColor: c }}
                           />
                         ))}
@@ -180,7 +180,7 @@ export default function SettingsPageUI() {
                             onClick={() =>
                               handleUpdateAvatar({ glassesColor: c })
                             }
-                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.glassesColor === c ? 'border-primary scale-110 shadow-sm' : 'border-transparent'}`}
+                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.glassesColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
                             style={{ backgroundColor: c }}
                           />
                         ))}
@@ -295,7 +295,7 @@ export default function SettingsPageUI() {
               </div>
             </Card>
 
-            <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-8">
+            <Card className="p-10 rounded-3xl border-border bg-card  space-y-8">
               <h3 className="text-xl font-black">Account Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
@@ -322,7 +322,7 @@ export default function SettingsPageUI() {
         );
       case 'Notifications':
         return (
-          <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-8">
+          <Card className="p-10 rounded-3xl border-border bg-card  space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-1">
                 Notification Settings
@@ -374,7 +374,7 @@ export default function SettingsPageUI() {
         );
       case 'Security':
         return (
-          <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-8">
+          <Card className="p-10 rounded-3xl border-border bg-card  space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-1">Security & Access</h3>
               <p className="text-sm text-muted-foreground font-bold">
@@ -389,7 +389,7 @@ export default function SettingsPageUI() {
                 </Label>
                 <Input
                   type="password"
-                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                  placeholder="********"
                   className="h-14 rounded-2xl bg-muted/50 border-border"
                 />
               </div>
@@ -400,7 +400,7 @@ export default function SettingsPageUI() {
                   </Label>
                   <Input
                     type="password"
-                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                    placeholder="********"
                     className="h-14 rounded-2xl bg-muted/50 border-border"
                   />
                 </div>
@@ -410,7 +410,7 @@ export default function SettingsPageUI() {
                   </Label>
                   <Input
                     type="password"
-                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                    placeholder="********"
                     className="h-14 rounded-2xl bg-muted/50 border-border"
                   />
                 </div>
@@ -428,7 +428,7 @@ export default function SettingsPageUI() {
         );
       case 'Appearance':
         return (
-          <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-8">
+          <Card className="p-10 rounded-3xl border-border bg-card  space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-1">App Appearance</h3>
               <p className="text-sm text-muted-foreground font-bold">
@@ -474,7 +474,7 @@ export default function SettingsPageUI() {
 
   return (
     <div className="space-y-10 pb-20 animate-fade-in">
-      <div className="bg-card border border-border p-10 rounded-3xl shadow-sm relative overflow-hidden">
+      <div className="bg-card border border-border p-10 rounded-3xl  relative overflow-hidden">
         <h1 className="text-4xl font-black tracking-tight mb-2">
           Platform Settings
         </h1>
@@ -498,7 +498,7 @@ export default function SettingsPageUI() {
               onClick={() => setActiveTab(item.label)}
               className={`
                    flex-shrink-0 flex items-center gap-4 p-5 rounded-2xl font-bold transition-all min-w-[200px]
-                   ${activeTab === item.label ? 'bg-primary text-white shadow-xl shadow-primary/20 scale-105' : 'hover:bg-muted text-muted-foreground hover:text-foreground'}
+                   ${activeTab === item.label ? 'bg-primary text-white   scale-105' : 'hover:bg-muted text-muted-foreground hover:text-foreground'}
                 `}
             >
               {item.icon}

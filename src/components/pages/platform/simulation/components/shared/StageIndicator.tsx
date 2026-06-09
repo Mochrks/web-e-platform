@@ -74,7 +74,7 @@ export default function StageIndicator({
                 <div
                   className={`
                     w-12 h-12 rounded-full border-4 flex items-center justify-center transition-all duration-500
-                    ${isActive ? 'bg-primary border-primary shadow-lg shadow-primary/30 scale-110' : ''}
+                    ${isActive ? 'bg-primary border-primary   scale-110' : ''}
                     ${isCompleted ? 'bg-primary border-primary' : ''}
                     ${isPending ? 'bg-background border-muted' : ''}
                   `}

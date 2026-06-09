@@ -24,13 +24,13 @@ export default function CertificationPageUI() {
           </p>
         </div>
         <div className="flex gap-4">
-          <Card className="p-6 rounded-3xl border-border bg-card shadow-sm text-center min-w-[140px]">
+          <Card className="p-6 rounded-3xl border-border bg-card  text-center min-w-[140px]">
             <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">
               Total Points
             </p>
             <h4 className="text-2xl font-black text-primary">{activePoints}</h4>
           </Card>
-          <Card className="p-6 rounded-3xl border-border bg-card shadow-sm text-center min-w-[140px]">
+          <Card className="p-6 rounded-3xl border-border bg-card  text-center min-w-[140px]">
             <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">
               Completed
             </p>
@@ -64,7 +64,7 @@ export default function CertificationPageUI() {
         {certs.map((c) => (
           <Card
             key={c.id}
-            className="flex flex-col rounded-3xl border-border bg-card/60 backdrop-blur-md shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all p-1 overflow-hidden group"
+            className="flex flex-col rounded-3xl border-border bg-card/60 backdrop-blur-md  hover: hover:-translate-y-2 transition-all p-1 overflow-hidden group"
           >
             <div className="h-40 rounded-[2.2rem] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent relative p-8 flex items-end">
               <Award className="absolute top-6 left-6 w-12 h-12 text-primary opacity-20 group-hover:scale-125 transition-transform" />
@@ -107,7 +107,7 @@ export default function CertificationPageUI() {
                 {c.status === 'available' ? (
                   <Button
                     onClick={() => handleEnroll(c.id)}
-                    className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-primary-foreground font-black text-sm shadow-lg shadow-primary/25"
+                    className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-primary-foreground font-black text-sm  "
                   >
                     Enroll Now
                   </Button>

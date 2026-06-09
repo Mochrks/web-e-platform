@@ -15,7 +15,7 @@ export default function AttendanceHeader({
   onClockAction,
 }: Readonly<AttendanceHeaderProps>) {
   return (
-    <div className="bg-card border border-border p-10 rounded-3xl shadow-sm flex flex-col lg:flex-row justify-between items-center gap-10 overflow-hidden relative">
+    <div className="bg-card border border-border p-10 rounded-3xl  flex flex-col lg:flex-row justify-between items-center gap-10 overflow-hidden relative">
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="flex-1 space-y-4 relative z-10">
         <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary bg-primary/10 px-4 py-2 rounded-full w-fit">
@@ -28,9 +28,9 @@ export default function AttendanceHeader({
         </p>
       </div>
 
-      <Card className="w-full lg:w-96 p-8 rounded-3xl bg-background border-border shadow-2xl relative z-10 flex flex-col items-center text-center space-y-6">
+      <Card className="w-full lg:w-96 p-8 rounded-3xl bg-background border-border  relative z-10 flex flex-col items-center text-center space-y-6">
         <div
-          className={`w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-500 shadow-xl ${isClockedIn ? 'bg-emerald-500 text-white shadow-emerald-500/20' : 'bg-primary text-white shadow-primary/20'}`}
+          className={`w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-500  ${isClockedIn ? 'bg-emerald-500 text-white ' : 'bg-primary text-white '}`}
         >
           <Timer
             className={`w-10 h-10 ${isClockedIn ? 'animate-pulse' : ''}`}

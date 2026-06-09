@@ -72,7 +72,7 @@ export const IdleTimerProvider: React.FC<{ children: React.ReactNode }> = ({
     <>
       {children}
       <AlertDialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <AlertDialogContent className="max-w-[420px] rounded-[32px] border-none shadow-2xl bg-white dark:bg-neutral-900 p-8">
+        <AlertDialogContent className="max-w-[420px] rounded-[32px] border-none  bg-white dark:bg-neutral-900 p-8">
           <AlertDialogHeader className="space-y-3">
             <AlertDialogTitle className="text-2xl font-bold text-neutral-900 dark:text-white text-center sm:text-left">
               Session Expiring

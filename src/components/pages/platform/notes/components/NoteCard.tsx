@@ -36,7 +36,7 @@ export default function NoteCard({
     <Card
       onClick={() => onEdit(note)}
       className={`
-         rounded-3xl border group hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden bg-card
+         rounded-3xl border group hover: transition-all cursor-pointer relative overflow-hidden bg-card
          ${isGrid ? 'p-8 min-h-[320px] flex flex-col justify-between' : 'p-6 flex flex-row items-center gap-6'}
          ${note.color}
       `}

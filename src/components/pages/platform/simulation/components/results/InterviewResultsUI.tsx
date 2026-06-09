@@ -193,14 +193,14 @@ export default function InterviewResultsUI({
   return (
     <div className="space-y-16 animate-fade-in pb-20">
       {/* Hero Section */}
-      <div className="min-h-[40vh] flex flex-col items-center justify-center text-center space-y-8 bg-card border border-border p-12 rounded-3xl shadow-sm relative overflow-hidden">
+      <div className="min-h-[40vh] flex flex-col items-center justify-center text-center space-y-8 bg-card border border-border p-12 rounded-3xl  relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0" />
 
         <div className="relative">
           <div className="w-32 h-32 rounded-3xl bg-primary/10 flex items-center justify-center text-primary animate-bounce-subtle">
             <Trophy className="w-16 h-16" />
           </div>
-          <div className="absolute -top-2 -right-2 bg-amber-400 text-white p-2 rounded-xl shadow-lg rotate-12">
+          <div className="absolute -top-2 -right-2 bg-amber-400 text-white p-2 rounded-xl  rotate-12">
             <Star className="w-5 h-5 fill-current" />
           </div>
         </div>
@@ -304,7 +304,7 @@ export default function InterviewResultsUI({
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Chart Section */}
-          <Card className="lg:col-span-7 p-10 rounded-3xl border-border bg-card/50 shadow-sm overflow-hidden min-h-[450px]">
+          <Card className="lg:col-span-7 p-10 rounded-3xl border-border bg-card/50  overflow-hidden min-h-[450px]">
             <h3 className="text-xl font-black mb-8 px-4 border-l-4 border-primary">
               Skill Distribution
             </h3>
@@ -422,7 +422,7 @@ export default function InterviewResultsUI({
           {answers.map((answer, index) => (
             <Card
               key={index}
-              className="p-10 rounded-3xl border-border bg-card shadow-sm hover:shadow-xl transition-all group overflow-hidden relative"
+              className="p-10 rounded-3xl border-border bg-card  hover: transition-all group overflow-hidden relative"
             >
               <div
                 className={`absolute top-0 right-0 w-32 h-32 opacity-[0.03] transition-transform group-hover:scale-110`}
@@ -437,7 +437,7 @@ export default function InterviewResultsUI({
               </div>
               <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
                 <div
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 font-black text-2xl shadow-sm ${answer.score >= 70 ? 'bg-emerald-500/10 text-positive600 border border-emerald-500/20' : 'bg-destructive/10 text-destructive border border-rose-500/20'}`}
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 font-black text-2xl  ${answer.score >= 70 ? 'bg-emerald-500/10 text-positive600 border border-emerald-500/20' : 'bg-destructive/10 text-destructive border border-rose-500/20'}`}
                 >
                   {answer.score}
                 </div>

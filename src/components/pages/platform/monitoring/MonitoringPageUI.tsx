@@ -23,7 +23,7 @@ export default function MonitoringPageUI() {
         {stats.map((stat, i) => (
           <Card
             key={i}
-            className="p-6 rounded-[2rem] bg-card border-border shadow-sm flex items-center gap-4"
+            className="p-6 rounded-[2rem] bg-card border-border  flex items-center gap-4"
           >
             <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
               {stat.icon}
@@ -38,7 +38,7 @@ export default function MonitoringPageUI() {
         ))}
       </div>
 
-      <Card className="p-10 rounded-3xl border-border bg-card shadow-xl flex flex-col items-center justify-center min-h-[400px] text-center">
+      <Card className="p-10 rounded-3xl border-border bg-card  flex flex-col items-center justify-center min-h-[400px] text-center">
         <div className="w-20 h-20 rounded-full bg-primary/5 flex items-center justify-center mb-6">
           <Activity className="w-10 h-10 text-primary animate-pulse" />
         </div>

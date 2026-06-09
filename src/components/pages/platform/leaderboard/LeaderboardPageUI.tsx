@@ -56,16 +56,16 @@ export default function LeaderboardPageUI() {
         {/* Rank 1 */}
         <div className="order-1 md:order-2 flex flex-col items-center group mb-8 md:mb-12">
           <div className="relative mb-8 transform group-hover:scale-110 transition-transform duration-500">
-            <Crown className="absolute -top-12 left-1/2 -translate-x-1/2 w-14 h-14 text-yellow-500 animate-pulse drop-shadow-lg" />
+            <Crown className="absolute -top-12 left-1/2 -translate-x-1/2 w-14 h-14 text-yellow-500 animate-pulse drop-" />
             <div className="relative">
               <TalentAvatar size={180} {...topThree[0].avatarConfig} />
               <Star className="absolute top-0 right-0 w-8 h-8 text-yellow-500 fill-yellow-500 animate-spin-slow" />
             </div>
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center border-4 border-background font-black text-yellow-900 shadow-xl">
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center border-4 border-background font-black text-yellow-900 ">
               1
             </div>
           </div>
-          <Card className="w-full p-8 text-center rounded-3xl border-primary/50 bg-primary/5 ring-4 ring-primary/10 shadow-[0_0_40px_rgba(var(--primary),0.1)] group-hover:-translate-y-4 transition-all">
+          <Card className="w-full p-8 text-center rounded-3xl border-primary/50 bg-primary/5 ring-4 ring-primary/10 0_0_40px_rgba(var(--primary),0.1)] group-hover:-translate-y-4 transition-all">
             <h3 className="font-black text-3xl mb-1">{topThree[0].name}</h3>
             <p
               className="text-primary text-2xl font-black flex items-center justify-center gap-2"

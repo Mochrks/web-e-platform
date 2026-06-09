@@ -51,7 +51,7 @@ export default function ChatWidgetUI() {
             : 'scale-0 opacity-0 translate-y-10 pointer-events-none'
         )}
       >
-        <Card className="border border-border shadow-2xl overflow-hidden bg-card/95 backdrop-blur-md flex flex-col h-[600px] rounded-3xl">
+        <Card className="border border-border  overflow-hidden bg-card/95 backdrop-blur-md flex flex-col h-[600px] rounded-3xl">
           <CardHeader className="p-0 bg-primary text-primary-foreground">
             <div className="p-4 flex flex-row items-center justify-between">
               <div className="flex items-center gap-3">
@@ -167,8 +167,8 @@ export default function ChatWidgetUI() {
                         className={cn(
                           'flex w-fit max-w-[85%] flex-col gap-1 px-4 py-2.5 text-sm transition-all animate-in fade-in slide-in-from-bottom-2 break-words',
                           msg.senderId === 'user'
-                            ? 'ml-auto bg-primary text-primary-foreground rounded-2xl rounded-tr-none shadow-md'
-                            : 'bg-muted rounded-2xl rounded-tl-none shadow-sm'
+                            ? 'ml-auto bg-primary text-primary-foreground rounded-2xl rounded-tr-none '
+                            : 'bg-muted rounded-2xl rounded-tl-none '
                         )}
                       >
                         {msg.text}
@@ -241,9 +241,9 @@ export default function ChatWidgetUI() {
                         <div
                           key={msg.id}
                           className={cn(
-                            'flex w-fit max-w-[85%] flex-col gap-1 px-4 py-2.5 text-sm transition-all animate-in fade-in slide-in-from-bottom-2 break-words shadow-sm',
+                            'flex w-fit max-w-[85%] flex-col gap-1 px-4 py-2.5 text-sm transition-all animate-in fade-in slide-in-from-bottom-2 break-words ',
                             msg.senderId === 'user'
-                              ? 'ml-auto bg-primary text-primary-foreground rounded-2xl rounded-tr-none shadow-md'
+                              ? 'ml-auto bg-primary text-primary-foreground rounded-2xl rounded-tr-none '
                               : 'bg-white dark:bg-zinc-800 border rounded-2xl rounded-tl-none'
                           )}
                         >
@@ -279,7 +279,7 @@ export default function ChatWidgetUI() {
                       ? 'Ask AI Assistant...'
                       : `Message ${selectedContact?.name}...`
                   }
-                  className="h-10 bg-background border-none focus-visible:ring-1 focus-visible:ring-primary shadow-inner"
+                  className="h-10 bg-background border-none focus-visible:ring-1 focus-visible:ring-primary "
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
@@ -300,7 +300,7 @@ export default function ChatWidgetUI() {
       {/* Floating Toggle Button */}
       <div className="relative flex items-center gap-3">
         {!isOpen && (
-          <div className="bg-card px-3 py-1.5 rounded-xl shadow-xl border border-border text-[12px] font-medium animate-in fade-in slide-in-from-right-4 duration-1000 hidden md:block mb-2 mr-1">
+          <div className="bg-card px-3 py-1.5 rounded-xl  border border-border text-[12px] font-medium animate-in fade-in slide-in-from-right-4 duration-1000 hidden md:block mb-2 mr-1">
             Need help? Ask me!
           </div>
         )}

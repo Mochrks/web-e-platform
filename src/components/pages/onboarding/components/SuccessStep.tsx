@@ -39,7 +39,7 @@ export function SuccessStep({
         </p>
       </div>
 
-      <div className="bg-white dark:bg-zinc-900 p-8 rounded-[2rem] border shadow-sm max-w-md mx-auto space-y-4">
+      <div className="bg-white dark:bg-zinc-900 p-8 rounded-[2rem] border  max-w-md mx-auto space-y-4">
         <div className="flex justify-between items-center pb-4 border-b">
           <span className="text-slate-400 text-sm font-medium">Division</span>
           <span className="font-bold text-primary capitalize">

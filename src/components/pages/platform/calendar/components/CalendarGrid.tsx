@@ -118,7 +118,7 @@ export default function CalendarGrid({
       days = [];
     }
     return (
-      <div className="rounded-3xl overflow-hidden border border-border shadow-sm">
+      <div className="rounded-3xl overflow-hidden border border-border ">
         {rows}
       </div>
     );

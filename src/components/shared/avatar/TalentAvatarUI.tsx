@@ -30,7 +30,7 @@ export default function TalentAvatarUI({
         viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={`w-full h-full drop-shadow-[0_20px_35px_rgba(0,0,0,0.15)] ${isAnimated ? 'animate-float' : ''}`}
+        className={`w-full h-full drop-0_20px_35px_rgba(0,0,0,0.15)] ${isAnimated ? 'animate-float' : ''}`}
       >
         <defs>
           <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -114,7 +114,7 @@ export default function TalentAvatarUI({
               stroke="white"
               strokeWidth="8"
               strokeLinecap="round"
-              className="drop-shadow-sm"
+              className="drop-"
             />
           )}
           {mood === 'thinking' && (

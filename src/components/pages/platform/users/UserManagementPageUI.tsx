@@ -79,7 +79,7 @@ export default function UserManagementPageUI() {
         </div>
       </div>
 
-      <Card className="rounded-3xl border-border bg-card/40 backdrop-blur-xl shadow-sm overflow-hidden p-2">
+      <Card className="rounded-3xl border-border bg-card/40 backdrop-blur-xl  overflow-hidden p-2">
         {/* Toolbar */}
         <div className="p-6 flex flex-col md:flex-row gap-4 items-center justify-between border-b border-border/50">
           <div className="relative w-full md:w-96 group">
@@ -194,7 +194,7 @@ export default function UserManagementPageUI() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent
                         align="end"
-                        className="w-48 rounded-2xl p-2 border-border bg-card shadow-2xl"
+                        className="w-48 rounded-2xl p-2 border-border bg-card "
                       >
                         <DropdownMenuItem className="rounded-xl flex items-center gap-3 p-3 font-bold text-xs cursor-pointer">
                           <Edit3 className="w-4 h-4 text-primary" /> Edit

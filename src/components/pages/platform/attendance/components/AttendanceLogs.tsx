@@ -33,7 +33,7 @@ export default function AttendanceLogs({
         </Button>
       </div>
 
-      <div className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm">
+      <div className="bg-card border border-border rounded-3xl overflow-hidden ">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>

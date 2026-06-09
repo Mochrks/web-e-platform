@@ -66,7 +66,7 @@ export function DivisionStep({
             className={cn(
               'cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] border-2',
               selectedDivision === item.id
-                ? 'border-primary bg-primary/5 shadow-lg shadow-primary/10'
+                ? 'border-primary bg-primary/5  '
                 : 'hover:border-primary/50'
             )}
             onClick={() => onSelect(item.id)}

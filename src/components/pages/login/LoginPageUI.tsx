@@ -125,7 +125,7 @@ export default function LoginPageUI() {
         </div>
 
         {/* Right Panel — Auth Card */}
-        <Card className="bg-card/80 border-border backdrop-blur-xl rounded-3xl p-8 sm:p-10 shadow-sm relative overflow-hidden">
+        <Card className="bg-card/80 border-border backdrop-blur-xl rounded-3xl p-8 sm:p-10  relative overflow-hidden">
           {view === 'login' && (
             <>
               <div className="mb-8 text-center lg:text-left">

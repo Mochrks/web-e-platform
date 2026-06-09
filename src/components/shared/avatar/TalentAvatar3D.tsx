@@ -333,7 +333,7 @@ export default function TalentAvatar3D(props: TalentAvatar3DProps) {
   return (
     <div
       style={{ width: props.size, height: props.size }}
-      className="relative bg-gradient-to-b from-primary/10 via-primary/5 to-transparent rounded-[2rem] overflow-hidden group shadow-inner"
+      className="relative bg-gradient-to-b from-primary/10 via-primary/5 to-transparent rounded-[2rem] overflow-hidden group "
     >
       <Canvas
         shadows

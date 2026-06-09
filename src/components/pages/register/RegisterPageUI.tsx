@@ -48,7 +48,7 @@ export default function RegisterPageUI() {
       </div>
 
       <div className="w-full max-w-2xl">
-        <Card className="bg-card/50 border-border backdrop-blur-2xl rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+        <Card className="bg-card/50 border-border backdrop-blur-2xl rounded-3xl p-8 sm:p-12  relative overflow-hidden">
           <div className="mb-10 text-center">
             <div className="flex justify-center mb-4">
               <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-primary-foreground">
@@ -199,7 +199,7 @@ export default function RegisterPageUI() {
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                    placeholder="********"
                     {...register('password')}
                     className={`h-14 bg-muted/50 border-border rounded-2xl pl-12 pr-12 ${errors.password ? 'border-destructive focus-visible:ring-destructive' : ''}`}
                   />
@@ -233,7 +233,7 @@ export default function RegisterPageUI() {
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                    placeholder="********"
                     {...register('confirmPassword')}
                     className={`h-14 bg-muted/50 border-border rounded-2xl pl-12 pr-12 ${errors.confirmPassword ? 'border-destructive focus-visible:ring-destructive' : ''}`}
                   />

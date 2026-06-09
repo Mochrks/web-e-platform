@@ -103,7 +103,7 @@ export default function VerifyEmailUI() {
         <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-violet-500/5 rounded-full blur-[120px]" />
       </div>
 
-      <div className="w-full max-w-md bg-white dark:bg-zinc-900 rounded-3xl p-8 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-zinc-800 relative">
+      <div className="w-full max-w-md bg-white dark:bg-zinc-900 rounded-3xl p-8   dark: border border-slate-100 dark:border-zinc-800 relative">
         <Suspense
           fallback={
             <div className="flex justify-center items-center py-12">

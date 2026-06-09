@@ -49,7 +49,7 @@ export default function TaskPageUI() {
             return (
               <Card
                 key={task.id}
-                className="p-8 rounded-3xl border-border bg-card/50 backdrop-blur-md shadow-sm hover:bg-card transition-all group overflow-hidden relative"
+                className="p-8 rounded-3xl border-border bg-card/50 backdrop-blur-md  hover:bg-card transition-all group overflow-hidden relative"
               >
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   <div className="flex-1 space-y-4">
@@ -98,7 +98,7 @@ export default function TaskPageUI() {
                       <Button
                         onClick={() => handleLaunchTask(task.id)}
                         disabled={taskAttempts.length >= task.maxAttempts}
-                        className="h-14 px-8 rounded-2xl bg-primary text-primary-foreground font-black shadow-lg shadow-primary/25 hover:scale-105 transition-transform"
+                        className="h-14 px-8 rounded-2xl bg-primary text-primary-foreground font-black   hover:scale-105 transition-transform"
                       >
                         <PlayCircle className="w-5 h-5 mr-2" /> Start Attempt
                       </Button>
