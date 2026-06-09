@@ -98,7 +98,7 @@ export default function LoginPageUI() {
             <div className="py-2">
               <TalentAvatar
                 size={160}
-                shirtColor="#9fe870"
+                shirtColor="#059669"
                 mood={view === 'login' ? 'happy' : 'thinking'}
                 className="-ml-2"
               />

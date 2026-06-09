@@ -11,9 +11,9 @@
    ======================================== */
 
 :root {
-  /* ─── Wise Green Primary ─── */
-  --primary: 101 70% 67%;
-  --primary-foreground: 80 12% 5%;
+  /* ─── Professional Emerald Green Primary ─── */
+  --primary: 161 94% 30%; /* Emerald 600 (#059669) */
+  --primary-foreground: 0 0% 100%; /* White text */
 
   /* ─── Surfaces ─── */
   --background: 0 0% 100%;
@@ -81,9 +81,9 @@
   --popover: 84 11% 10%;
   --popover-foreground: 90 8% 91%;
 
-  /* ─── Primary stays the same ─── */
-  --primary: 101 70% 67%;
-  --primary-foreground: 80 12% 5%;
+  /* ─── Primary Emerald (Slightly brighter for dark mode) ─── */
+  --primary: 160 84% 39%; /* Emerald 500 (#10b981) */
+  --primary-foreground: 0 0% 100%;
 
   /* ─── Secondary — Dark sage ─── */
   --secondary: 84 11% 14%;
@@ -201,7 +201,7 @@
   }
 
   .wise-btn-primary:hover {
-    background: hsl(101 85% 84%);
+    background: hsl(161 84% 39%);
   }
 
   .wise-btn-primary:active {
@@ -383,7 +383,7 @@
 
   .stage-dot.active {
     @apply bg-primary scale-125;
-    box-shadow: 0 0 12px hsl(101 70% 67% / 0.4);
+    box-shadow: 0 0 12px hsl(161 94% 30% / 0.4);
   }
 
   .stage-dot.completed {
@@ -400,7 +400,7 @@
     @apply text-8xl font-black;
     @apply bg-primary text-primary-foreground;
     @apply rounded-3xl p-12 text-center;
-    box-shadow: 0 20px 60px hsl(101 70% 67% / 0.2);
+    box-shadow: 0 20px 60px hsl(161 94% 30% / 0.2);
   }
 
   /* ─── Asymmetric Grid ─── */
@@ -510,10 +510,10 @@
   @keyframes wiseGlow {
     0%,
     100% {
-      box-shadow: 0 0 20px hsl(101 70% 67% / 0.1);
+      box-shadow: 0 0 20px hsl(161 94% 30% / 0.1);
     }
     50% {
-      box-shadow: 0 0 30px hsl(101 70% 67% / 0.25);
+      box-shadow: 0 0 30px hsl(161 94% 30% / 0.25);
     }
   }
 
