@@ -43,7 +43,7 @@ export default function Timer({
     <div className="space-y-3">
       {/* Timer Display */}
       <div
-        className={`bauhaus-timer ${isCritical ? 'bauhaus-accent-red animate-pulse' : isWarning ? 'bg-orange-500' : ''}`}
+        className={`wise-timer ${isCritical ? 'bauhaus-accent-red animate-pulse' : isWarning ? 'bg-orange-500' : ''}`}
       >
         <div className="flex items-center justify-center gap-3">
           <Clock className="w-8 h-8" />

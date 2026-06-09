@@ -80,7 +80,7 @@ export const IdleTimerProvider: React.FC<{ children: React.ReactNode }> = ({
             <AlertDialogDescription className="text-neutral-500 dark:text-neutral-400 text-base leading-relaxed text-center sm:text-left">
               You have been inactive for a while. Your session will
               automatically log out in{' '}
-              <span className="font-bold text-rose-500 tabular-nums">
+              <span className="font-bold text-destructive tabular-nums">
                 {countdown}
               </span>{' '}
               seconds if there is no activity.

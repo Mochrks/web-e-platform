@@ -34,7 +34,7 @@ export default function TasksPageUI() {
   return (
     <div className="space-y-10 pb-20 animate-fade-in">
       {/* Header Stat Board */}
-      <div className="bg-card border border-border p-10 rounded-[3rem] shadow-sm flex flex-col xl:flex-row justify-between items-center gap-10">
+      <div className="bg-card border border-border p-10 rounded-3xl shadow-sm flex flex-col xl:flex-row justify-between items-center gap-10">
         <div className="flex-1 space-y-4">
           <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary bg-primary/10 px-4 py-2 rounded-full w-fit">
             <ListChecks className="w-4 h-4" /> Goal Tracking
@@ -47,7 +47,7 @@ export default function TasksPageUI() {
         </div>
 
         <div className="flex flex-wrap items-center gap-6">
-          <div className="flex items-center gap-6 bg-primary text-white p-8 rounded-[2.5rem] shadow-2xl shadow-primary/30 min-w-[280px] group transition-all hover:scale-105">
+          <div className="flex items-center gap-6 bg-primary text-white p-8 rounded-3xl shadow-2xl shadow-primary/30 min-w-[280px] group transition-all hover:scale-105">
             <div className="p-4 bg-white/20 rounded-2xl group-hover:rotate-12 transition-transform">
               <Trophy className="w-10 h-10" aria-hidden="true" />
             </div>
@@ -123,7 +123,7 @@ export default function TasksPageUI() {
               filteredTasks.map((task) => (
                 <div
                   key={task.id}
-                  className={`group bg-card border border-border p-6 rounded-[2.5rem] flex items-center gap-6 transition-all hover:bg-muted/20 hover:border-primary/20 ${task.status === 'done' ? 'opacity-60 grayscale-[0.5]' : ''}`}
+                  className={`group bg-card border border-border p-6 rounded-3xl flex items-center gap-6 transition-all hover:bg-muted/20 hover:border-primary/20 ${task.status === 'done' ? 'opacity-60 grayscale-[0.5]' : ''}`}
                 >
                   <button
                     onClick={() => toggleTask(task.id)}
@@ -163,7 +163,7 @@ export default function TasksPageUI() {
                       onClick={() => deleteTask(task.id)}
                       variant="ghost"
                       size="icon"
-                      className="rounded-xl opacity-0 group-hover:opacity-100 transition-opacity hover:text-rose-500 hover:bg-rose-500/10"
+                      className="rounded-xl opacity-0 group-hover:opacity-100 transition-opacity hover:text-destructive hover:bg-destructive/10"
                       aria-label="Delete task"
                     >
                       <Trash2 className="w-5 h-5" />
@@ -177,8 +177,8 @@ export default function TasksPageUI() {
 
         {/* Sidebar Stats */}
         <div className="w-full xl:w-96 space-y-8">
-          <Card className="p-8 rounded-[2.5rem] border-border bg-gradient-to-br from-indigo-600 to-primary text-white shadow-xl shadow-primary/20">
-            <h4 className="text-xl font-black mb-6">Expert Streak 🔥</h4>
+          <Card className="p-8 rounded-3xl border-border bg-gradient-to-br from-indigo-600 to-primary text-white shadow-xl shadow-primary/20">
+            <h4 className="text-xl font-black mb-6">Expert Streak ðŸ”¥</h4>
             <p className="font-bold text-3xl mb-4">
               05{' '}
               <span className="text-sm opacity-80 uppercase tracking-widest">
@@ -200,7 +200,7 @@ export default function TasksPageUI() {
             </div>
           </Card>
 
-          <Card className="p-8 rounded-[3rem] border-border bg-card shadow-sm">
+          <Card className="p-8 rounded-3xl border-border bg-card shadow-sm">
             <div className="flex items-center gap-2 mb-8">
               <Layout className="w-5 h-5 text-primary" />
               <h4 className="text-xl font-black">Skill Focus</h4>

@@ -1,86 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ========================================
-   BAUHAUS DESIGN SYSTEM
-   Principles: Functional, Minimal, Geometric
+   WISE-INSPIRED DESIGN SYSTEM
+   E-Platform Employee Development
+   Principles: Calm, Friendly, Professional
    ======================================== */
 
 :root {
-  /* Elegant Purple Palette */
-  --primary-hue: 262;
-  --primary-sat: 83%;
-  --primary-light: 58%;
+  /* ─── Wise Green Primary ─── */
+  --primary: 101 70% 67%;
+  --primary-foreground: 80 12% 5%;
 
+  /* ─── Surfaces ─── */
   --background: 0 0% 100%;
-  --foreground: var(--primary-hue) 50% 10%;
+  --foreground: 80 12% 5%;
 
   --card: 0 0% 100%;
-  --card-foreground: var(--primary-hue) 50% 10%;
+  --card-foreground: 80 12% 5%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: var(--primary-hue) 50% 10%;
+  --popover-foreground: 80 12% 5%;
 
-  --primary: var(--primary-hue) var(--primary-sat) var(--primary-light);
-  --primary-foreground: 0 0% 100%;
+  /* ─── Secondary — Sage Canvas ─── */
+  --secondary: 90 8% 91%;
+  --secondary-foreground: 80 12% 5%;
 
-  --secondary: var(--primary-hue) 20% 96%;
-  --secondary-foreground: var(--primary-hue) var(--primary-sat) 20%;
+  /* ─── Accent — Primary Pale Green ─── */
+  --accent: 102 60% 90%;
+  --accent-foreground: 105 100% 10%;
 
-  --accent: var(--primary-hue) 30% 94%;
-  --accent-foreground: var(--primary-hue) var(--primary-sat) 30%;
+  /* ─── Muted — Sage Canvas ─── */
+  --muted: 90 8% 91%;
+  --muted-foreground: 60 1% 53%;
 
-  --muted: var(--primary-hue) 15% 96%;
-  --muted-foreground: var(--primary-hue) 10% 45%;
+  /* ─── Destructive — Negative Red ─── */
+  --destructive: 358 65% 51%;
+  --destructive-foreground: 0 0% 100%;
 
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
+  /* ─── Borders & Inputs ─── */
+  --border: 90 7% 83%;
+  --input: 90 7% 83%;
+  --ring: 101 70% 67%;
 
-  --border: var(--primary-hue) 20% 90%;
-  --input: var(--primary-hue) 20% 90%;
-  --ring: var(--primary-hue) var(--primary-sat) var(--primary-light);
+  /* ─── Canonical Wise Radius ─── */
+  --radius: 1.5rem;
 
-  --radius: 0.75rem;
+  /* ─── Wise Semantic Colors ─── */
+  --positive: 140 57% 43%;
+  --positive-deep: 152 94% 16%;
+  --warning: 48 100% 55%;
+  --warning-deep: 33 100% 36%;
+  --warning-content: 33 45% 20%;
+  --negative: 358 65% 51%;
+  --negative-deep: 358 69% 39%;
 
-  /* Chart Colors */
-  --chart-1: var(--primary-hue) var(--primary-sat) 60%;
-  --chart-2: 173 58% 39%;
-  --chart-3: 197 37% 24%;
-  --chart-4: 43 74% 66%;
-  --chart-5: 27 87% 67%;
+  /* ─── Wise Accent Tertiary ─── */
+  --accent-orange: 24 100% 78%;
+  --accent-cyan: 199 100% 61%;
+
+  /* ─── Chart Colors (green-sage family) ─── */
+  --chart-1: 101 70% 67%;
+  --chart-2: 140 57% 43%;
+  --chart-3: 152 94% 16%;
+  --chart-4: 48 100% 55%;
+  --chart-5: 24 100% 78%;
 }
 
 .dark {
-  --background: var(--primary-hue) 50% 3%;
-  --foreground: var(--primary-hue) 10% 98%;
+  /* ─── Dark Surfaces — Olive-black ─── */
+  --background: 80 12% 5%;
+  --foreground: 90 8% 91%;
 
-  --card: var(--primary-hue) 40% 6%;
-  --card-foreground: var(--primary-hue) 10% 98%;
+  --card: 84 11% 10%;
+  --card-foreground: 90 8% 91%;
 
-  --popover: var(--primary-hue) 40% 6%;
-  --popover-foreground: var(--primary-hue) 10% 98%;
+  --popover: 84 11% 10%;
+  --popover-foreground: 90 8% 91%;
 
-  --primary: var(--primary-hue) var(--primary-sat) 65%;
-  --primary-foreground: var(--primary-hue) 50% 5%;
+  /* ─── Primary stays the same ─── */
+  --primary: 101 70% 67%;
+  --primary-foreground: 80 12% 5%;
 
-  --secondary: var(--primary-hue) 30% 12%;
-  --secondary-foreground: var(--primary-hue) 10% 98%;
+  /* ─── Secondary — Dark sage ─── */
+  --secondary: 84 11% 14%;
+  --secondary-foreground: 90 8% 91%;
 
-  --accent: var(--primary-hue) 30% 15%;
-  --accent-foreground: var(--primary-hue) 10% 98%;
+  /* ─── Accent ─── */
+  --accent: 84 11% 14%;
+  --accent-foreground: 101 70% 67%;
 
-  --muted: var(--primary-hue) 30% 12%;
-  --muted-foreground: var(--primary-hue) 10% 65%;
+  /* ─── Muted ─── */
+  --muted: 84 11% 14%;
+  --muted-foreground: 60 1% 53%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: var(--primary-hue) 10% 98%;
+  /* ─── Destructive ─── */
+  --destructive: 358 65% 42%;
+  --destructive-foreground: 0 0% 98%;
 
-  --border: var(--primary-hue) 30% 18%;
-  --input: var(--primary-hue) 30% 18%;
-  --ring: var(--primary-hue) var(--primary-sat) 65%;
+  /* ─── Borders ─── */
+  --border: 84 11% 20%;
+  --input: 84 11% 20%;
+  --ring: 101 70% 67%;
 }
 
 @layer base {
@@ -90,7 +114,9 @@
 
   body {
     @apply bg-background text-foreground shrink-0;
-    font-feature-settings: 'cv11', 'ss01';
+    font-feature-settings: 'calt', 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* Hide browser default password reveal button */
@@ -115,79 +141,186 @@
   h6 {
     @apply font-semibold tracking-tight;
   }
+
+  /* Wise display headings use weight 900 */
+  h1 {
+    @apply font-black;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: hsl(101 70% 67% / 0.25);
+    color: hsl(80 12% 5%);
+  }
 }
 
 @layer components {
-  /* Simple Elegant Card */
-  .bauhaus-card {
-    @apply bg-card border border-border p-6 rounded-xl shadow-sm;
+  /* ─── Wise Card ─── */
+  .wise-card {
+    @apply bg-card border border-border p-6 rounded-3xl;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .bauhaus-card:hover {
-    @apply shadow-md border-primary/20 bg-accent/5;
-    transform: translateY(-4px);
-  }
-
-  /* Simple Elegant Button */
-  .bauhaus-btn {
-    @apply font-semibold tracking-wide rounded-full px-8 py-3 text-base;
-    @apply transition-all duration-300 ease-in-out;
-    @apply shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30;
-  }
-
-  .bauhaus-btn:hover {
+  .wise-card:hover {
+    @apply border-primary/30;
     transform: translateY(-2px);
   }
 
-  .bauhaus-btn:active {
-    transform: translateY(0);
+  /* ─── Wise Card Variants ─── */
+  .wise-card-sage {
+    @apply bg-secondary text-foreground p-6 rounded-3xl;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Typography */
-  .bauhaus-heading {
-    @apply text-5xl md:text-7xl font-bold tracking-tight text-foreground;
+  .wise-card-green {
+    @apply p-6 rounded-3xl;
+    background: hsl(var(--accent));
+    color: hsl(var(--foreground));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .wise-card-dark {
+    @apply p-6 rounded-3xl text-primary;
+    background: hsl(var(--foreground));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .wise-card-dark {
+    background: hsl(90 8% 91%);
+    color: hsl(80 12% 5%);
+  }
+
+  /* ─── Wise Button ─── */
+  .wise-btn {
+    @apply font-semibold rounded-3xl px-6 py-3 text-base;
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .wise-btn-primary {
+    @apply wise-btn bg-primary text-primary-foreground;
+  }
+
+  .wise-btn-primary:hover {
+    background: hsl(101 85% 84%);
+  }
+
+  .wise-btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .wise-btn-secondary {
+    @apply wise-btn bg-secondary text-foreground;
+  }
+
+  .wise-btn-secondary:hover {
+    @apply bg-secondary/80;
+  }
+
+  .wise-btn-tertiary {
+    @apply wise-btn bg-background text-foreground border border-foreground;
+  }
+
+  .wise-btn-tertiary:hover {
+    @apply bg-secondary;
+  }
+
+  /* ─── Wise Typography ─── */
+  .wise-display-xl {
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 54.4px;
+    letter-spacing: -0.02em;
+  }
+
+  .wise-display-md {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 34px;
+    letter-spacing: -0.02em;
+  }
+
+  .wise-display-sm {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 38.4px;
+    letter-spacing: -0.03em;
+  }
+
+  .wise-display-xs {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 31.2px;
+    letter-spacing: -0.02em;
+  }
+
+  .wise-heading {
+    @apply text-5xl md:text-7xl font-black tracking-tight text-foreground;
     line-height: 1.1;
   }
 
-  .bauhaus-subheading {
+  .wise-subheading {
     @apply text-2xl md:text-3xl font-semibold tracking-tight;
+    letter-spacing: -0.03em;
   }
 
-  /* Dividers */
-  .bauhaus-divider {
+  /* ─── Wise Dividers ─── */
+  .wise-divider {
     @apply h-[1px] bg-border my-8;
   }
 
-  .bauhaus-divider-vertical {
+  .wise-divider-vertical {
     @apply w-[1px] bg-border mx-8;
   }
 
-  /* Accent Blocks - Repurposed to Purple */
-  .bauhaus-accent-red,
-  .bauhaus-accent-blue,
-  .bauhaus-accent-yellow {
-    @apply bg-primary text-primary-foreground border-none;
+  /* ─── Wise Accent Surfaces ─── */
+  .wise-surface-sage {
+    @apply bg-secondary text-foreground;
   }
 
-  .bauhaus-accent-blue {
-    @apply bg-violet-100 text-violet-900 border-none dark:bg-violet-900/30 dark:text-violet-100;
+  .wise-surface-green {
+    background: hsl(var(--accent));
+    color: hsl(var(--foreground));
   }
 
-  .bauhaus-accent-yellow {
-    @apply bg-indigo-100 text-indigo-900 border-none dark:bg-indigo-900/30 dark:text-indigo-100;
+  .wise-surface-dark {
+    background: hsl(var(--foreground));
+    color: hsl(var(--primary));
   }
 
-  /* Elegant Progress Bar */
-  .bauhaus-progress {
-    @apply h-3 bg-muted rounded-full overflow-hidden border-none;
+  .dark .wise-surface-dark {
+    background: hsl(90 8% 91%);
+    color: hsl(80 12% 5%);
   }
 
-  .bauhaus-progress-fill {
+  /* ─── Wise Progress Bar ─── */
+  .wise-progress {
+    @apply h-[6px] bg-secondary rounded-full overflow-hidden border-none;
+  }
+
+  .wise-progress-fill {
     @apply h-full bg-primary rounded-full transition-all duration-500;
   }
 
-  /* Voice Waveform - Refined */
+  /* ─── Wise Badge ─── */
+  .wise-badge-positive {
+    background: hsl(var(--accent));
+    color: hsl(var(--positive-deep));
+    @apply text-sm font-semibold rounded-full px-3 py-0.5;
+  }
+
+  .wise-badge-negative {
+    background: hsl(358 100% 10%);
+    color: white;
+    @apply text-sm font-semibold rounded-full px-3 py-0.5;
+  }
+
+  .wise-badge-warning {
+    background: hsl(var(--warning) / 0.15);
+    color: hsl(var(--warning-content));
+    @apply text-sm font-semibold rounded-full px-3 py-0.5;
+  }
+
+  /* ─── Voice Waveform ─── */
   .voice-wave {
     display: flex;
     align-items: center;
@@ -226,59 +359,111 @@
     }
   }
 
-  /* Code Editor Modern */
-  .bauhaus-code-editor {
-    @apply border border-border rounded-xl shadow-lg;
+  /* ─── Code Editor ─── */
+  .wise-code-editor {
+    @apply border border-border rounded-3xl shadow-sm;
   }
 
-  /* Timer Modern */
-  .bauhaus-timer {
+  /* ─── Timer ─── */
+  .wise-timer {
     @apply font-mono text-3xl font-bold tabular-nums;
-    @apply border border-primary/20 rounded-2xl px-6 py-2;
+    @apply border border-primary/20 rounded-3xl px-6 py-2;
     @apply bg-primary/10 text-primary;
   }
 
-  /* Stage Indicator - Modern Steps */
+  /* ─── Stage Indicator ─── */
   .stage-indicator {
     @apply flex items-center gap-2;
   }
 
   .stage-dot {
-    @apply w-3 h-3 rounded-full bg-muted border border-border;
+    @apply w-3 h-3 rounded-full bg-secondary border border-border;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .stage-dot.active {
-    @apply bg-primary scale-125 shadow-lg shadow-primary/30;
+    @apply bg-primary scale-125;
+    box-shadow: 0 0 12px hsl(101 70% 67% / 0.4);
   }
 
   .stage-dot.completed {
     @apply bg-primary/60;
   }
 
-  /* Chart modern */
+  /* ─── Chart Container ─── */
   .radar-chart-container {
-    @apply border border-border p-8 rounded-2xl bg-card shadow-sm;
+    @apply border border-border p-8 rounded-3xl bg-card shadow-sm;
   }
 
-  /* Score Modern */
+  /* ─── Score Display ─── */
   .score-display {
-    @apply text-8xl font-bold;
+    @apply text-8xl font-black;
     @apply bg-primary text-primary-foreground;
     @apply rounded-3xl p-12 text-center;
-    @apply shadow-2xl shadow-primary/20;
+    box-shadow: 0 20px 60px hsl(101 70% 67% / 0.2);
   }
 
-  /* Elegant Grid */
-  .bauhaus-asymmetric {
+  /* ─── Asymmetric Grid ─── */
+  .wise-asymmetric {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 1.5rem;
   }
   @media (max-width: 768px) {
-    .bauhaus-asymmetric {
+    .wise-asymmetric {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* ─── Legacy class aliases for backward compatibility ─── */
+  .bauhaus-card {
+    @apply wise-card;
+  }
+  .bauhaus-btn {
+    @apply wise-btn;
+  }
+  .bauhaus-heading {
+    @apply wise-heading;
+  }
+  .bauhaus-subheading {
+    @apply wise-subheading;
+  }
+  .bauhaus-divider {
+    @apply wise-divider;
+  }
+  .bauhaus-divider-vertical {
+    @apply wise-divider-vertical;
+  }
+  .bauhaus-progress {
+    @apply wise-progress;
+  }
+  .bauhaus-progress-fill {
+    @apply wise-progress-fill;
+  }
+  .bauhaus-code-editor {
+    @apply wise-code-editor;
+  }
+  .bauhaus-timer {
+    @apply wise-timer;
+  }
+  .bauhaus-asymmetric {
+    @apply wise-asymmetric;
+  }
+
+  .bauhaus-accent-red,
+  .bauhaus-accent-blue,
+  .bauhaus-accent-yellow {
+    @apply bg-primary text-primary-foreground border-none;
+  }
+
+  .bauhaus-accent-blue {
+    @apply bg-accent text-accent-foreground border-none;
+  }
+
+  .bauhaus-accent-yellow {
+    background: hsl(var(--warning) / 0.15);
+    color: hsl(var(--warning-content));
+    @apply border-none;
   }
 }
 
@@ -314,6 +499,21 @@
     }
     to {
       opacity: 1;
+    }
+  }
+
+  /* Wise-specific animations */
+  .animate-wise-glow {
+    animation: wiseGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes wiseGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsl(101 70% 67% / 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(101 70% 67% / 0.25);
     }
   }
 

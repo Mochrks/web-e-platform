@@ -48,7 +48,7 @@ function VerifyEmailContent() {
     return (
       <div className="text-center space-y-4">
         <div className="flex justify-center">
-          <div className="p-4 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-500">
+          <div className="p-4 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-positive500">
             <CheckCircle2 className="w-12 h-12" />
           </div>
         </div>
@@ -72,7 +72,7 @@ function VerifyEmailContent() {
     return (
       <div className="text-center space-y-4">
         <div className="flex justify-center">
-          <div className="p-4 rounded-full bg-rose-50 dark:bg-rose-950/30 text-rose-500">
+          <div className="p-4 rounded-full bg-rose-50 dark:bg-rose-950/30 text-destructive">
             <XCircle className="w-12 h-12" />
           </div>
         </div>

@@ -36,7 +36,7 @@ export default function NoteCard({
     <Card
       onClick={() => onEdit(note)}
       className={`
-         rounded-[2.5rem] border group hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden bg-card
+         rounded-3xl border group hover:shadow-2xl transition-all cursor-pointer relative overflow-hidden bg-card
          ${isGrid ? 'p-8 min-h-[320px] flex flex-col justify-between' : 'p-6 flex flex-row items-center gap-6'}
          ${note.color}
       `}
@@ -141,7 +141,7 @@ export default function NoteCard({
                 e.stopPropagation();
                 onDelete(note.id);
               }}
-              className="p-2.5 hover:bg-rose-500/10 rounded-xl text-rose-500"
+              className="p-2.5 hover:bg-destructive/10 rounded-xl text-destructive"
               aria-label="Delete note"
             >
               <Trash2 className="w-4 h-4" />
@@ -167,7 +167,7 @@ export default function NoteCard({
               e.stopPropagation();
               onDelete(note.id);
             }}
-            className="p-2 hover:bg-rose-500/10 rounded-xl text-rose-500"
+            className="p-2 hover:bg-destructive/10 rounded-xl text-destructive"
             aria-label="Delete note"
           >
             <Trash2 className="w-4 h-4" />

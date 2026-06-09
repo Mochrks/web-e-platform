@@ -18,14 +18,14 @@ export default function PlatformLayout({
       <div className="flex-1 lg:ml-72 flex flex-col min-h-screen">
         <DashboardHeaderLayout />
 
-        {/* Main Content Area */}
-        <main className="flex-1 p-6 lg:p-10 bg-muted/20 relative">
+        {/* Main Content Area — Sage canvas for surface-contrast elevation */}
+        <main className="flex-1 p-6 lg:p-8 bg-secondary/40 relative">
           <div className="max-w-6xl mx-auto">{children}</div>
         </main>
 
         <style jsx global>{`
           .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
           }
           .custom-scrollbar::-webkit-scrollbar-track {
             background: transparent;
@@ -35,17 +35,17 @@ export default function PlatformLayout({
             border-radius: 20px;
           }
           .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: hsl(var(--primary) / 0.2);
+            background: hsl(var(--primary) / 0.3);
           }
 
-          /* Ensure smooth navigation between app sections */
+          /* Smooth page transitions */
           .animate-fade-in {
             animation: fadeIn 0.4s ease-out;
           }
           @keyframes fadeIn {
             from {
               opacity: 0;
-              transform: translateY(10px);
+              transform: translateY(8px);
             }
             to {
               opacity: 1;

@@ -34,7 +34,7 @@ export default function SettingsPageUI() {
       case 'Profile & Avatar':
         return (
           <div className="space-y-10">
-            <Card className="p-10 rounded-[3rem] border-border bg-card shadow-sm space-y-10">
+            <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-10">
               <div>
                 <h3 className="text-2xl font-black mb-1">Talent Avatar</h3>
                 <p className="text-sm text-muted-foreground font-bold">
@@ -43,7 +43,7 @@ export default function SettingsPageUI() {
               </div>
 
               <div className="flex flex-col md:flex-row gap-12 items-center">
-                <div className="bg-muted/30 p-10 rounded-[3rem] border border-border/50 relative group">
+                <div className="bg-muted/30 p-10 rounded-3xl border border-border/50 relative group">
                   <TalentAvatar size={185} isAnimated={true} />
                   <button
                     type="button"
@@ -295,7 +295,7 @@ export default function SettingsPageUI() {
               </div>
             </Card>
 
-            <Card className="p-10 rounded-[2.5rem] border-border bg-card shadow-sm space-y-8">
+            <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-8">
               <h3 className="text-xl font-black">Account Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
@@ -322,7 +322,7 @@ export default function SettingsPageUI() {
         );
       case 'Notifications':
         return (
-          <Card className="p-10 rounded-[3rem] border-border bg-card shadow-sm space-y-8">
+          <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-1">
                 Notification Settings
@@ -374,7 +374,7 @@ export default function SettingsPageUI() {
         );
       case 'Security':
         return (
-          <Card className="p-10 rounded-[3rem] border-border bg-card shadow-sm space-y-8">
+          <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-1">Security & Access</h3>
               <p className="text-sm text-muted-foreground font-bold">
@@ -389,7 +389,7 @@ export default function SettingsPageUI() {
                 </Label>
                 <Input
                   type="password"
-                  placeholder="••••••••"
+                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                   className="h-14 rounded-2xl bg-muted/50 border-border"
                 />
               </div>
@@ -400,7 +400,7 @@ export default function SettingsPageUI() {
                   </Label>
                   <Input
                     type="password"
-                    placeholder="••••••••"
+                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                     className="h-14 rounded-2xl bg-muted/50 border-border"
                   />
                 </div>
@@ -410,7 +410,7 @@ export default function SettingsPageUI() {
                   </Label>
                   <Input
                     type="password"
-                    placeholder="••••••••"
+                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                     className="h-14 rounded-2xl bg-muted/50 border-border"
                   />
                 </div>
@@ -428,7 +428,7 @@ export default function SettingsPageUI() {
         );
       case 'Appearance':
         return (
-          <Card className="p-10 rounded-[3rem] border-border bg-card shadow-sm space-y-8">
+          <Card className="p-10 rounded-3xl border-border bg-card shadow-sm space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-1">App Appearance</h3>
               <p className="text-sm text-muted-foreground font-bold">
@@ -474,7 +474,7 @@ export default function SettingsPageUI() {
 
   return (
     <div className="space-y-10 pb-20 animate-fade-in">
-      <div className="bg-card border border-border p-10 rounded-[3rem] shadow-sm relative overflow-hidden">
+      <div className="bg-card border border-border p-10 rounded-3xl shadow-sm relative overflow-hidden">
         <h1 className="text-4xl font-black tracking-tight mb-2">
           Platform Settings
         </h1>

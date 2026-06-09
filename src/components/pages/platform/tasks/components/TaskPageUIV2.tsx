@@ -49,7 +49,7 @@ export default function TaskPageUI() {
             return (
               <Card
                 key={task.id}
-                className="p-8 rounded-[2.5rem] border-border bg-card/50 backdrop-blur-md shadow-sm hover:bg-card transition-all group overflow-hidden relative"
+                className="p-8 rounded-3xl border-border bg-card/50 backdrop-blur-md shadow-sm hover:bg-card transition-all group overflow-hidden relative"
               >
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   <div className="flex-1 space-y-4">
@@ -118,7 +118,7 @@ export default function TaskPageUI() {
               Recent Activity
             </h2>
           </div>
-          <Card className="rounded-[2.5rem] border-border bg-card/30 backdrop-blur-sm p-4 divide-y divide-border/50">
+          <Card className="rounded-3xl border-border bg-card/30 backdrop-blur-sm p-4 divide-y divide-border/50">
             {attempts.length === 0 ? (
               <div className="py-20 text-center opacity-40">
                 <FileText className="w-12 h-12 mx-auto mb-4" />

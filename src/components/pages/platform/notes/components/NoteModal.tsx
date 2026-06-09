@@ -43,7 +43,7 @@ export default function NoteModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-xl rounded-[2.5rem] border-border p-8">
+      <DialogContent className="sm:max-w-xl rounded-3xl border-border p-8">
         <DialogHeader>
           <DialogTitle className="text-2xl font-black tracking-tight">
             {isExisting ? 'Edit Note' : 'Create New Note'}

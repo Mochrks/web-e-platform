@@ -62,7 +62,7 @@ export default function CodeEditor({
   };
 
   return (
-    <div className="bauhaus-code-editor bg-card">
+    <div className="wise-code-editor bg-card">
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between p-4 border-b-4 border-foreground bg-[hsl(var(--bauhaus-yellow))] gap-4">
         <div className="flex items-center gap-3">
           <Code2 className="w-6 h-6" />

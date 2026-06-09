@@ -10,7 +10,6 @@ import {
   Calendar,
   CheckSquare,
   StickyNote,
-  ChevronRight,
   Trophy,
   Award,
   Briefcase,
@@ -62,73 +61,83 @@ export default function DashboardSidebarLayout({
   return (
     <aside
       className={`
-      w-72 bg-card border-r border-border shrink-0 flex flex-col h-screen shadow-sm
+      w-72 bg-card border-r border-border shrink-0 flex flex-col h-screen
       ${
         isMobile
           ? 'relative bg-card'
-          : 'hidden lg:flex fixed left-0 top-0 z-50 backdrop-blur-xl bg-card/95'
+          : 'hidden lg:flex fixed left-0 top-0 z-50 bg-card'
       }
     `}
     >
-      <div className="p-8">
+      <div className="p-6">
+        {/* Logo */}
         <Link
           href="/platform/dashboard"
           className="flex items-center gap-3 mb-10 group"
         >
-          <div className="w-10 h-10 rounded-2xl bg-primary flex items-center justify-center text-white shadow-xl shadow-primary/20 transition-all group-hover:scale-110">
-            <Zap className="w-6 h-6 fill-white" />
+          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-primary-foreground transition-all group-hover:scale-105">
+            <Zap className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl font-black tracking-tighter">E-Platform.</h2>
-            <p className="text-[10px] font-black uppercase text-primary tracking-widest leading-none">
+            <h2 className="text-lg font-black tracking-tighter text-foreground">
+              E-Platform.
+            </h2>
+            <p className="text-[10px] font-bold uppercase text-primary tracking-widest leading-none">
               Smart Platform
             </p>
           </div>
         </Link>
 
-        <nav className="space-y-8">
+        {/* Navigation */}
+        <nav className="space-y-6">
           <div>
-            <div className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-4 px-2 opacity-50 h-3">
+            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] mb-4 px-3 h-3">
               {isMounted && (isAdminCategories ? 'Admin Portal' : 'Navigation')}
             </div>
             <div className="space-y-1">
               {!isMounted
-                ? // Skeleton loading for menu items to prevent layout shift and wrong role flash
+                ? // Skeleton loading
                   Array.from({ length: 10 }).map((_, i) => (
                     <div
                       key={i}
-                      className="flex items-center gap-3 p-3.5 rounded-2xl animate-pulse"
+                      className="flex items-center gap-3 p-3 rounded-lg animate-pulse"
                     >
-                      <div className="w-5 h-5 bg-slate-200 dark:bg-slate-800 rounded-md" />
-                      <div className="h-4 bg-slate-200 dark:bg-slate-800 rounded-md w-40" />
+                      <div className="w-5 h-5 bg-secondary rounded-md" />
+                      <div className="h-4 bg-secondary rounded-md w-40" />
                     </div>
                   ))
-                : menuItems.map((item) => (
-                    <Link
-                      key={item.path + item.title}
-                      href={item.path}
-                      className={`
-                      flex items-center gap-3 p-3.5 rounded-2xl transition-all group
-                      ${
-                        pathname === item.path
-                          ? 'bg-primary text-white shadow-lg shadow-primary/15'
-                          : 'hover:bg-primary/5 text-muted-foreground hover:text-foreground'
-                      }
-                    `}
-                    >
-                      <div className="shrink-0 transition-transform group-hover:scale-110">
-                        {IconMap[item.icon] || (
-                          <LayoutDashboard className="w-5 h-5" />
+                : menuItems.map((item) => {
+                    const isActive = pathname === item.path;
+                    return (
+                      <Link
+                        key={item.path + item.title}
+                        href={item.path}
+                        className={`
+                        flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group relative
+                        ${
+                          isActive
+                            ? 'bg-primary/10 text-foreground font-semibold'
+                            : 'hover:bg-secondary text-muted-foreground hover:text-foreground'
+                        }
+                      `}
+                      >
+                        {/* Active indicator bar */}
+                        {isActive && (
+                          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-primary rounded-full" />
                         )}
-                      </div>
-                      <span className="font-bold text-sm tracking-tight">
-                        {item.title}
-                      </span>
-                      {pathname === item.path && (
-                        <ChevronRight className="w-4 h-4 ml-auto opacity-50" />
-                      )}
-                    </Link>
-                  ))}
+                        <div
+                          className={`shrink-0 transition-colors ${isActive ? 'text-primary' : ''}`}
+                        >
+                          {IconMap[item.icon] || (
+                            <LayoutDashboard className="w-5 h-5" />
+                          )}
+                        </div>
+                        <span className="text-sm font-medium tracking-tight">
+                          {item.title}
+                        </span>
+                      </Link>
+                    );
+                  })}
             </div>
           </div>
         </nav>

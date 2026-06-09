@@ -13,13 +13,13 @@ export default function SkillItem({
 }: Readonly<SkillItemProps>) {
   return (
     <div className="space-y-2">
-      <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+      <div className="flex justify-between text-xs font-semibold text-muted-foreground">
         <span>{label}</span>
-        <span className="text-primary">{percent}%</span>
+        <span className="text-primary font-bold">{percent}%</span>
       </div>
-      <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
+      <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden">
         <div
-          className="h-full bg-primary transition-all duration-1000"
+          className="h-full bg-primary rounded-full transition-all duration-1000"
           style={{ width: `${percent}%` }}
         />
       </div>

@@ -43,15 +43,15 @@ export default function RegisterPageUI() {
       </div>
 
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px] opacity-50 dark:opacity-100" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[120px] opacity-50 dark:opacity-100" />
+        <div className="absolute top-[-15%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[150px] dark:bg-primary/5" />
+        <div className="absolute bottom-[-15%] right-[-10%] w-[40%] h-[40%] bg-secondary rounded-full blur-[120px] dark:bg-secondary/30" />
       </div>
 
       <div className="w-full max-w-2xl">
-        <Card className="bg-card/50 border-border backdrop-blur-2xl rounded-[3rem] p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+        <Card className="bg-card/50 border-border backdrop-blur-2xl rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
           <div className="mb-10 text-center">
             <div className="flex justify-center mb-4">
-              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white shadow-xl shadow-primary/30">
+              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-primary-foreground">
                 <Terminal className="w-6 h-6" />
               </div>
             </div>
@@ -199,7 +199,7 @@ export default function RegisterPageUI() {
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="••••••••"
+                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                     {...register('password')}
                     className={`h-14 bg-muted/50 border-border rounded-2xl pl-12 pr-12 ${errors.password ? 'border-destructive focus-visible:ring-destructive' : ''}`}
                   />
@@ -233,7 +233,7 @@ export default function RegisterPageUI() {
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder="••••••••"
+                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                     {...register('confirmPassword')}
                     className={`h-14 bg-muted/50 border-border rounded-2xl pl-12 pr-12 ${errors.confirmPassword ? 'border-destructive focus-visible:ring-destructive' : ''}`}
                   />
@@ -260,7 +260,7 @@ export default function RegisterPageUI() {
             <Button
               type="submit"
               disabled={isRegistering || !isValid}
-              className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-white font-black text-lg shadow-xl shadow-primary/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full h-12 rounded-3xl bg-primary hover:brightness-110 text-primary-foreground font-semibold text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]"
             >
               {isRegistering ? (
                 <>
@@ -279,7 +279,7 @@ export default function RegisterPageUI() {
             Already have an account?{' '}
             <Link
               href="/login"
-              className="text-primary font-black hover:underline tracking-tight"
+              className="text-primary font-semibold hover:underline"
             >
               Sign In
             </Link>

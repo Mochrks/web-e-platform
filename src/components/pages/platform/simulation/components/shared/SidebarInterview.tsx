@@ -54,7 +54,7 @@ export default function SidebarInterview({
   completedStages,
 }: SidebarInterviewProps) {
   return (
-    <Card className="w-full h-fit p-8 rounded-[2.5rem] border-border bg-card shadow-sm sticky top-10">
+    <Card className="w-full h-fit p-8 rounded-3xl border-border bg-card shadow-sm sticky top-10">
       <div className="space-y-2 mb-10">
         <h3 className="text-2xl font-black tracking-tight">
           Interview Journey

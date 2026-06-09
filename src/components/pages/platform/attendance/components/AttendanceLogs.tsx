@@ -33,7 +33,7 @@ export default function AttendanceLogs({
         </Button>
       </div>
 
-      <div className="bg-card border border-border rounded-[2.5rem] overflow-hidden shadow-sm">
+      <div className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
@@ -64,10 +64,10 @@ export default function AttendanceLogs({
                   <td className="p-6 text-sm font-bold whitespace-nowrap">
                     {log.date}
                   </td>
-                  <td className="p-6 text-sm font-bold text-emerald-500 whitespace-nowrap">
+                  <td className="p-6 text-sm font-bold text-positive500 whitespace-nowrap">
                     {log.clockIn}
                   </td>
-                  <td className="p-6 text-sm font-bold text-rose-500 whitespace-nowrap">
+                  <td className="p-6 text-sm font-bold text-destructive whitespace-nowrap">
                     {log.clockOut}
                   </td>
                   <td className="p-6 whitespace-nowrap">
@@ -80,7 +80,7 @@ export default function AttendanceLogs({
                     <Badge
                       className={`
                               rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest
-                              ${log.status === 'Present' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 'bg-amber-500/10 text-amber-500 border-amber-500/20'}
+                              ${log.status === 'Present' ? 'bg-emerald-500/10 text-positive500 border-emerald-500/20' : 'bg-amber-500/10 text-amber-500 border-amber-500/20'}
                             `}
                     >
                       {log.status === 'Present' ? (

@@ -118,14 +118,14 @@ export default function CalendarGrid({
       days = [];
     }
     return (
-      <div className="rounded-[2.5rem] overflow-hidden border border-border shadow-sm">
+      <div className="rounded-3xl overflow-hidden border border-border shadow-sm">
         {rows}
       </div>
     );
   };
 
   return (
-    <div className="bg-card/50 p-2 rounded-[3rem] border border-border">
+    <div className="bg-card/50 p-2 rounded-3xl border border-border">
       {renderDays()}
       {renderCells()}
     </div>

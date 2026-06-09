@@ -18,7 +18,7 @@ const divisions = [
     id: 'FINANCE',
     label: 'Finance & Accounting',
     icon: DollarSign,
-    color: 'text-emerald-500',
+    color: 'text-positive500',
     bg: 'bg-emerald-500/10',
   },
   {

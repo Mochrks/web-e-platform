@@ -69,12 +69,12 @@ export default function AllocationPageUI() {
             {history.map((a) => (
               <Card
                 key={a.id}
-                className={`p-8 rounded-[2.5rem] border-border bg-card/60 backdrop-blur-md shadow-sm transition-all border-l-8 ${a.status === 'active' ? 'border-l-primary shadow-xl shadow-primary/5' : 'border-l-emerald-500'}`}
+                className={`p-8 rounded-3xl border-border bg-card/60 backdrop-blur-md shadow-sm transition-all border-l-8 ${a.status === 'active' ? 'border-l-primary shadow-xl shadow-primary/5' : 'border-l-emerald-500'}`}
               >
                 <div className="flex justify-between items-start mb-6">
                   <div className="space-y-1">
                     <Badge
-                      className={`rounded-lg px-3 py-1 text-[10px] font-black uppercase tracking-widest border-none ${a.status === 'active' ? 'bg-primary text-white' : 'bg-emerald-500/10 text-emerald-500'}`}
+                      className={`rounded-lg px-3 py-1 text-[10px] font-black uppercase tracking-widest border-none ${a.status === 'active' ? 'bg-primary text-white' : 'bg-emerald-500/10 text-positive500'}`}
                     >
                       {a.status.toUpperCase()}
                     </Badge>
@@ -91,7 +91,7 @@ export default function AllocationPageUI() {
                       </div>
                     )}
                     <p className="text-[10px] font-black text-muted-foreground uppercase">
-                      {a.startDate} — {a.endDate}
+                      {a.startDate} â€” {a.endDate}
                     </p>
                   </div>
                 </div>
@@ -130,7 +130,7 @@ export default function AllocationPageUI() {
           </div>
 
           <div className="space-y-6">
-            <Card className="p-8 rounded-[2.5rem] bg-indigo-600 text-white border-none space-y-4">
+            <Card className="p-8 rounded-3xl bg-indigo-600 text-white border-none space-y-4">
               <h4 className="font-black text-xl">Employee Insight</h4>
               <p className="text-sm text-indigo-100 font-medium">
                 Tracing indicates high retention in Financial Service sectors
@@ -145,7 +145,7 @@ export default function AllocationPageUI() {
               </div>
             </Card>
 
-            <Card className="p-8 rounded-[2.5rem] bg-card border-border border-dashed border-2 text-center py-12">
+            <Card className="p-8 rounded-3xl bg-card border-border border-dashed border-2 text-center py-12">
               <HistoryIcon className="w-12 h-12 mx-auto mb-4 text-muted-foreground opacity-40" />
               <p className="font-black text-sm uppercase text-muted-foreground">
                 No gaps in mapping found.
@@ -216,13 +216,13 @@ export default function AllocationPageUI() {
                 </div>
 
                 <Card
-                  className={`p-8 rounded-[3rem] border-border bg-card shadow-sm hover:shadow-xl transition-all group overflow-hidden relative ${a.status === 'active' ? 'ring-2 ring-primary bg-primary/[0.02]' : ''}`}
+                  className={`p-8 rounded-3xl border-border bg-card shadow-sm hover:shadow-xl transition-all group overflow-hidden relative ${a.status === 'active' ? 'ring-2 ring-primary bg-primary/[0.02]' : ''}`}
                 >
                   <div className="flex flex-col xl:flex-row gap-10">
                     <div className="flex-1 space-y-6">
                       <div className="flex items-center gap-4">
                         <Badge
-                          className={`rounded-xl px-4 py-1.5 text-[10px] font-black uppercase tracking-widest border-none ${a.status === 'active' ? 'bg-primary text-white shadow-lg shadow-primary/30' : 'bg-emerald-500/10 text-emerald-500'}`}
+                          className={`rounded-xl px-4 py-1.5 text-[10px] font-black uppercase tracking-widest border-none ${a.status === 'active' ? 'bg-primary text-white shadow-lg shadow-primary/30' : 'bg-emerald-500/10 text-positive500'}`}
                         >
                           {a.status}
                         </Badge>
@@ -322,7 +322,7 @@ export default function AllocationPageUI() {
         </div>
 
         <div className="flex gap-4 w-full xl:w-auto">
-          <Card className="flex-1 px-8 py-5 border-2 border-primary/20 bg-primary/5 rounded-[2.5rem] flex items-center gap-4">
+          <Card className="flex-1 px-8 py-5 border-2 border-primary/20 bg-primary/5 rounded-3xl flex items-center gap-4">
             <TrendingUp className="w-8 h-8 text-primary" />
             <div>
               <p className="text-xs font-black uppercase opacity-60">
@@ -359,7 +359,7 @@ export default function AllocationPageUI() {
         {allAllocations.map((a) => (
           <Card
             key={a.id}
-            className="p-8 rounded-[3rem] border-border bg-card/40 backdrop-blur-md hover:bg-card hover:scale-[1.01] transition-all cursor-pointer group shadow-sm overflow-hidden"
+            className="p-8 rounded-3xl border-border bg-card/40 backdrop-blur-md hover:bg-card hover:scale-[1.01] transition-all cursor-pointer group shadow-sm overflow-hidden"
             onClick={() => setSelectedUserId(a.employeeId)}
           >
             <div className="flex flex-col xl:flex-row items-center gap-10">
@@ -373,7 +373,7 @@ export default function AllocationPageUI() {
                     {a.employeeName}
                   </h3>
                   <Badge
-                    className={`rounded-full px-4 py-1.5 text-[10px] font-black uppercase border-none ${a.status === 'active' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-emerald-500/10 text-emerald-500'}`}
+                    className={`rounded-full px-4 py-1.5 text-[10px] font-black uppercase border-none ${a.status === 'active' ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-emerald-500/10 text-positive500'}`}
                   >
                     {a.status}
                   </Badge>
@@ -384,7 +384,8 @@ export default function AllocationPageUI() {
                     {a.clientName}
                   </p>
                   <p className="font-bold text-muted-foreground flex items-center gap-2 text-indigo-500/80">
-                    <Calendar className="w-4 h-4" /> {a.startDate} — {a.endDate}
+                    <Calendar className="w-4 h-4" /> {a.startDate} â€”{' '}
+                    {a.endDate}
                   </p>
                 </div>
               </div>

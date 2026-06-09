@@ -55,17 +55,17 @@ export default function DashboardHeaderLayout() {
   };
 
   return (
-    <header className="h-24 border-b border-border bg-card/50 backdrop-blur-xl sticky top-0 z-40 px-6 sm:px-8 flex items-center justify-between">
+    <header className="h-20 border-b border-border bg-card/80 backdrop-blur-xl sticky top-0 z-40 px-6 sm:px-8 flex items-center justify-between">
       <div className="flex items-center gap-4">
         {/* Mobile Menu Trigger */}
         <div className="lg:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <button
-                className="p-2.5 hover:bg-muted rounded-xl transition-all"
+                className="p-2.5 hover:bg-secondary rounded-xl transition-all"
                 aria-label="Open Menu"
               >
-                <Menu className="w-6 h-6 text-foreground" />
+                <Menu className="w-5 h-5 text-foreground" />
               </button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0 border-none w-72">
@@ -74,106 +74,106 @@ export default function DashboardHeaderLayout() {
           </Sheet>
         </div>
 
-        {/* Search Bar - Aesthetic SaaS Style */}
-        <div className="hidden md:flex items-center gap-3 bg-muted/50 border border-border px-5 py-2.5 rounded-2xl w-96 group focus-within:bg-background focus-within:border-primary/40 transition-all shadow-sm">
+        {/* Search Bar — Wise Sage Style */}
+        <div className="hidden md:flex items-center gap-3 bg-secondary border border-transparent px-4 py-2.5 rounded-xl w-80 group focus-within:bg-background focus-within:border-border transition-all">
           <Search className="w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
           <input
             type="text"
             placeholder="Search simulations, tasks..."
-            className="bg-transparent border-none text-sm focus:outline-none w-full font-bold placeholder:text-muted-foreground/50"
+            className="bg-transparent border-none text-sm focus:outline-none w-full placeholder:text-muted-foreground/60"
             aria-label="Search"
           />
-          <div className="flex items-center gap-1 bg-muted px-2 py-1 rounded-md border border-border">
+          <div className="flex items-center gap-1 bg-background px-2 py-0.5 rounded-md border border-border">
             <Command className="w-3 h-3 text-muted-foreground" />
-            <span className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">
+            <span className="text-[10px] font-semibold text-muted-foreground">
               K
             </span>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-4">
         {/* Quick AI Action */}
         <button
           type="button"
           onClick={handleOpenChat}
-          className="hidden lg:flex items-center gap-2 px-6 py-2.5 bg-primary/10 text-primary rounded-xl font-bold text-xs hover:bg-primary hover:text-white transition-all group"
+          className="hidden lg:flex items-center gap-2 px-5 py-2 bg-primary text-primary-foreground rounded-3xl font-semibold text-sm hover:brightness-110 transition-all active:scale-[0.98] group"
         >
           <Sparkles className="w-4 h-4 group-hover:animate-spin" />
           Ask E-Platform
         </button>
 
-        <div className="flex items-center gap-3 pr-4 border-r border-border">
+        <div className="flex items-center gap-2 pr-4 border-r border-border">
           <ModeToggle />
           <button
             type="button"
-            className="p-2.5 hover:bg-muted rounded-xl transition-all relative group"
+            className="p-2.5 hover:bg-secondary rounded-xl transition-all relative group"
             aria-label="Notifications"
           >
-            <Bell className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-rose-500 rounded-full border-2 border-card" />
+            <Bell className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+            <span className="absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full border-2 border-card" />
           </button>
         </div>
 
         {/* User Profile Dropdown */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="flex items-center gap-3 p-1.5 hover:bg-muted rounded-2xl transition-all group outline-none">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 overflow-hidden shadow-sm">
-                <TalentAvatar size={40} />
+            <button className="flex items-center gap-3 p-1.5 hover:bg-secondary rounded-xl transition-all group outline-none">
+              <div className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center overflow-hidden">
+                <TalentAvatar size={36} />
               </div>
               <div className="hidden sm:block text-left w-24">
                 {!isMounted ? (
                   <div className="space-y-1.5 mt-1">
-                    <div className="h-3 bg-slate-200 dark:bg-slate-800 rounded-md w-20 animate-pulse" />
-                    <div className="h-2.5 bg-slate-200 dark:bg-slate-800 rounded-md w-16 animate-pulse" />
+                    <div className="h-3 bg-secondary rounded-md w-20 animate-pulse" />
+                    <div className="h-2.5 bg-secondary rounded-md w-16 animate-pulse" />
                   </div>
                 ) : (
                   <>
-                    <p className="text-xs font-black tracking-tight leading-none mb-0.5 truncate">
+                    <p className="text-xs font-semibold tracking-tight leading-none mb-0.5 truncate text-foreground">
                       {user?.fullName || user?.username || 'Guest User'}
                     </p>
-                    <p className="text-[10px] text-primary font-black uppercase tracking-widest leading-none">
+                    <p className="text-[10px] text-primary font-semibold leading-none">
                       {isAdminCategories ? 'Administrator' : 'Employee Portal'}
                     </p>
                   </>
                 )}
               </div>
-              <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-all group-data-[state=open]:rotate-180" />
+              <ChevronDown className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-all group-data-[state=open]:rotate-180" />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"
-            className="w-64 p-3 rounded-[1.5rem] mt-2 border-border shadow-2xl backdrop-blur-xl bg-card/95"
+            className="w-60 p-2 rounded-xl mt-2 border-border shadow-lg"
           >
-            <DropdownMenuLabel className="px-4 py-3">
+            <DropdownMenuLabel className="px-3 py-2">
               <div className="flex flex-col gap-1">
-                <span className="text-sm font-black tracking-tight">
-                  Account Control
+                <span className="text-sm font-semibold tracking-tight">
+                  Account
                 </span>
-                <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest truncate max-w-full">
+                <span className="text-xs text-muted-foreground truncate max-w-full">
                   {user?.email}
                 </span>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator className="bg-border/50" />
+            <DropdownMenuSeparator className="bg-border" />
             <DropdownMenuItem
               asChild
-              className="p-3 rounded-xl cursor-pointer focus:bg-primary/5 focus:text-primary"
+              className="p-2.5 rounded-lg cursor-pointer"
             >
               <Link
                 href="/platform/settings"
-                className="flex items-center gap-3 font-bold text-sm"
+                className="flex items-center gap-3 text-sm"
               >
                 <Settings className="w-4 h-4" /> Platform Settings
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuSeparator className="bg-border/50" />
+            <DropdownMenuSeparator className="bg-border" />
             <DropdownMenuItem
               onClick={handleLogout}
-              className="p-3 rounded-xl cursor-pointer focus:bg-rose-500/10 text-rose-500 font-bold"
+              className="p-2.5 rounded-lg cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/5"
             >
-              <LogOut className="w-4 h-4 mr-3" /> Terminate Session
+              <LogOut className="w-4 h-4 mr-3" /> Sign Out
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

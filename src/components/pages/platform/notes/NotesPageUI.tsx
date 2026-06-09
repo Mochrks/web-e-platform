@@ -44,7 +44,7 @@ export default function NotesPageUI() {
 
   return (
     <div className="space-y-10 pb-20 animate-fade-in">
-      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-10 rounded-[3rem] shadow-sm gap-8 relative overflow-hidden">
+      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-10 rounded-3xl shadow-sm gap-8 relative overflow-hidden">
         <div
           className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"
           aria-hidden="true"
@@ -184,7 +184,7 @@ export default function NotesPageUI() {
 
             <Card
               onClick={() => handleOpenDialog()}
-              className="p-8 rounded-[2.5rem] border-2 border-dashed border-border flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary/50 transition-all min-h-[320px]"
+              className="p-8 rounded-3xl border-2 border-dashed border-border flex flex-col items-center justify-center text-center group cursor-pointer hover:border-primary/50 transition-all min-h-[320px]"
               role="button"
               tabIndex={0}
               aria-label="Add new note"

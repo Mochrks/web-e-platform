@@ -36,52 +36,62 @@ export default function DashboardPageUI() {
   }, [checkMobile]);
 
   return (
-    <div className="space-y-10 animate-fade-in animate-slide-up">
-      {/* Hero Welcome Section */}
-      <div className="relative bg-primary p-6 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl shadow-primary/20 overflow-hidden group">
-        <div className="absolute top-0 right-0 p-12 opacity-10 group-hover:scale-110 transition-transform duration-700">
-          <Zap className="w-64 h-64 fill-white" aria-hidden="true" />
+    <div className="space-y-8 animate-fade-in">
+      {/* Hero Welcome Section — Wise Green Band */}
+      <div className="relative bg-primary p-6 md:p-10 rounded-3xl overflow-hidden group">
+        {/* Decorative background */}
+        <div className="absolute top-0 right-0 p-10 opacity-[0.08] group-hover:scale-110 transition-transform duration-700">
+          <Zap
+            className="w-56 h-56 fill-current text-primary-foreground"
+            aria-hidden="true"
+          />
         </div>
-        <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-10">
-          <div className="bg-white/10 p-3 md:p-4 rounded-[1.5rem] md:rounded-[2.5rem] backdrop-blur-md border border-white/20">
-            <TalentAvatar size={isMobileDevice ? 100 : 150} />
+
+        <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+          {/* Avatar Container */}
+          <div className="bg-white/15 p-3 rounded-3xl backdrop-blur-sm border border-white/10">
+            <TalentAvatar size={isMobileDevice ? 90 : 130} />
           </div>
+
           <div className="max-w-2xl text-center md:text-left">
-            <h1 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tighter">
+            <h1 className="text-2xl md:text-4xl font-black text-primary-foreground mb-3 tracking-tight">
               Welcome Back, Reks!
             </h1>
 
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex-1 space-y-2">
-                <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/70">
+            {/* Level Progress */}
+            <div className="flex items-center gap-4 mb-5">
+              <div className="flex-1 space-y-1.5">
+                <div className="flex justify-between text-xs font-medium text-primary-foreground/70">
                   <span>Level 12 Specialist</span>
                   <span>8,450 / 10,000 XP</span>
                 </div>
-                <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-yellow-400 w-[84.5%] rounded-full shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
+                <div className="h-2 w-full bg-primary-foreground/10 rounded-full overflow-hidden">
+                  <div className="h-full bg-yellow-400 w-[84.5%] rounded-full" />
                 </div>
               </div>
-              <Badge className="bg-white/20 hover:bg-white/30 text-white border-white/20 backdrop-blur-md px-4 py-2 rounded-xl border-none">
-                <Zap className="w-4 h-4 mr-2 fill-yellow-400 text-yellow-400 border-none" />
-                <span className="font-black">TOP 5%</span>
+              <Badge className="bg-primary-foreground/15 hover:bg-primary-foreground/20 text-primary-foreground border-none backdrop-blur-sm px-3 py-1.5 rounded-full">
+                <Zap className="w-3.5 h-3.5 mr-1.5 fill-yellow-400 text-yellow-400" />
+                <span className="font-semibold text-xs">TOP 5%</span>
               </Badge>
             </div>
 
-            <p className="text-white/80 font-medium text-lg md:text-xl leading-relaxed font-bold">
+            <p className="text-primary-foreground/80 text-sm md:text-base leading-relaxed">
               Your interview readiness is looking sharp. You&apos;ve completed{' '}
-              <span className="text-white font-black underline decoration-2 underline-offset-4">
+              <span className="text-primary-foreground font-semibold underline decoration-1 underline-offset-4">
                 8/10 scheduled sessions
               </span>{' '}
               this week.
             </p>
-            <div className="mt-8 flex gap-4 justify-center md:justify-start">
+
+            {/* Action Buttons */}
+            <div className="mt-6 flex gap-3 justify-center md:justify-start">
               <Link href="/platform">
-                <button className="bg-white text-primary px-8 py-4 rounded-2xl font-black text-sm hover:bg-white/90 transition-all active:scale-95 shadow-lg">
+                <button className="bg-background text-foreground px-6 py-3 rounded-3xl font-semibold text-sm hover:bg-background/90 transition-all active:scale-[0.97]">
                   Resume Simulation
                 </button>
               </Link>
               <Link href="/platform/tasks">
-                <button className="bg-primary-foreground/20 text-white backdrop-blur-md border border-white/20 px-8 py-4 rounded-2xl font-black text-sm hover:bg-white/10 transition-all active:scale-95">
+                <button className="bg-primary-foreground/15 text-primary-foreground backdrop-blur-sm border border-primary-foreground/20 px-6 py-3 rounded-3xl font-semibold text-sm hover:bg-primary-foreground/10 transition-all active:scale-[0.97]">
                   View Path
                 </button>
               </Link>
@@ -91,74 +101,77 @@ export default function DashboardPageUI() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <DashboardStatCard
-          icon={<TrendingUp className="w-6 h-6" />}
+          icon={<TrendingUp className="w-5 h-5" />}
           label="Avg. Score"
           value="84%"
           trend="+12%"
         />
         <DashboardStatCard
-          icon={<Monitor className="w-6 h-6" />}
+          icon={<Monitor className="w-5 h-5" />}
           label="Deploy Status"
           value={currentAllocation.status}
           trend={currentAllocation.client}
         />
         <DashboardStatCard
-          icon={<Clock className="w-6 h-6" />}
+          icon={<Clock className="w-5 h-5" />}
           label="Training Time"
           value="24.5h"
           trend="Top 5%"
         />
         <DashboardStatCard
-          icon={<Users className="w-6 h-6" />}
+          icon={<Users className="w-5 h-5" />}
           label="Mock Interviews"
           value="06"
           trend="2 Pending"
         />
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mt-10">
+      {/* Activity & Skills Grid */}
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Activity Timeline */}
-        <Card className="xl:col-span-2 p-8 rounded-[2.5rem] border-border bg-card shadow-sm">
-          <div className="flex items-center justify-between mb-8">
-            <h3 className="text-2xl font-black tracking-tight">
+        <Card className="xl:col-span-2 p-6 rounded-3xl border-border bg-card">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-xl font-bold tracking-tight">
               Recent Activity
             </h3>
-            <button className="text-xs font-black uppercase text-primary hover:underline">
+            <button className="text-xs font-semibold text-primary hover:underline">
               View History
             </button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-2">
             {recentActivities.map((item) => (
               <div
                 key={item.title + item.time}
-                className="flex items-center gap-6 p-6 rounded-3xl hover:bg-muted/50 transition-all border border-transparent hover:border-border group"
+                className="flex items-center gap-4 p-4 rounded-xl hover:bg-secondary/50 transition-all group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                <div className="w-11 h-11 rounded-xl bg-secondary flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all">
                   {(() => {
                     switch (item.type) {
                       case 'Assessment':
-                        return <CheckCircle />;
+                        return <CheckCircle className="w-5 h-5" />;
                       case 'Meeting':
-                        return <MessageSquare />;
+                        return <MessageSquare className="w-5 h-5" />;
                       default:
-                        return <Zap />;
+                        return <Zap className="w-5 h-5" />;
                     }
                   })()}
                 </div>
-                <div className="flex-1">
-                  <p className="font-bold text-lg text-foreground tracking-tight">
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold text-foreground tracking-tight truncate">
                     {item.title}
                   </p>
-                  <p className="text-sm text-muted-foreground font-medium">
+                  <p className="text-xs text-muted-foreground">
                     {item.time} •{' '}
-                    <span className="text-primary font-bold">{item.type}</span>
+                    <span className="text-primary font-medium">
+                      {item.type}
+                    </span>
                   </p>
                 </div>
-                <div className="text-right">
-                  <span className="text-sm font-black text-primary px-4 py-2 bg-primary/10 rounded-full">
+                <div className="text-right shrink-0">
+                  <span className="text-sm font-semibold text-primary px-3 py-1.5 bg-primary/10 rounded-full">
                     {item.score}
                   </span>
                 </div>
@@ -167,24 +180,26 @@ export default function DashboardPageUI() {
           </div>
         </Card>
 
-        {/* Right Sidebar Dashboard Items */}
-        <div className="space-y-8">
-          <Card className="p-8 rounded-[2.5rem] border-border bg-card shadow-sm border-l-4 border-l-primary">
-            <h4 className="text-lg font-black mb-4 flex items-center gap-2">
+        {/* Right Sidebar */}
+        <div className="space-y-6">
+          {/* Next Step Card */}
+          <Card className="p-6 rounded-3xl border-border bg-card border-l-[3px] border-l-primary">
+            <h4 className="text-base font-bold mb-3 flex items-center gap-2">
               Next Step <ArrowUpRight className="w-4 h-4 text-primary" />
             </h4>
-            <p className="text-sm text-muted-foreground leading-relaxed font-bold">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Final Cultural & HR Round Simulation with our AI engine. Focus on
               your career vision.
             </p>
-            <button className="w-full mt-6 bg-muted hover:bg-muted/80 p-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all">
+            <button className="w-full mt-5 bg-secondary hover:bg-secondary/80 p-3.5 rounded-xl text-sm font-semibold transition-all active:scale-[0.98]">
               Start Module
             </button>
           </Card>
 
-          <Card className="p-8 rounded-[2.5rem] border-border bg-card shadow-sm">
-            <h4 className="text-lg font-black mb-6">Skill Balance</h4>
-            <div className="space-y-6">
+          {/* Skill Balance Card */}
+          <Card className="p-6 rounded-3xl border-border bg-card">
+            <h4 className="text-base font-bold mb-5">Skill Balance</h4>
+            <div className="space-y-5">
               {skillBalance.map((skill) => (
                 <SkillItem
                   key={skill.label}

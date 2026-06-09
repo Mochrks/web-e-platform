@@ -73,7 +73,7 @@ export default function InterviewSimulatorUI({
                   className={`px-4 py-1.5 rounded-full font-bold uppercase text-xs tracking-wider
                   ${
                     challenge.difficulty === 'easy'
-                      ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
+                      ? 'bg-emerald-100 text-positive700 dark:bg-emerald-900/30 dark:text-positive400'
                       : challenge.difficulty === 'medium'
                         ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
                         : 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400'

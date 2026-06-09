@@ -64,7 +64,7 @@ export default function UserManagementPageUI() {
           </Card>
           <Card className="flex-1 xl:flex-none px-8 py-4 rounded-2xl bg-card border-border flex items-center gap-4 min-w-[180px]">
             <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-              <UserCheck className="w-6 h-6 text-emerald-500" />
+              <UserCheck className="w-6 h-6 text-positive500" />
             </div>
             <div>
               <p className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">
@@ -79,7 +79,7 @@ export default function UserManagementPageUI() {
         </div>
       </div>
 
-      <Card className="rounded-[3rem] border-border bg-card/40 backdrop-blur-xl shadow-sm overflow-hidden p-2">
+      <Card className="rounded-3xl border-border bg-card/40 backdrop-blur-xl shadow-sm overflow-hidden p-2">
         {/* Toolbar */}
         <div className="p-6 flex flex-col md:flex-row gap-4 items-center justify-between border-b border-border/50">
           <div className="relative w-full md:w-96 group">
@@ -173,9 +173,9 @@ export default function UserManagementPageUI() {
                     <Badge
                       className={`rounded-lg px-3 py-1 text-[10px] font-black uppercase tracking-widest border-none ${
                         user.status === 'Active'
-                          ? 'bg-emerald-500/10 text-emerald-500'
+                          ? 'bg-emerald-500/10 text-positive500'
                           : user.status === 'Inactive'
-                            ? 'bg-rose-500/10 text-rose-500'
+                            ? 'bg-destructive/10 text-destructive'
                             : 'bg-orange-500/10 text-orange-500'
                       }`}
                     >
@@ -201,7 +201,7 @@ export default function UserManagementPageUI() {
                           Profile
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                          className="rounded-xl flex items-center gap-3 p-3 font-bold text-xs cursor-pointer text-rose-500 hover:bg-rose-50 focus:bg-rose-50 transition-colors"
+                          className="rounded-xl flex items-center gap-3 p-3 font-bold text-xs cursor-pointer text-destructive hover:bg-rose-50 focus:bg-rose-50 transition-colors"
                           onClick={() => handleDeleteUser(user.id)}
                         >
                           <Trash2 className="w-4 h-4" /> Terminate Access

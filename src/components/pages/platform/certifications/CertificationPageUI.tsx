@@ -42,7 +42,7 @@ export default function CertificationPageUI() {
       </div>
 
       {/* Admin Panel (Simulation) */}
-      <div className="p-6 rounded-[2.5rem] bg-muted/30 border border-dashed border-border flex items-center justify-between gap-4">
+      <div className="p-6 rounded-3xl bg-muted/30 border border-dashed border-border flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
             <Lock className="w-6 h-6 text-primary" />
@@ -64,7 +64,7 @@ export default function CertificationPageUI() {
         {certs.map((c) => (
           <Card
             key={c.id}
-            className="flex flex-col rounded-[2.5rem] border-border bg-card/60 backdrop-blur-md shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all p-1 overflow-hidden group"
+            className="flex flex-col rounded-3xl border-border bg-card/60 backdrop-blur-md shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all p-1 overflow-hidden group"
           >
             <div className="h-40 rounded-[2.2rem] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent relative p-8 flex items-end">
               <Award className="absolute top-6 left-6 w-12 h-12 text-primary opacity-20 group-hover:scale-125 transition-transform" />

@@ -177,9 +177,9 @@ export default function InterviewResultsUI({
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return 'text-emerald-500';
+    if (score >= 80) return 'text-positive500';
     if (score >= 60) return 'text-amber-500';
-    return 'text-rose-500';
+    return 'text-destructive';
   };
 
   const getPerformanceLabel = (score: number) => {
@@ -193,7 +193,7 @@ export default function InterviewResultsUI({
   return (
     <div className="space-y-16 animate-fade-in pb-20">
       {/* Hero Section */}
-      <div className="min-h-[40vh] flex flex-col items-center justify-center text-center space-y-8 bg-card border border-border p-12 rounded-[3.5rem] shadow-sm relative overflow-hidden">
+      <div className="min-h-[40vh] flex flex-col items-center justify-center text-center space-y-8 bg-card border border-border p-12 rounded-3xl shadow-sm relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0" />
 
         <div className="relative">
@@ -250,14 +250,14 @@ export default function InterviewResultsUI({
                 onClick={() => handleExport('pdf')}
                 className="flex items-center gap-3 p-3 rounded-2xl font-bold cursor-pointer hover:bg-primary/10"
               >
-                <FileText className="w-5 h-5 text-rose-500" />
+                <FileText className="w-5 h-5 text-destructive" />
                 <span>PDF Document</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => handleExport('xlsx')}
                 className="flex items-center gap-3 p-3 rounded-2xl font-bold cursor-pointer hover:bg-emerald-500/10"
               >
-                <FileSpreadsheet className="w-5 h-5 text-emerald-500" />
+                <FileSpreadsheet className="w-5 h-5 text-positive500" />
                 <span>Excel Sheet</span>
               </DropdownMenuItem>
               <DropdownMenuItem
@@ -304,7 +304,7 @@ export default function InterviewResultsUI({
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Chart Section */}
-          <Card className="lg:col-span-7 p-10 rounded-[3rem] border-border bg-card/50 shadow-sm overflow-hidden min-h-[450px]">
+          <Card className="lg:col-span-7 p-10 rounded-3xl border-border bg-card/50 shadow-sm overflow-hidden min-h-[450px]">
             <h3 className="text-xl font-black mb-8 px-4 border-l-4 border-primary">
               Skill Distribution
             </h3>
@@ -382,7 +382,7 @@ export default function InterviewResultsUI({
                 label: 'Relevance',
                 value: analytics.keywordMatch,
                 icon: CheckCircle2,
-                color: 'text-emerald-500',
+                color: 'text-positive500',
                 bg: 'bg-emerald-500/10',
                 desc: 'Key concept alignment',
               },
@@ -422,7 +422,7 @@ export default function InterviewResultsUI({
           {answers.map((answer, index) => (
             <Card
               key={index}
-              className="p-10 rounded-[2.5rem] border-border bg-card shadow-sm hover:shadow-xl transition-all group overflow-hidden relative"
+              className="p-10 rounded-3xl border-border bg-card shadow-sm hover:shadow-xl transition-all group overflow-hidden relative"
             >
               <div
                 className={`absolute top-0 right-0 w-32 h-32 opacity-[0.03] transition-transform group-hover:scale-110`}
@@ -437,7 +437,7 @@ export default function InterviewResultsUI({
               </div>
               <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
                 <div
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 font-black text-2xl shadow-sm ${answer.score >= 70 ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-600 border border-rose-500/20'}`}
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 font-black text-2xl shadow-sm ${answer.score >= 70 ? 'bg-emerald-500/10 text-positive600 border border-emerald-500/20' : 'bg-destructive/10 text-destructive border border-rose-500/20'}`}
                 >
                   {answer.score}
                 </div>

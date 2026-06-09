@@ -65,7 +65,7 @@ export default function LeaderboardPageUI() {
               1
             </div>
           </div>
-          <Card className="w-full p-8 text-center rounded-[3rem] border-primary/50 bg-primary/5 ring-4 ring-primary/10 shadow-[0_0_40px_rgba(var(--primary),0.1)] group-hover:-translate-y-4 transition-all">
+          <Card className="w-full p-8 text-center rounded-3xl border-primary/50 bg-primary/5 ring-4 ring-primary/10 shadow-[0_0_40px_rgba(var(--primary),0.1)] group-hover:-translate-y-4 transition-all">
             <h3 className="font-black text-3xl mb-1">{topThree[0].name}</h3>
             <p
               className="text-primary text-2xl font-black flex items-center justify-center gap-2"
@@ -99,7 +99,7 @@ export default function LeaderboardPageUI() {
       </div>
 
       {/* List for the rest */}
-      <Card className="max-w-4xl mx-auto rounded-[3rem] border-border p-4 bg-card/40 backdrop-blur-md overflow-hidden">
+      <Card className="max-w-4xl mx-auto rounded-3xl border-border p-4 bg-card/40 backdrop-blur-md overflow-hidden">
         <div className="space-y-2">
           {others.map((entry) => (
             <div

@@ -41,7 +41,7 @@ export default function SimulationPageUI() {
     <div className="max-w-7xl mx-auto space-y-10">
       {stage === 'setup' && (
         <div className="min-h-[70vh] flex items-center justify-center animate-fade-in">
-          <Card className="w-full max-w-2xl p-12 rounded-[3.5rem] border-border shadow-2xl relative overflow-hidden bg-white/50 backdrop-blur-xl">
+          <Card className="w-full max-w-2xl p-12 rounded-3xl border-border shadow-2xl relative overflow-hidden bg-white/50 backdrop-blur-xl">
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
               <BookOpen className="w-64 h-64" aria-hidden="true" />
             </div>
@@ -74,7 +74,7 @@ export default function SimulationPageUI() {
                     placeholder="e.g. Frontend Engineer - Mid Level"
                     value={interviewName}
                     onChange={(e) => setInterviewName(e.target.value)}
-                    className="h-16 rounded-[1.5rem] border-border bg-muted/30 font-bold text-xl px-8 focus:ring-primary/40 focus:bg-background transition-all"
+                    className="h-16 rounded-3xl border-border bg-muted/30 font-bold text-xl px-8 focus:ring-primary/40 focus:bg-background transition-all"
                   />
                 </div>
 
@@ -123,7 +123,7 @@ export default function SimulationPageUI() {
           </div>
 
           <div className="lg:col-span-8 space-y-10">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6 bg-card border border-border p-8 rounded-[2.5rem] shadow-sm">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6 bg-card border border-border p-8 rounded-3xl shadow-sm">
               <div>
                 <p className="text-xs font-black text-primary uppercase tracking-widest mb-1">
                   Current Session
@@ -135,7 +135,7 @@ export default function SimulationPageUI() {
               <Button
                 variant="ghost"
                 onClick={handleRestart}
-                className="rounded-xl font-bold text-rose-500 hover:bg-rose-500/5 transition-colors"
+                className="rounded-xl font-bold text-destructive hover:bg-destructive/5 transition-colors"
               >
                 End Session
               </Button>
