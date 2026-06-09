@@ -97,7 +97,7 @@ export const IdleTimerProvider: React.FC<{ children: React.ReactNode }> = ({
             </Button>
             <Button
               onClick={handleStayLoggedIn}
-              className="flex-1 sm:flex-none px-8 h-12 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition-all active:scale-95 shadow-lg shadow-indigo-600/20 text-sm border-none"
+              className="flex-1 sm:flex-none px-8 h-12 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition-all active:scale-95   text-sm border-none"
             >
               Stay Logged In
             </Button>

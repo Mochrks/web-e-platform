@@ -73,7 +73,7 @@ export default function UserManagementPageUI() {
               <p className="text-xl font-black">{activeUsers}</p>
             </div>
           </Card>
-          <Button className="flex-1 xl:flex-none h-14 px-8 bg-primary text-white rounded-2xl font-black text-sm hover:scale-105 transition-all shadow-lg shadow-primary/20">
+          <Button className="flex-1 xl:flex-none h-14 px-8 bg-primary text-white rounded-2xl font-black text-sm hover:scale-105 transition-all  ">
             <UserPlus className="w-5 h-5 mr-2" /> Add Employee
           </Button>
         </div>

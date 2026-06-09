@@ -102,7 +102,7 @@ export default function SimulationPageUI() {
                 <Button
                   onClick={handleStart}
                   disabled={!interviewName.trim()}
-                  className="w-full h-18 py-8 rounded-[2rem] bg-primary hover:bg-primary/90 text-white font-black text-2xl shadow-2xl shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full h-18 py-8 rounded-[2rem] bg-primary hover:bg-primary/90 text-white font-black text-2xl   transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   Start Simulation{' '}
                   <Rocket className="ml-4 w-6 h-6" aria-hidden="true" />

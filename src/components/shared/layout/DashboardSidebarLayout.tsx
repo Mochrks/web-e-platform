@@ -18,9 +18,18 @@ import {
   Fingerprint,
   BarChart3,
   Users,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { useAppSelector } from '@/store';
 import { USER_ROLES } from '@/constants';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
 
 // Helper for dynamic icons
 const IconMap: Record<string, React.ReactNode> = {
@@ -42,8 +51,12 @@ const IconMap: Record<string, React.ReactNode> = {
 
 export default function DashboardSidebarLayout({
   isMobile,
+  isCollapsed = false,
+  setIsCollapsed,
 }: Readonly<{
   isMobile?: boolean;
+  isCollapsed?: boolean;
+  setIsCollapsed?: (val: boolean) => void;
 }>) {
   const pathname = usePathname();
   const { role } = useAppSelector((state) => state.auth);
@@ -60,84 +73,143 @@ export default function DashboardSidebarLayout({
 
   return (
     <aside
-      className={`
-      w-72 bg-card border-r border-border shrink-0 flex flex-col h-screen
-      ${
+      className={cn(
+        'bg-card border-r border-border shrink-0 flex flex-col h-screen transition-all duration-300',
+        isCollapsed ? 'w-[80px]' : 'w-72',
         isMobile
           ? 'relative bg-card'
           : 'hidden lg:flex fixed left-0 top-0 z-50 bg-card'
-      }
-    `}
+      )}
     >
-      <div className="p-6">
+      {/* Toggle Button */}
+      {!isMobile && setIsCollapsed && (
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="absolute -right-3 top-9 bg-card border border-border rounded-full p-1 hover:bg-secondary transition-colors z-50 text-muted-foreground hover:text-foreground"
+        >
+          {isCollapsed ? (
+            <ChevronRight className="w-4 h-4" />
+          ) : (
+            <ChevronLeft className="w-4 h-4" />
+          )}
+        </button>
+      )}
+
+      <div className={cn('p-6', isCollapsed && 'px-3')}>
         {/* Logo */}
         <Link
           href="/platform/dashboard"
-          className="flex items-center gap-3 mb-10 group"
+          className={cn(
+            'flex items-center gap-3 mb-10 group overflow-hidden',
+            isCollapsed && 'justify-center'
+          )}
         >
-          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-primary-foreground transition-all group-hover:scale-105">
+          <div className="w-10 h-10 shrink-0 rounded-xl bg-primary flex items-center justify-center text-primary-foreground transition-all group-hover:scale-105">
             <Zap className="w-5 h-5" />
           </div>
-          <div>
-            <h2 className="text-lg font-black tracking-tighter text-foreground">
-              E-Platform.
-            </h2>
-            <p className="text-[10px] font-bold uppercase text-primary tracking-widest leading-none">
-              Smart Platform
-            </p>
-          </div>
+          {!isCollapsed && (
+            <div className="whitespace-nowrap animate-in fade-in zoom-in duration-300">
+              <h2 className="text-lg font-black tracking-tighter text-foreground">
+                E-Platform.
+              </h2>
+              <p className="text-[10px] font-bold uppercase text-primary tracking-widest leading-none">
+                Smart Platform
+              </p>
+            </div>
+          )}
         </Link>
 
         {/* Navigation */}
         <nav className="space-y-6">
           <div>
-            <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] mb-4 px-3 h-3">
-              {isMounted && (isAdminCategories ? 'Admin Portal' : 'Navigation')}
+            <div
+              className={cn(
+                'text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em] mb-4 h-3 transition-all',
+                isCollapsed ? 'text-center px-0' : 'px-3'
+              )}
+            >
+              {isMounted &&
+                (isCollapsed
+                  ? '...'
+                  : isAdminCategories
+                    ? 'Admin Portal'
+                    : 'Navigation')}
             </div>
             <div className="space-y-1">
-              {!isMounted
-                ? // Skeleton loading
-                  Array.from({ length: 10 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-3 p-3 rounded-lg animate-pulse"
-                    >
-                      <div className="w-5 h-5 bg-secondary rounded-md" />
+              {!isMounted ? (
+                // Skeleton loading
+                Array.from({ length: 10 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className={cn(
+                      'flex items-center gap-3 p-3 rounded-lg animate-pulse',
+                      isCollapsed && 'justify-center'
+                    )}
+                  >
+                    <div className="w-5 h-5 bg-secondary rounded-md shrink-0" />
+                    {!isCollapsed && (
                       <div className="h-4 bg-secondary rounded-md w-40" />
-                    </div>
-                  ))
-                : menuItems.map((item) => {
+                    )}
+                  </div>
+                ))
+              ) : (
+                <TooltipProvider delayDuration={0}>
+                  {menuItems.map((item) => {
                     const isActive = pathname === item.path;
-                    return (
+                    const linkContent = (
                       <Link
                         key={item.path + item.title}
                         href={item.path}
-                        className={`
-                        flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all group relative
-                        ${
+                        className={cn(
+                          'flex items-center gap-3 py-2.5 rounded-lg transition-all group relative',
+                          isCollapsed
+                            ? 'px-0 justify-center w-10 h-10 mx-auto'
+                            : 'px-3',
                           isActive
                             ? 'bg-primary/10 text-foreground font-semibold'
                             : 'hover:bg-secondary text-muted-foreground hover:text-foreground'
-                        }
-                      `}
+                        )}
                       >
-                        {/* Active indicator bar */}
                         {isActive && (
                           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-primary rounded-full" />
                         )}
                         <div
-                          className={`shrink-0 transition-colors ${isActive ? 'text-primary' : ''}`}
+                          className={cn(
+                            'shrink-0 transition-colors',
+                            isActive && 'text-primary'
+                          )}
                         >
                           {IconMap[item.icon] || (
                             <LayoutDashboard className="w-5 h-5" />
                           )}
                         </div>
-                        <span className="text-sm font-medium tracking-tight">
-                          {item.title}
-                        </span>
+                        {!isCollapsed && (
+                          <span className="text-sm font-medium tracking-tight whitespace-nowrap animate-in fade-in duration-300">
+                            {item.title}
+                          </span>
+                        )}
                       </Link>
                     );
+
+                    if (isCollapsed) {
+                      return (
+                        <Tooltip key={item.path + 'tooltip'}>
+                          <TooltipTrigger asChild>{linkContent}</TooltipTrigger>
+                          <TooltipContent
+                            side="right"
+                            sideOffset={14}
+                            className="font-semibold"
+                          >
+                            {item.title}
+                          </TooltipContent>
+                        </Tooltip>
+                      );
+                    }
+
+                    return linkContent;
                   })}
+                </TooltipProvider>
+              )}
             </div>
           </div>
         </nav>

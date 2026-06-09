@@ -54,7 +54,7 @@ export default function CertificationPageUI() {
             </p>
           </div>
         </div>
-        <Button className="rounded-2xl h-12 px-6 font-black bg-white text-black border border-border hover:bg-muted shadow-sm">
+        <Button className="rounded-2xl h-12 px-6 font-black bg-white text-black border border-border hover:bg-muted ">
           Open Admin Panel
         </Button>
       </div>

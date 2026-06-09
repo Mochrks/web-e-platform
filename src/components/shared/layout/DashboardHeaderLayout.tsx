@@ -24,6 +24,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import DashboardSidebarLayout from './DashboardSidebarLayout';
 import { ModeToggle } from '@/components/shared/theme/ModeToggle';
 import TalentAvatar from '@/components/shared/avatar';
+import { cn } from '@/lib/utils';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 import { openChat } from '@/store/slices/chatSlice';
@@ -53,6 +54,30 @@ export default function DashboardHeaderLayout() {
     dispatch(openChat());
     toast.info('Chat assistant opened');
   };
+
+  const dummyNotifications = [
+    {
+      id: 1,
+      title: 'New Message from Sarah',
+      desc: 'Can we review the React module?',
+      time: '5m ago',
+      unread: true,
+    },
+    {
+      id: 2,
+      title: 'Simulation Completed',
+      desc: 'You scored 92% on System Design.',
+      time: '1h ago',
+      unread: true,
+    },
+    {
+      id: 3,
+      title: 'Upcoming Meeting',
+      desc: 'Daily Standup starts in 15 mins.',
+      time: '2h ago',
+      unread: false,
+    },
+  ];
 
   return (
     <header className="h-20 border-b border-border bg-card/80 backdrop-blur-xl sticky top-0 z-40 px-6 sm:px-8 flex items-center justify-between">
@@ -105,14 +130,69 @@ export default function DashboardHeaderLayout() {
 
         <div className="flex items-center gap-2 pr-4 border-r border-border">
           <ModeToggle />
-          <button
-            type="button"
-            className="p-2.5 hover:bg-secondary rounded-xl transition-all relative group"
-            aria-label="Notifications"
-          >
-            <Bell className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-            <span className="absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full border-2 border-card" />
-          </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                className="p-2.5 hover:bg-secondary rounded-xl transition-all relative group outline-none"
+                aria-label="Notifications"
+              >
+                <Bell className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                <span className="absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full border-2 border-card" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="w-80 p-2 rounded-2xl mt-2 border-border shadow-lg"
+            >
+              <DropdownMenuLabel className="px-3 py-2 flex items-center justify-between">
+                <span className="text-sm font-semibold tracking-tight">
+                  Notifications
+                </span>
+                <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                  2 New
+                </span>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator className="bg-border" />
+              <div className="max-h-[300px] overflow-y-auto custom-scrollbar">
+                {dummyNotifications.map((notif) => (
+                  <DropdownMenuItem
+                    key={notif.id}
+                    className="p-3 rounded-xl cursor-pointer items-start gap-3 mb-1 focus:bg-secondary"
+                  >
+                    <div
+                      className={cn(
+                        'w-2 h-2 rounded-full mt-1.5 shrink-0',
+                        notif.unread ? 'bg-primary' : 'bg-transparent'
+                      )}
+                    />
+                    <div className="flex flex-col gap-1">
+                      <span
+                        className={cn(
+                          'text-sm tracking-tight',
+                          notif.unread
+                            ? 'font-bold text-foreground'
+                            : 'font-medium text-muted-foreground'
+                        )}
+                      >
+                        {notif.title}
+                      </span>
+                      <span className="text-xs text-muted-foreground line-clamp-1">
+                        {notif.desc}
+                      </span>
+                      <span className="text-[10px] font-semibold text-muted-foreground/60">
+                        {notif.time}
+                      </span>
+                    </div>
+                  </DropdownMenuItem>
+                ))}
+              </div>
+              <DropdownMenuSeparator className="bg-border" />
+              <DropdownMenuItem className="p-2 justify-center rounded-xl cursor-pointer text-xs font-semibold text-primary focus:bg-primary/10">
+                View All Notifications
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* User Profile Dropdown */}

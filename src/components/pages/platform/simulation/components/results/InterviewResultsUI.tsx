@@ -228,7 +228,7 @@ export default function InterviewResultsUI({
         <div className="flex flex-wrap justify-center gap-4 pt-4">
           <Button
             onClick={onRestart}
-            className="h-16 px-10 rounded-2xl bg-primary text-white font-black text-lg gap-3 shadow-xl shadow-primary/20 hover:scale-105 transition-all"
+            className="h-16 px-10 rounded-2xl bg-primary text-white font-black text-lg gap-3   hover:scale-105 transition-all"
           >
             <RefreshCcw className="w-5 h-5" /> Start New Simulation
           </Button>

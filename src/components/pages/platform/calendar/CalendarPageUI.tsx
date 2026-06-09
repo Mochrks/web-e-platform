@@ -188,7 +188,7 @@ export default function CalendarPageUI() {
                     </div>
 
                     <div className="pt-6 border-t border-border flex gap-3">
-                      <Button className="flex-1 rounded-xl bg-primary text-white font-bold h-12 shadow-md">
+                      <Button className="flex-1 rounded-xl bg-primary text-white font-bold h-12 ">
                         Join Simulation
                       </Button>
                     </div>
@@ -260,7 +260,7 @@ export default function CalendarPageUI() {
             </Button>
             <Button
               onClick={handleBook}
-              className="rounded-xl bg-primary text-white font-black px-8 h-12 shadow-lg shadow-primary/20"
+              className="rounded-xl bg-primary text-white font-black px-8 h-12  "
             >
               Confirm Booking
             </Button>

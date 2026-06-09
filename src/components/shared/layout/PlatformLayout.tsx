@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardSidebarLayout from './DashboardSidebarLayout';
 import DashboardHeaderLayout from './DashboardHeaderLayout';
 
@@ -9,13 +9,22 @@ export default function PlatformLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
   return (
     <div className="flex min-h-screen bg-background text-foreground antialiased selection:bg-primary/20">
       {/* Sidebar - Fixed on the left */}
-      <DashboardSidebarLayout />
+      <DashboardSidebarLayout
+        isCollapsed={isSidebarCollapsed}
+        setIsCollapsed={setIsSidebarCollapsed}
+      />
 
       {/* App Content Holder */}
-      <div className="flex-1 lg:ml-72 flex flex-col min-h-screen">
+      <div
+        className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${
+          isSidebarCollapsed ? 'lg:ml-[80px]' : 'lg:ml-72'
+        }`}
+      >
         <DashboardHeaderLayout />
 
         {/* Main Content Area — Sage canvas for surface-contrast elevation */}

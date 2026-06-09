@@ -258,7 +258,7 @@ export default function InterviewSimulatorUI({
               disabled={
                 !currentAnswer && !voiceTranscript && currentStage !== 'coding'
               }
-              className="rounded-2xl bg-primary hover:bg-primary/90 text-white px-8 h-12 font-black shadow-lg shadow-primary/10 transition-all hover:scale-105 active:scale-95"
+              className="rounded-2xl bg-primary hover:bg-primary/90 text-white px-8 h-12 font-black   transition-all hover:scale-105 active:scale-95"
             >
               {isLastQuestion && isLastStage ? (
                 <>Finish Simulation</>

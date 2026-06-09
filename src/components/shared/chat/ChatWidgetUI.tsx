@@ -51,28 +51,28 @@ export default function ChatWidgetUI() {
             : 'scale-0 opacity-0 translate-y-10 pointer-events-none'
         )}
       >
-        <Card className="border-none shadow-2xl overflow-hidden bg-background/95 backdrop-blur-md flex flex-col h-[600px]">
-          <CardHeader className="p-0 bg-gradient-to-r from-violet-600 to-indigo-600 text-white">
+        <Card className="border border-border shadow-2xl overflow-hidden bg-card/95 backdrop-blur-md flex flex-col h-[600px] rounded-3xl">
+          <CardHeader className="p-0 bg-primary text-primary-foreground">
             <div className="p-4 flex flex-row items-center justify-between">
               <div className="flex items-center gap-3">
                 {selectedContact && activeTab === 'messages' ? (
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 text-white hover:bg-white/20"
+                    className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
                     onClick={() => setSelectedContact(null)}
                   >
                     <ChevronLeft className="h-5 w-5" />
                   </Button>
                 ) : null}
                 <div className="relative">
-                  <Avatar className="h-10 w-10 border-2 border-white/20">
+                  <Avatar className="h-10 w-10 border-2 border-primary-foreground/20">
                     <AvatarImage
                       src={
                         activeTab === 'ai' ? undefined : selectedContact?.avatar
                       }
                     />
-                    <AvatarFallback className="bg-indigo-700 text-white">
+                    <AvatarFallback className="bg-background text-foreground">
                       {activeTab === 'ai'
                         ? 'AI'
                         : selectedContact
@@ -80,7 +80,7 @@ export default function ChatWidgetUI() {
                           : 'EM'}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-400 border-2 border-indigo-600"></span>
+                  <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-positive border-2 border-primary"></span>
                 </div>
                 <div>
                   <h3 className="font-bold text-sm leading-none">
@@ -90,7 +90,7 @@ export default function ChatWidgetUI() {
                         ? selectedContact.name
                         : 'Employee Messages'}
                   </h3>
-                  <p className="text-[10px] text-white/80 mt-1">
+                  <p className="text-[10px] text-primary-foreground/80 mt-1">
                     {activeTab === 'ai'
                       ? 'Always online for you'
                       : selectedContact
@@ -102,7 +102,7 @@ export default function ChatWidgetUI() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-white hover:bg-white/20 h-8 w-8"
+                className="text-primary-foreground hover:bg-primary-foreground/20 h-8 w-8"
                 onClick={onCloseChat}
               >
                 <X className="h-4 w-4" />
@@ -115,16 +115,16 @@ export default function ChatWidgetUI() {
                 onValueChange={setActiveTab}
                 className="w-full"
               >
-                <TabsList className="w-full bg-white/10 p-0 h-10 rounded-none border-t border-white/10">
+                <TabsList className="w-full bg-primary-foreground/10 p-0 h-10 rounded-none border-t border-primary-foreground/10">
                   <TabsTrigger
                     value="ai"
-                    className="flex-1 rounded-none data-[state=active]:bg-white/20 data-[state=active]:text-white text-white/70 text-xs font-bold transition-all"
+                    className="flex-1 rounded-none data-[state=active]:bg-primary-foreground/20 data-[state=active]:text-primary-foreground text-primary-foreground/70 text-xs font-bold transition-all"
                   >
                     AI Assistant
                   </TabsTrigger>
                   <TabsTrigger
                     value="messages"
-                    className="flex-1 rounded-none data-[state=active]:bg-white/20 data-[state=active]:text-white text-white/70 text-xs font-bold transition-all"
+                    className="flex-1 rounded-none data-[state=active]:bg-primary-foreground/20 data-[state=active]:text-primary-foreground text-primary-foreground/70 text-xs font-bold transition-all"
                   >
                     Messages
                   </TabsTrigger>
@@ -153,7 +153,7 @@ export default function ChatWidgetUI() {
                           <button
                             key={suggestion}
                             onClick={() => handleSendMessage(suggestion)}
-                            className="text-[11px] bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800 px-3 py-1.5 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
+                            className="text-[11px] bg-secondary text-foreground border border-border px-3 py-1.5 rounded-full hover:border-primary transition-colors"
                           >
                             {suggestion}
                           </button>
@@ -286,7 +286,7 @@ export default function ChatWidgetUI() {
                 />
                 <Button
                   size="icon"
-                  className="h-10 w-10 bg-indigo-600 hover:bg-indigo-700 shrink-0 shadow-lg shadow-indigo-500/20 transition-all active:scale-95"
+                  className="h-10 w-10 bg-primary hover:brightness-110 text-primary-foreground shrink-0   transition-all active:scale-[0.98]"
                   onClick={() => handleSendMessage()}
                 >
                   <Send className="h-4 w-4" />
@@ -300,17 +300,17 @@ export default function ChatWidgetUI() {
       {/* Floating Toggle Button */}
       <div className="relative flex items-center gap-3">
         {!isOpen && (
-          <div className="bg-white dark:bg-zinc-800 px-3 py-1.5 rounded-lg shadow-xl border text-[12px] font-medium animate-in fade-in slide-in-from-right-4 duration-1000 hidden md:block mb-2 mr-1">
+          <div className="bg-card px-3 py-1.5 rounded-xl shadow-xl border border-border text-[12px] font-medium animate-in fade-in slide-in-from-right-4 duration-1000 hidden md:block mb-2 mr-1">
             Need help? Ask me!
           </div>
         )}
         <Button
           size="icon"
           className={cn(
-            'h-14 w-14 rounded-full shadow-2xl transition-all duration-300 active:scale-90 relative overflow-hidden group',
+            'h-14 w-14 rounded-full  transition-all duration-300 active:scale-[0.95] relative overflow-hidden group',
             isOpen
-              ? 'bg-red-500 hover:bg-red-600 rotate-90 scale-90'
-              : 'bg-gradient-to-tr from-violet-600 to-indigo-600 hover:shadow-indigo-500/40 hover:-translate-y-1'
+              ? 'bg-destructive hover:brightness-110 text-destructive-foreground rotate-90 scale-90'
+              : 'bg-primary text-primary-foreground hover: hover:-translate-y-1'
           )}
           onClick={onToggleChat}
         >
@@ -322,7 +322,7 @@ export default function ChatWidgetUI() {
           {isOpen ? (
             <X className="h-6 w-6 text-white" />
           ) : (
-            <MessageCircle className="h-6 w-6 text-white" />
+            <MessageCircle className="h-6 w-6 text-primary-foreground" />
           )}
 
           {!isOpen && (

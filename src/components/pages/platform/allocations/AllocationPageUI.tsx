@@ -331,7 +331,7 @@ export default function AllocationPageUI() {
               <p className="text-2xl font-black">94.2%</p>
             </div>
           </Card>
-          <Button className="h-16 px-10 rounded-3xl bg-primary font-black shadow-xl shadow-primary/20">
+          <Button className="h-16 px-10 rounded-3xl bg-primary font-black  ">
             Create Mapping
           </Button>
         </div>

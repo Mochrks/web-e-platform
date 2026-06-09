@@ -521,7 +521,7 @@ export default function SettingsPageUI() {
             </Button>
             <Button
               type="button"
-              className="rounded-xl bg-primary text-white font-black px-10 h-14 shadow-xl shadow-primary/20"
+              className="rounded-xl bg-primary text-white font-black px-10 h-14  "
             >
               <Save className="w-5 h-5 mr-3" /> Save Changes
             </Button>

@@ -118,7 +118,7 @@ export default function NoteModal({
           </Button>
           <Button
             onClick={onSave}
-            className="rounded-xl bg-primary text-white font-black px-8 h-12 shadow-lg shadow-primary/20"
+            className="rounded-xl bg-primary text-white font-black px-8 h-12  "
           >
             {isExisting ? 'Update Note' : 'Save Note'}
           </Button>
