@@ -21,14 +21,14 @@ export default function AttendanceHeader({
         <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary bg-primary/10 px-4 py-2 rounded-full w-fit">
           <Fingerprint className="w-4 h-4" /> Talent Attendance
         </div>
-        <h1 className="text-4xl font-black tracking-tight">Daily Presence</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Daily Presence</h1>
         <p className="text-muted-foreground font-medium text-lg max-w-xl leading-relaxed font-bold">
           Manage your training hours and track your consistency across the
           simulation cycle.
         </p>
       </div>
 
-      <Card className="w-full lg:w-96 p-8 rounded-3xl bg-background border-border  relative z-10 flex flex-col items-center text-center space-y-6">
+      <Card className="w-full lg:w-96 p-8 rounded-3xl bg-background  relative z-10 flex flex-col items-center text-center space-y-6">
         <div
           className={`w-20 h-20 rounded-3xl flex items-center justify-center transition-all duration-500  ${isClockedIn ? 'bg-emerald-500 text-white ' : 'bg-primary text-white '}`}
         >

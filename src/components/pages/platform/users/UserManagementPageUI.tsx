@@ -40,12 +40,12 @@ export default function UserManagementPageUI() {
   return (
     <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       {/* Header & Stats */}
-      <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6">
+      <div className="bg-card border border-border p-8 md:p-10 rounded-3xl relative overflow-hidden flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6">
         <div className="space-y-1">
-          <h1 className="text-4xl font-black tracking-tighter text-foreground">
+          <h1 className="text-4xl font-black tracking-tight mb-2">
             Employee Directory
           </h1>
-          <p className="text-muted-foreground font-medium">
+          <p className="text-muted-foreground font-medium text-lg font-bold">
             Control center for employee identities, roles, and platform access.
           </p>
         </div>
@@ -73,9 +73,6 @@ export default function UserManagementPageUI() {
               <p className="text-xl font-black">{activeUsers}</p>
             </div>
           </Card>
-          <Button className="flex-1 xl:flex-none h-14 px-8 bg-primary text-white rounded-2xl font-black text-sm hover:scale-105 transition-all  ">
-            <UserPlus className="w-5 h-5 mr-2" /> Add Employee
-          </Button>
         </div>
       </div>
 
@@ -102,6 +99,9 @@ export default function UserManagementPageUI() {
             <Badge className="rounded-xl h-12 px-6 bg-muted text-muted-foreground border-none font-black text-xs uppercase tracking-widest hidden md:flex items-center">
               Sorted by Rank
             </Badge>
+            <Button className="flex-1 md:flex-none h-12 px-6 bg-primary text-white rounded-xl font-black text-sm hover:scale-105 transition-all shadow-none">
+              <UserPlus className="w-4 h-4 mr-2" /> Add Employee
+            </Button>
           </div>
         </div>
 

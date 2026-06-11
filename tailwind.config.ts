@@ -10,8 +10,13 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Figtree', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Figtree', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        display: [
+          'Plus Jakarta Sans',
+          'system-ui',
+          '-apple-system',
+          'sans-serif',
+        ],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

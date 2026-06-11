@@ -75,7 +75,8 @@ const MOCK_ALLOCATIONS: Allocation[] = [
 
 export function useAllocationsHook() {
   const { role } = useAppSelector((state) => state.auth);
-  const [allocations] = useState<Allocation[]>(MOCK_ALLOCATIONS);
+  const [allocations, setAllocations] =
+    useState<Allocation[]>(MOCK_ALLOCATIONS);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
 
@@ -89,6 +90,21 @@ export function useAllocationsHook() {
       a.employeeName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       a.clientName.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleAddAllocation = (alloc: Omit<Allocation, 'id'>) => {
+    const newAlloc = { ...alloc, id: `all-${Date.now()}` } as Allocation;
+    setAllocations([...allocations, newAlloc]);
+  };
+
+  const handleEditAllocation = (id: string, updated: Partial<Allocation>) => {
+    setAllocations(
+      allocations.map((a) => (a.id === id ? { ...a, ...updated } : a))
+    );
+  };
+
+  const handleDeleteAllocation = (id: string) => {
+    setAllocations(allocations.filter((a) => a.id !== id));
+  };
 
   return {
     role,
@@ -105,5 +121,8 @@ export function useAllocationsHook() {
     personalHistory: getEmployeeHistory(currentEmployeeId).filter(
       (a) => a.status === 'completed'
     ),
+    handleAddAllocation,
+    handleEditAllocation,
+    handleDeleteAllocation,
   };
 }

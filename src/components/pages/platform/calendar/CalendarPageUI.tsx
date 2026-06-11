@@ -52,7 +52,7 @@ export default function CalendarPageUI() {
           <h1 className="text-4xl font-black tracking-tight mb-2">
             Training Schedule
           </h1>
-          <p className="text-muted-foreground font-medium text-lg leading-relaxed font-bold max-w-xl text-balance">
+          <p className="text-muted-foreground font-medium text-lg font-bold">
             {format(currentMonth, 'MMMM yyyy')} • {sessions.length} Simulations
             this month
           </p>

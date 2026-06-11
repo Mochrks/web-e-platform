@@ -20,6 +20,16 @@ import {
   Users,
   ChevronLeft,
   ChevronRight,
+  Library,
+  TrendingUp,
+  Megaphone,
+  Network,
+  Layers,
+  MessageSquare,
+  Gift,
+  LifeBuoy,
+  Timer,
+  PieChart,
 } from 'lucide-react';
 import { useAppSelector } from '@/store';
 import { USER_ROLES } from '@/constants';
@@ -47,6 +57,16 @@ const IconMap: Record<string, React.ReactNode> = {
   Award: <Award className="w-5 h-5" />,
   Briefcase: <Briefcase className="w-5 h-5" />,
   Zap: <Zap className="w-5 h-5" />,
+  Library: <Library className="w-5 h-5" />,
+  TrendingUp: <TrendingUp className="w-5 h-5" />,
+  Megaphone: <Megaphone className="w-5 h-5" />,
+  Network: <Network className="w-5 h-5" />,
+  Layers: <Layers className="w-5 h-5" />,
+  MessageSquare: <MessageSquare className="w-5 h-5" />,
+  Gift: <Gift className="w-5 h-5" />,
+  LifeBuoy: <LifeBuoy className="w-5 h-5" />,
+  Timer: <Timer className="w-5 h-5" />,
+  PieChart: <PieChart className="w-5 h-5" />,
 };
 
 export default function DashboardSidebarLayout({
@@ -74,11 +94,11 @@ export default function DashboardSidebarLayout({
   return (
     <aside
       className={cn(
-        'bg-card border-r border-border shrink-0 flex flex-col h-screen transition-all duration-300',
+        'bg-card border-r border-border shrink-0 flex flex-col transition-all duration-300',
         isCollapsed ? 'w-[80px]' : 'w-72',
         isMobile
           ? 'relative bg-card'
-          : 'hidden lg:flex fixed left-0 top-0 z-50 bg-card'
+          : 'hidden lg:flex fixed inset-y-0 left-0 z-50 bg-card'
       )}
     >
       {/* Toggle Button */}
@@ -95,12 +115,12 @@ export default function DashboardSidebarLayout({
         </button>
       )}
 
-      <div className={cn('p-6', isCollapsed && 'px-3')}>
+      <div className={cn('p-6 pb-2 shrink-0', isCollapsed && 'px-3')}>
         {/* Logo */}
         <Link
           href="/platform/dashboard"
           className={cn(
-            'flex items-center gap-3 mb-10 group overflow-hidden',
+            'flex items-center gap-3 mb-6 group overflow-hidden',
             isCollapsed && 'justify-center'
           )}
         >
@@ -118,7 +138,14 @@ export default function DashboardSidebarLayout({
             </div>
           )}
         </Link>
+      </div>
 
+      <div
+        className={cn(
+          'flex-1 w-full overflow-y-auto custom-scrollbar overscroll-contain px-6 pb-6',
+          isCollapsed && 'px-3'
+        )}
+      >
         {/* Navigation */}
         <nav className="space-y-6">
           <div>

@@ -26,7 +26,7 @@ export default function TaskPageUI() {
     <div className="space-y-10 animate-in fade-in slide-in-from-left-4 duration-1000">
       <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
         <div className="space-y-2">
-          <h1 className="text-4xl font-black tracking-tight">Assignment Lab</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Assignment Lab</h1>
           <p className="text-muted-foreground font-medium">
             Complete specialized tasks to earn XP and climb the leaderboard.
           </p>

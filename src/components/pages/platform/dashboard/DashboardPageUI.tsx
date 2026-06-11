@@ -54,7 +54,7 @@ export default function DashboardPageUI() {
           </div>
 
           <div className="max-w-2xl text-center md:text-left">
-            <h1 className="text-2xl md:text-4xl font-black text-primary-foreground mb-3 tracking-tight">
+            <h1 className="text-4xl text-white tracking-tight mb-2">
               Welcome Back, Reks!
             </h1>
 

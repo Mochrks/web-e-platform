@@ -39,8 +39,10 @@ export default function TasksPageUI() {
           <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary bg-primary/10 px-4 py-2 rounded-full w-fit">
             <ListChecks className="w-4 h-4" /> Goal Tracking
           </div>
-          <h1 className="text-4xl font-black tracking-tight">Training Tasks</h1>
-          <p className="text-muted-foreground font-medium text-lg max-w-2xl leading-relaxed font-bold">
+          <h1 className="text-4xl font-black tracking-tight mb-2">
+            Training Tasks
+          </h1>
+          <p className="text-muted-foreground font-medium text-lg font-bold">
             Systematically improve your skills by completing daily challenges
             curated by our AI engine.
           </p>
