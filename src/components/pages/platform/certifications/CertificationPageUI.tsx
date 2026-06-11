@@ -4,22 +4,70 @@ import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Award, BookOpen, Clock, Zap, CheckCircle2, Lock } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+  Award,
+  BookOpen,
+  Clock,
+  Zap,
+  CheckCircle2,
+  Lock,
+  MoreVertical,
+  Edit,
+  Trash,
+  Plus,
+} from 'lucide-react';
 import { useCertificationsHook } from './CertificationPageHook';
 
 export default function CertificationPageUI() {
-  const { certs, handleEnroll, totalCompleted, activePoints } =
-    useCertificationsHook();
+  const {
+    isAdmin,
+    certs,
+    handleEnroll,
+    totalCompleted,
+    activePoints,
+    isModalOpen,
+    setIsModalOpen,
+    certTitle,
+    setCertTitle,
+    certProvider,
+    setCertProvider,
+    certDesc,
+    setCertDesc,
+    certPoints,
+    setCertPoints,
+    certDuration,
+    setCertDuration,
+    openCreateModal,
+    openEditModal,
+    handleSubmitCert,
+    handleDeleteCert,
+  } = useCertificationsHook();
 
   return (
     <div className="space-y-10 animate-in fade-in slide-in-from-top-4 duration-1000">
       {/* Header Info */}
-      <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
+      <div className="bg-card border border-border p-8 md:p-10 rounded-3xl relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-2">
-          <h1 className="text-4xl font-black tracking-tight">
+          <h1 className="text-4xl font-black tracking-tight mb-2">
             Certification Center
           </h1>
-          <p className="text-muted-foreground font-medium">
+          <p className="text-muted-foreground font-medium text-lg font-bold">
             Upgrade your skillset and earn XP rewards for each completion.
           </p>
         </div>
@@ -41,23 +89,30 @@ export default function CertificationPageUI() {
         </div>
       </div>
 
-      {/* Admin Panel (Simulation) */}
-      <div className="p-6 rounded-3xl bg-muted/30 border border-dashed border-border flex items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-            <Lock className="w-6 h-6 text-primary" />
+      {/* Admin Panel */}
+      {isAdmin && (
+        <div className="p-6 rounded-3xl bg-green-500/5 dark:bg-green-500/10 border border-dashed border-green-500/30 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-green-500/20 flex items-center justify-center">
+              <Lock className="w-6 h-6 text-green-600 dark:text-green-400" />
+            </div>
+            <div>
+              <h4 className="font-black text-green-900 dark:text-green-300">
+                Admin Management
+              </h4>
+              <p className="text-xs font-bold text-green-700/70 dark:text-green-400/70">
+                Manage and assign certifications.
+              </p>
+            </div>
           </div>
-          <div>
-            <h4 className="font-black">Admin Management</h4>
-            <p className="text-xs font-bold text-muted-foreground">
-              Assign certifications to specific employees manually.
-            </p>
-          </div>
+          <Button
+            onClick={openCreateModal}
+            className="rounded-2xl h-12 px-6 font-black bg-green-600 hover:bg-green-700 text-white"
+          >
+            <Plus className="w-4 h-4 mr-2" /> Add Certification
+          </Button>
         </div>
-        <Button className="rounded-2xl h-12 px-6 font-black bg-white text-black border border-border hover:bg-muted ">
-          Open Admin Panel
-        </Button>
-      </div>
+      )}
 
       {/* Grid of Certs */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -66,21 +121,45 @@ export default function CertificationPageUI() {
             key={c.id}
             className="flex flex-col rounded-3xl border-border bg-card/60 backdrop-blur-md  hover: hover:-translate-y-2 transition-all p-1 overflow-hidden group"
           >
-            <div className="h-40 rounded-[2.2rem] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent relative p-8 flex items-end">
-              <Award className="absolute top-6 left-6 w-12 h-12 text-primary opacity-20 group-hover:scale-125 transition-transform" />
+            <div className="h-40 rounded-[2.2rem] bg-gradient-to-br from-green-500/10 via-green-500/5 to-transparent relative p-8 flex items-end">
+              <Award className="absolute top-6 left-6 w-12 h-12 text-green-500/20 group-hover:scale-125 transition-transform" />
               <div className="space-y-1">
-                <p className="text-[10px] font-black uppercase tracking-widest text-primary/80">
+                <p className="text-[10px] font-black uppercase tracking-widest text-green-600 dark:text-green-400">
                   Authorized By
                 </p>
                 <h5 className="font-black text-lg leading-tight">
                   {c.provider}
                 </h5>
               </div>
-              <div className="absolute top-6 right-6">
+              <div className="absolute top-6 right-6 flex items-center gap-2">
                 <Badge className="rounded-full px-3 py-1 bg-white/50 backdrop-blur-md text-black border-none text-[10px] font-black">
-                  <Zap className="w-3 h-3 text-primary mr-1 fill-primary" /> +
-                  {c.points} XP
+                  <Zap className="w-3 h-3 text-green-500 mr-1 fill-green-500" />{' '}
+                  +{c.points} XP
                 </Badge>
+                {isAdmin && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 bg-white/50 backdrop-blur-md rounded-full text-black hover:bg-white/80"
+                      >
+                        <MoreVertical className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-40">
+                      <DropdownMenuItem onClick={() => openEditModal(c)}>
+                        <Edit className="w-4 h-4 mr-2" /> Edit
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => handleDeleteCert(c.id)}
+                        className="text-red-500 focus:text-red-500"
+                      >
+                        <Trash className="w-4 h-4 mr-2" /> Delete
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
               </div>
             </div>
 
@@ -107,12 +186,12 @@ export default function CertificationPageUI() {
                 {c.status === 'available' ? (
                   <Button
                     onClick={() => handleEnroll(c.id)}
-                    className="w-full h-14 rounded-2xl bg-primary hover:bg-primary/90 text-primary-foreground font-black text-sm  "
+                    className="w-full h-14 rounded-2xl bg-green-600 hover:bg-green-700 text-white font-black text-sm"
                   >
                     Enroll Now
                   </Button>
                 ) : c.status === 'ongoing' ? (
-                  <Button className="w-full h-14 rounded-2xl bg-primary/10 text-primary font-black text-sm border-2 border-primary/20 hover:bg-primary/20">
+                  <Button className="w-full h-14 rounded-2xl bg-green-500/10 text-green-700 dark:text-green-400 font-black text-sm border-2 border-green-500/20 hover:bg-green-500/20">
                     Resume Learning
                   </Button>
                 ) : (
@@ -125,6 +204,81 @@ export default function CertificationPageUI() {
           </Card>
         ))}
       </div>
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden border-border bg-card">
+          <DialogHeader className="p-6 pb-0">
+            <DialogTitle className="text-2xl font-black">
+              Certification Details
+            </DialogTitle>
+            <DialogDescription>
+              Create or edit a certification.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="p-6 space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold">Title</label>
+              <Input
+                value={certTitle}
+                onChange={(e) => setCertTitle(e.target.value)}
+                className="bg-secondary/20 h-12 rounded-xl"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">Provider</label>
+                <Input
+                  value={certProvider}
+                  onChange={(e) => setCertProvider(e.target.value)}
+                  className="bg-secondary/20 h-12 rounded-xl"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-semibold">XP Points</label>
+                <Input
+                  type="number"
+                  value={certPoints}
+                  onChange={(e) => setCertPoints(e.target.value)}
+                  className="bg-secondary/20 h-12 rounded-xl"
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold">
+                Duration (e.g. &quot;4 Weeks&quot;)
+              </label>
+              <Input
+                value={certDuration}
+                onChange={(e) => setCertDuration(e.target.value)}
+                className="bg-secondary/20 h-12 rounded-xl"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold">Description</label>
+              <Textarea
+                value={certDesc}
+                onChange={(e) => setCertDesc(e.target.value)}
+                className="min-h-[100px] bg-secondary/20 rounded-xl"
+              />
+            </div>
+          </div>
+          <DialogFooter className="bg-secondary/20 p-6 border-t flex justify-end">
+            <Button
+              variant="outline"
+              onClick={() => setIsModalOpen(false)}
+              className="rounded-xl mr-2"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSubmitCert}
+              className="rounded-xl bg-green-600 hover:bg-green-700 text-white"
+            >
+              Save Certification
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

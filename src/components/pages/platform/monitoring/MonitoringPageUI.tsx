@@ -10,11 +10,11 @@ export default function MonitoringPageUI() {
 
   return (
     <div className="space-y-10 animate-fade-in">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-4xl font-black tracking-tighter text-foreground">
+      <div className="bg-card border border-border p-10 rounded-3xl  relative overflow-hidden">
+        <h1 className="text-4xl font-black tracking-tight mb-2">
           Platform Monitoring
         </h1>
-        <p className="text-muted-foreground font-medium italic">
+        <p className="text-muted-foreground font-medium text-lg font-bold">
           Track real-time system performance and user activity.
         </p>
       </div>

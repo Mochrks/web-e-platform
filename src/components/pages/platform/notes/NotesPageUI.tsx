@@ -50,10 +50,8 @@ export default function NotesPageUI() {
           aria-hidden="true"
         />
         <div className="relative z-10">
-          <h1 className="text-4xl font-black tracking-tight mb-2 text-center md:text-left">
-            My Notes
-          </h1>
-          <p className="text-muted-foreground font-medium text-lg leading-relaxed font-bold max-w-xl text-center md:text-left">
+          <h1 className="text-4xl font-black tracking-tight mb-2">My Notes</h1>
+          <p className="text-muted-foreground font-medium text-lg font-bold">
             Capture interview concepts, mentor feedback, and your personal study
             guides.
           </p>

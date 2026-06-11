@@ -22,7 +22,20 @@ import {
   ArrowLeft,
   History as HistoryIcon,
   User,
+  Plus,
+  Trash2,
+  Edit2,
+  Save,
+  X,
 } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog';
 import { useAllocationsHook } from './AllocationPageHook';
 import { USER_ROLES } from '@/constants';
 
@@ -37,7 +50,55 @@ export default function AllocationPageUI() {
     selectedUserId,
     setSelectedUserId,
     getEmployeeHistory,
+    handleAddAllocation,
+    handleEditAllocation,
+    handleDeleteAllocation,
   } = useAllocationsHook();
+
+  const [isAddModalOpen, setIsAddModalOpen] = React.useState(false);
+  const [editingId, setEditingId] = React.useState<string | null>(null);
+  const [editData, setEditData] = React.useState<any>({});
+  const [newData, setNewData] = React.useState<any>({
+    employeeId: 'emp-104',
+    employeeName: 'New Employee',
+    clientName: '',
+    projectName: '',
+    role: '',
+    startDate: '',
+    endDate: '',
+    status: 'active',
+    progress: 0,
+    techStack: [],
+    reportingManager: '',
+    allocationType: 'Full-time',
+    location: 'Remote',
+  });
+
+  const saveNew = () => {
+    handleAddAllocation({
+      ...newData,
+      progress: Number(newData.progress),
+      techStack:
+        typeof newData.techStack === 'string'
+          ? newData.techStack.split(',').map((s: string) => s.trim())
+          : newData.techStack,
+    });
+    setIsAddModalOpen(false);
+  };
+
+  const saveEdit = () => {
+    if (editingId) {
+      handleEditAllocation(editingId, {
+        ...editData,
+        progress: Number(editData.progress),
+        techStack:
+          typeof editData.techStack === 'string'
+            ? editData.techStack.split(',').map((s: string) => s.trim())
+            : editData.techStack,
+      });
+      setEditingId(null);
+    }
+  };
 
   // Employee Selection View (Admin viewing a specific employee's history)
   if (selectedUserId) {
@@ -55,10 +116,10 @@ export default function AllocationPageUI() {
             <ArrowLeft className="w-6 h-6" />
           </Button>
           <div>
-            <h1 className="text-3xl font-black">
+            <h1 className="text-4xl font-black tracking-tight mb-2">
               {employeeName}&apos;s Project History
             </h1>
-            <p className="text-muted-foreground font-medium underline underline-offset-4 decoration-primary/30">
+            <p className="text-muted-foreground font-medium text-lg font-bold">
               Detailed lifecycle tracing & project mapping.
             </p>
           </div>
@@ -90,41 +151,156 @@ export default function AllocationPageUI() {
                         {a.performanceRating}
                       </div>
                     )}
-                    <p className="text-[10px] font-black text-muted-foreground uppercase">
+                    <p className="text-[10px] font-black text-muted-foreground uppercase mb-2">
                       {a.startDate} - {a.endDate}
                     </p>
+                    {role === USER_ROLES.ADMIN && (
+                      <div className="flex gap-2 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                        {editingId === a.id ? (
+                          <>
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              onClick={saveEdit}
+                            >
+                              <Save className="w-4 h-4 text-primary" />
+                            </Button>
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              onClick={() => setEditingId(null)}
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setEditingId(a.id);
+                                setEditData(a);
+                              }}
+                            >
+                              <Edit2 className="w-4 h-4 text-muted-foreground" />
+                            </Button>
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteAllocation(a.id);
+                              }}
+                            >
+                              <Trash2 className="w-4 h-4 text-destructive" />
+                            </Button>
+                          </>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-end pt-4 border-t border-border/50">
-                  <div className="space-y-4">
-                    <div className="flex flex-wrap gap-2">
-                      {a.techStack?.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-muted rounded-lg opacity-70"
-                        >
-                          {tech}
+                {editingId === a.id ? (
+                  <div className="mt-4 p-4 border border-border rounded-xl bg-secondary/20 space-y-3">
+                    <div className="grid grid-cols-2 gap-3">
+                      <Input
+                        value={editData.projectName}
+                        onChange={(e) =>
+                          setEditData({
+                            ...editData,
+                            projectName: e.target.value,
+                          })
+                        }
+                        placeholder="Project Name"
+                      />
+                      <Input
+                        value={editData.clientName}
+                        onChange={(e) =>
+                          setEditData({
+                            ...editData,
+                            clientName: e.target.value,
+                          })
+                        }
+                        placeholder="Client Name"
+                      />
+                      <Input
+                        value={editData.startDate}
+                        onChange={(e) =>
+                          setEditData({
+                            ...editData,
+                            startDate: e.target.value,
+                          })
+                        }
+                        placeholder="Start Date"
+                      />
+                      <Input
+                        value={editData.endDate}
+                        onChange={(e) =>
+                          setEditData({ ...editData, endDate: e.target.value })
+                        }
+                        placeholder="End Date"
+                      />
+                      <Input
+                        value={
+                          typeof editData.techStack === 'string'
+                            ? editData.techStack
+                            : editData.techStack?.join(', ')
+                        }
+                        onChange={(e) =>
+                          setEditData({
+                            ...editData,
+                            techStack: e.target.value,
+                          })
+                        }
+                        placeholder="Tech Stack (comma separated)"
+                      />
+                      <Input
+                        type="number"
+                        value={editData.progress}
+                        onChange={(e) =>
+                          setEditData({ ...editData, progress: e.target.value })
+                        }
+                        placeholder="Progress %"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-end pt-4 border-t border-border/50">
+                    <div className="space-y-4">
+                      <div className="flex flex-wrap gap-2">
+                        {a.techStack?.map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-muted rounded-lg opacity-70"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex items-center gap-4 text-xs font-bold text-muted-foreground">
+                        <span className="flex items-center gap-1.5">
+                          <User className="w-4 h-4" /> Role: {a.role}
                         </span>
-                      ))}
+                        <span className="flex items-center gap-1.5">
+                          <MapPin className="w-4 h-4" /> {a.location}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-4 text-xs font-bold text-muted-foreground">
-                      <span className="flex items-center gap-1.5">
-                        <User className="w-4 h-4" /> Role: {a.role}
-                      </span>
-                      <span className="flex items-center gap-1.5">
-                        <MapPin className="w-4 h-4" /> {a.location}
-                      </span>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-[10px] font-black tracking-widest opacity-60">
+                        <span>ASSIGNMENT PROGRESS</span>
+                        <span>{a.progress}%</span>
+                      </div>
+                      <Progress
+                        value={a.progress}
+                        className="h-2 rounded-full"
+                      />
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-[10px] font-black tracking-widest opacity-60">
-                      <span>ASSIGNMENT PROGRESS</span>
-                      <span>{a.progress}%</span>
-                    </div>
-                    <Progress value={a.progress} className="h-2 rounded-full" />
-                  </div>
-                </div>
+                )}
               </Card>
             ))}
           </div>
@@ -163,10 +339,10 @@ export default function AllocationPageUI() {
       <div className="space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center md:text-left">
-            <h1 className="text-5xl font-black tracking-tighter">
+            <h1 className="text-4xl font-black tracking-tight mb-2">
               My Allocations
             </h1>
-            <p className="text-muted-foreground font-medium">
+            <p className="text-muted-foreground font-medium text-lg font-bold">
               Tracking your assignments, feedback, and project lifecycle.
             </p>
           </div>
@@ -311,12 +487,12 @@ export default function AllocationPageUI() {
   // Admin Resource Directory View
   return (
     <div className="space-y-10 animate-in fade-in slide-in-from-right-8 duration-1000">
-      <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-8">
+      <div className="bg-card border border-border p-8 md:p-10 rounded-3xl relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-1">
-          <h1 className="text-5xl font-black tracking-tighter">
+          <h1 className="text-4xl font-black tracking-tight mb-2">
             Engagement Directory
           </h1>
-          <p className="text-muted-foreground text-lg font-medium underline underline-offset-8 decoration-primary/30">
+          <p className="text-muted-foreground font-medium text-lg font-bold">
             Cross-client employee mapping & technical tracing console.
           </p>
         </div>
@@ -331,7 +507,11 @@ export default function AllocationPageUI() {
               <p className="text-2xl font-black">94.2%</p>
             </div>
           </Card>
-          <Button className="h-16 px-10 rounded-3xl bg-primary font-black  ">
+          <Button
+            className="h-16 px-10 rounded-3xl bg-primary font-black"
+            onClick={() => setIsAddModalOpen(true)}
+          >
+            <Plus className="w-5 h-5 mr-2" />
             Create Mapping
           </Button>
         </div>
@@ -422,6 +602,85 @@ export default function AllocationPageUI() {
           </Card>
         ))}
       </div>
+
+      <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Create Mapping</DialogTitle>
+            <DialogDescription>
+              Assign an employee to a new engagement.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-2 gap-4">
+              <Input
+                placeholder="Employee Name"
+                value={newData.employeeName}
+                onChange={(e) =>
+                  setNewData({ ...newData, employeeName: e.target.value })
+                }
+              />
+              <Input
+                placeholder="Client Name"
+                value={newData.clientName}
+                onChange={(e) =>
+                  setNewData({ ...newData, clientName: e.target.value })
+                }
+              />
+              <Input
+                placeholder="Project Name"
+                value={newData.projectName}
+                onChange={(e) =>
+                  setNewData({ ...newData, projectName: e.target.value })
+                }
+              />
+              <Input
+                placeholder="Role"
+                value={newData.role}
+                onChange={(e) =>
+                  setNewData({ ...newData, role: e.target.value })
+                }
+              />
+              <Input
+                placeholder="Start Date"
+                value={newData.startDate}
+                onChange={(e) =>
+                  setNewData({ ...newData, startDate: e.target.value })
+                }
+              />
+              <Input
+                placeholder="End Date"
+                value={newData.endDate}
+                onChange={(e) =>
+                  setNewData({ ...newData, endDate: e.target.value })
+                }
+              />
+              <Input
+                placeholder="Location"
+                value={newData.location}
+                onChange={(e) =>
+                  setNewData({ ...newData, location: e.target.value })
+                }
+              />
+              <Input
+                placeholder="Tech Stack (comma separated)"
+                value={newData.techStack}
+                onChange={(e) =>
+                  setNewData({ ...newData, techStack: e.target.value })
+                }
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsAddModalOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={saveNew}>
+              <Save className="w-4 h-4 mr-2" /> Save Mapping
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

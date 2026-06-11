@@ -11,7 +11,22 @@ import {
   Menu,
   LogOut,
   Sparkles,
+  LayoutDashboard,
+  BrainCircuit,
+  CheckSquare,
+  Briefcase,
+  Clock,
+  UserCheck,
+  Users,
 } from 'lucide-react';
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from '@/components/ui/command';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -37,12 +52,63 @@ export default function DashboardHeaderLayout() {
   const [isMounted, setIsMounted] = React.useState(false);
   const dispatch = useAppDispatch();
   const { user, role } = useAppSelector((state) => state.auth);
+  const router = useRouter();
   const isAdminCategories =
     role === USER_ROLES.ADMIN || role === USER_ROLES.SUPER_ADMIN;
 
+  const [isSearchOpen, setIsSearchOpen] = React.useState(false);
+  const [isMac, setIsMac] = React.useState(false);
+
   React.useEffect(() => {
     setIsMounted(true);
+    setIsMac(
+      typeof navigator !== 'undefined' &&
+        navigator.userAgent.toUpperCase().indexOf('MAC') >= 0
+    );
+    const down = (e: KeyboardEvent) => {
+      if ((e.key === 'k' || e.code === 'KeyK') && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setIsSearchOpen((open) => !open);
+      }
+    };
+    document.addEventListener('keydown', down, { capture: true });
+    return () =>
+      document.removeEventListener('keydown', down, { capture: true });
   }, []);
+
+  const searchSuggestions = [
+    {
+      group: 'Platform',
+      items: [
+        { label: 'Dashboard', icon: LayoutDashboard, href: '/platform' },
+        {
+          label: 'AI Simulation',
+          icon: BrainCircuit,
+          href: '/platform/simulation',
+        },
+        { label: 'Tasks', icon: CheckSquare, href: '/platform/tasks' },
+        { label: 'Projects', icon: Briefcase, href: '/platform/projects' },
+        { label: 'Timesheets', icon: Clock, href: '/platform/timesheets' },
+        { label: 'Attendance', icon: UserCheck, href: '/platform/attendance' },
+      ],
+    },
+    {
+      group: 'Settings',
+      items: [
+        {
+          label: 'Platform Settings',
+          icon: Settings,
+          href: '/platform/settings',
+        },
+        { label: 'User Management', icon: Users, href: '/platform/users' },
+      ],
+    },
+  ];
+
+  const handleSearchSelect = (href: string) => {
+    setIsSearchOpen(false);
+    router.push(href);
+  };
 
   const { mutate: logoutMutation } = useLogout();
 
@@ -100,21 +166,23 @@ export default function DashboardHeaderLayout() {
         </div>
 
         {/* Search Bar — Wise Sage Style */}
-        <div className="hidden md:flex items-center gap-3 bg-secondary border border-transparent px-4 py-2.5 rounded-xl w-80 group focus-within:bg-background focus-within:border-border transition-all">
-          <Search className="w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-          <input
-            type="text"
-            placeholder="Search simulations, tasks..."
-            className="bg-transparent border-none text-sm focus:outline-none w-full placeholder:text-muted-foreground/60"
-            aria-label="Search"
-          />
+        <button
+          onClick={() => setIsSearchOpen(true)}
+          className="hidden md:flex items-center justify-between gap-3 bg-secondary border border-transparent px-4 py-2.5 rounded-xl w-80 group hover:bg-secondary/80 transition-all text-left"
+        >
+          <div className="flex items-center gap-3">
+            <Search className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+            <span className="text-sm text-muted-foreground/80">
+              Search simulations, tasks...
+            </span>
+          </div>
           <div className="flex items-center gap-1 bg-background px-2 py-0.5 rounded-md border border-border">
             <Command className="w-3 h-3 text-muted-foreground" />
             <span className="text-[10px] font-semibold text-muted-foreground">
-              K
+              {isMac ? '⌘K' : 'Ctrl K'}
             </span>
           </div>
-        </div>
+        </button>
       </div>
 
       <div className="flex items-center gap-4">
@@ -258,6 +326,28 @@ export default function DashboardHeaderLayout() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+
+      {/* Command Palette Global Search */}
+      <CommandDialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          {searchSuggestions.map((group) => (
+            <CommandGroup key={group.group} heading={group.group}>
+              {group.items.map((item) => (
+                <CommandItem
+                  key={item.label}
+                  onSelect={() => handleSearchSelect(item.href)}
+                  className="flex items-center gap-3 p-3 cursor-pointer"
+                >
+                  <item.icon className="h-4 w-4 text-muted-foreground" />
+                  <span className="font-bold text-sm">{item.label}</span>
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          ))}
+        </CommandList>
+      </CommandDialog>
     </header>
   );
 }

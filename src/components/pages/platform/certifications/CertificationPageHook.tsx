@@ -66,10 +66,22 @@ const MOCK_CERTS: Certification[] = [
   },
 ];
 
+import { useAppSelector } from '@/store';
 import { USER_ROLES } from '@/constants';
 
-export function useCertificationsHook(role: string = USER_ROLES.EMPLOYEE) {
+export function useCertificationsHook() {
+  const { role } = useAppSelector((state) => state.auth);
+  const isAdmin = role === USER_ROLES.ADMIN || role === USER_ROLES.SUPER_ADMIN;
+
   const [certs, setCerts] = useState<Certification[]>(MOCK_CERTS);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+
+  const [certTitle, setCertTitle] = useState('');
+  const [certProvider, setCertProvider] = useState('');
+  const [certDesc, setCertDesc] = useState('');
+  const [certPoints, setCertPoints] = useState('');
+  const [certDuration, setCertDuration] = useState('');
 
   const handleEnroll = (id: string) => {
     setCerts((prev) =>
@@ -81,7 +93,63 @@ export function useCertificationsHook(role: string = USER_ROLES.EMPLOYEE) {
     );
   };
 
+  const openCreateModal = () => {
+    setEditingId(null);
+    setCertTitle('');
+    setCertProvider('');
+    setCertDesc('');
+    setCertPoints('');
+    setCertDuration('');
+    setIsModalOpen(true);
+  };
+
+  const openEditModal = (cert: Certification) => {
+    setEditingId(cert.id);
+    setCertTitle(cert.title);
+    setCertProvider(cert.provider);
+    setCertDesc(cert.description);
+    setCertPoints(cert.points.toString());
+    setCertDuration(cert.duration);
+    setIsModalOpen(true);
+  };
+
+  const handleSubmitCert = () => {
+    if (editingId) {
+      setCerts((prev) =>
+        prev.map((c) =>
+          c.id === editingId
+            ? {
+                ...c,
+                title: certTitle,
+                provider: certProvider,
+                description: certDesc,
+                points: parseInt(certPoints) || 0,
+                duration: certDuration,
+              }
+            : c
+        )
+      );
+    } else {
+      const newCert: Certification = {
+        id: `c${Date.now()}`,
+        title: certTitle,
+        provider: certProvider,
+        description: certDesc,
+        points: parseInt(certPoints) || 0,
+        duration: certDuration,
+        status: 'available',
+      };
+      setCerts([newCert, ...certs]);
+    }
+    setIsModalOpen(false);
+  };
+
+  const handleDeleteCert = (id: string) => {
+    setCerts((prev) => prev.filter((c) => c.id !== id));
+  };
+
   return {
+    isAdmin,
     certs,
     handleEnroll,
     totalCompleted: certs.filter((c) => c.status === 'completed').length,
@@ -89,5 +157,21 @@ export function useCertificationsHook(role: string = USER_ROLES.EMPLOYEE) {
       (acc, c) => acc + (c.status === 'completed' ? c.points : 0),
       0
     ),
+    isModalOpen,
+    setIsModalOpen,
+    certTitle,
+    setCertTitle,
+    certProvider,
+    setCertProvider,
+    certDesc,
+    setCertDesc,
+    certPoints,
+    setCertPoints,
+    certDuration,
+    setCertDuration,
+    openCreateModal,
+    openEditModal,
+    handleSubmitCert,
+    handleDeleteCert,
   };
 }
