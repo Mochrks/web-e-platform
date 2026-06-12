@@ -10,7 +10,6 @@ const MOCK_CERTS: Certification[] = [
     provider: 'Amazon Web Services',
     description:
       'Master the fundamental concepts of AWS Cloud, including services, security, and architecture.',
-    points: 800,
     duration: '4-6 Weeks',
     status: 'available',
   },
@@ -20,7 +19,6 @@ const MOCK_CERTS: Certification[] = [
     provider: 'Google Cloud',
     description:
       'Design, build, and operationalize machine learning and data processing systems.',
-    points: 1500,
     duration: '8-12 Weeks',
     status: 'ongoing',
     enrolledDate: '2026-03-15',
@@ -31,7 +29,6 @@ const MOCK_CERTS: Certification[] = [
     provider: 'EC-Council',
     description:
       'Learn the techniques and tools used by hackers to test system vulnerabilities.',
-    points: 1200,
     duration: '4 Weeks',
     status: 'available',
   },
@@ -40,7 +37,6 @@ const MOCK_CERTS: Certification[] = [
     title: 'Microsoft Azure Solutions Architect',
     provider: 'Microsoft',
     description: 'Design and implement solutions that run on Microsoft Azure.',
-    points: 1300,
     duration: '10 Weeks',
     status: 'available',
   },
@@ -50,7 +46,6 @@ const MOCK_CERTS: Certification[] = [
     provider: 'CompTIA',
     description:
       'Establish the core knowledge required of any cybersecurity role.',
-    points: 900,
     duration: '6 Weeks',
     status: 'completed',
   },
@@ -60,7 +55,6 @@ const MOCK_CERTS: Certification[] = [
     provider: 'PMI',
     description:
       'Master the global standard for project management excellence.',
-    points: 2000,
     duration: '12-16 Weeks',
     status: 'available',
   },
@@ -80,7 +74,6 @@ export function useCertificationsHook() {
   const [certTitle, setCertTitle] = useState('');
   const [certProvider, setCertProvider] = useState('');
   const [certDesc, setCertDesc] = useState('');
-  const [certPoints, setCertPoints] = useState('');
   const [certDuration, setCertDuration] = useState('');
 
   const handleEnroll = (id: string) => {
@@ -98,7 +91,6 @@ export function useCertificationsHook() {
     setCertTitle('');
     setCertProvider('');
     setCertDesc('');
-    setCertPoints('');
     setCertDuration('');
     setIsModalOpen(true);
   };
@@ -108,7 +100,6 @@ export function useCertificationsHook() {
     setCertTitle(cert.title);
     setCertProvider(cert.provider);
     setCertDesc(cert.description);
-    setCertPoints(cert.points.toString());
     setCertDuration(cert.duration);
     setIsModalOpen(true);
   };
@@ -123,7 +114,6 @@ export function useCertificationsHook() {
                 title: certTitle,
                 provider: certProvider,
                 description: certDesc,
-                points: parseInt(certPoints) || 0,
                 duration: certDuration,
               }
             : c
@@ -135,7 +125,6 @@ export function useCertificationsHook() {
         title: certTitle,
         provider: certProvider,
         description: certDesc,
-        points: parseInt(certPoints) || 0,
         duration: certDuration,
         status: 'available',
       };
@@ -153,10 +142,6 @@ export function useCertificationsHook() {
     certs,
     handleEnroll,
     totalCompleted: certs.filter((c) => c.status === 'completed').length,
-    activePoints: certs.reduce(
-      (acc, c) => acc + (c.status === 'completed' ? c.points : 0),
-      0
-    ),
     isModalOpen,
     setIsModalOpen,
     certTitle,
@@ -165,8 +150,6 @@ export function useCertificationsHook() {
     setCertProvider,
     certDesc,
     setCertDesc,
-    certPoints,
-    setCertPoints,
     certDuration,
     setCertDuration,
     openCreateModal,

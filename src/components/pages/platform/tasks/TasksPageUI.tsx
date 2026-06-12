@@ -49,21 +49,6 @@ export default function TasksPageUI() {
         </div>
 
         <div className="flex flex-wrap items-center gap-6">
-          <div className="flex items-center gap-6 bg-primary text-white p-8 rounded-3xl   min-w-[280px] group transition-all hover:scale-105">
-            <div className="p-4 bg-white/20 rounded-2xl group-hover:rotate-12 transition-transform">
-              <Trophy className="w-10 h-10" aria-hidden="true" />
-            </div>
-            <div className="space-y-1">
-              <span className="block text-xs font-black uppercase tracking-widest opacity-80">
-                Total XP Gained
-              </span>
-              <span className="text-4xl font-black tabular-nums">
-                {stats.totalXp}{' '}
-                <span className="text-sm font-bold opacity-60">XP</span>
-              </span>
-            </div>
-          </div>
-
           <div className="grid grid-cols-2 gap-4">
             <TaskStatBlock
               label="Completed"
@@ -158,9 +143,6 @@ export default function TasksPageUI() {
                     </div>
                   </div>
                   <div className="flex items-center gap-6">
-                    <span className="text-sm font-black text-primary px-4 py-2 bg-primary/5 rounded-full">
-                      +{task.xp} XP
-                    </span>
                     <Button
                       onClick={() => deleteTask(task.id)}
                       variant="ghost"

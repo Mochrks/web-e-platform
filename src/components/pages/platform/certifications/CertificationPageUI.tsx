@@ -68,16 +68,10 @@ export default function CertificationPageUI() {
             Certification Center
           </h1>
           <p className="text-muted-foreground font-medium text-lg font-bold">
-            Upgrade your skillset and earn XP rewards for each completion.
+            Upgrade your skillset with our certifications.
           </p>
         </div>
         <div className="flex gap-4">
-          <Card className="p-6 rounded-3xl border-border bg-card  text-center min-w-[140px]">
-            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">
-              Total Points
-            </p>
-            <h4 className="text-2xl font-black text-primary">{activePoints}</h4>
-          </Card>
           <Card className="p-6 rounded-3xl border-border bg-card  text-center min-w-[140px]">
             <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">
               Completed
@@ -132,10 +126,6 @@ export default function CertificationPageUI() {
                 </h5>
               </div>
               <div className="absolute top-6 right-6 flex items-center gap-2">
-                <Badge className="rounded-full px-3 py-1 bg-white/50 backdrop-blur-md text-black border-none text-[10px] font-black">
-                  <Zap className="w-3 h-3 text-green-500 mr-1 fill-green-500" />{' '}
-                  +{c.points} XP
-                </Badge>
                 {isAdmin && (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -224,24 +214,13 @@ export default function CertificationPageUI() {
                 className="bg-secondary/20 h-12 rounded-xl"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-semibold">Provider</label>
-                <Input
-                  value={certProvider}
-                  onChange={(e) => setCertProvider(e.target.value)}
-                  className="bg-secondary/20 h-12 rounded-xl"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-semibold">XP Points</label>
-                <Input
-                  type="number"
-                  value={certPoints}
-                  onChange={(e) => setCertPoints(e.target.value)}
-                  className="bg-secondary/20 h-12 rounded-xl"
-                />
-              </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold">Provider</label>
+              <Input
+                value={certProvider}
+                onChange={(e) => setCertProvider(e.target.value)}
+                className="bg-secondary/20 h-12 rounded-xl"
+              />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-semibold">
