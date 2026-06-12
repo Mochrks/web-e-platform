@@ -147,7 +147,6 @@ export default function ChatWidgetUI() {
                       <div className="flex flex-wrap gap-2 mb-4 animate-in fade-in slide-in-from-top-2 duration-500">
                         {[
                           'How to start simulation?',
-                          'Check my leaderboard',
                           'Latest platform updates',
                         ].map((suggestion) => (
                           <button

@@ -54,7 +54,6 @@ const initialState: SidebarState = {
       icon: 'Award',
     },
     { title: 'AI Simulation', path: '/platform/simulation', icon: 'Zap' },
-    { title: 'Leaderboard', path: '/platform/leaderboard', icon: 'Trophy' },
     { title: 'Rewards', path: '/platform/rewards', icon: 'Gift' },
 
     // --- Support & System ---
@@ -91,7 +90,6 @@ const initialState: SidebarState = {
       path: '/platform/certifications',
       icon: 'Award',
     },
-    { title: 'Leaderboard', path: '/platform/leaderboard', icon: 'Trophy' },
     { title: 'Rewards', path: '/platform/rewards', icon: 'Gift' },
 
     // --- System & Support ---

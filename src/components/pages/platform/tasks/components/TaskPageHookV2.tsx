@@ -11,7 +11,6 @@ const MOCK_TASKS: Task[] = [
       'Implement OAuth2 and JWT authentication for the internal employee portal.',
     category: 'Backend Architecture',
     difficulty: 'hard',
-    baseXP: 500,
     deadline: '2026-05-30',
     maxAttempts: 3,
   },
@@ -22,7 +21,6 @@ const MOCK_TASKS: Task[] = [
       'Analyze Q1 sentiment data and generate a comprehensive dashboard.',
     category: 'Data Analytics',
     difficulty: 'medium',
-    baseXP: 300,
     deadline: '2026-05-15',
     maxAttempts: 5,
   },
@@ -44,9 +42,6 @@ export function useTasksHook() {
     const previousAttempts = attempts.filter((a) => a.taskId === taskId);
     const attemptNumber = previousAttempts.length + 1;
 
-    // XP Calculation Logic (Moodle style - harder tasks/better scores = more XP)
-    const xpEarned = Math.floor((score / 100) * task.baseXP);
-
     const newAttempt: TaskAttempt = {
       id: Math.random().toString(36).substr(2, 9),
       taskId,
@@ -54,7 +49,6 @@ export function useTasksHook() {
       attemptNumber,
       score,
       maxScore: 100,
-      xpEarned,
       completedAt: new Date().toISOString(),
       status: score >= 70 ? 'passed' : 'failed',
     };

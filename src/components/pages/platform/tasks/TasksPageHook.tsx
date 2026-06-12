@@ -29,7 +29,6 @@ export const useTasksPageHook = () => {
       id: Date.now(),
       title: newTaskTitle,
       cat: 'Technical',
-      xp: 50,
       status: 'pending',
       deadline: 'New',
     };
@@ -43,10 +42,6 @@ export const useTasksPageHook = () => {
       : tasks.filter((t) => t.cat === activeCategory);
 
   const stats = {
-    totalXp: tasks.reduce(
-      (acc, t) => (t.status === 'done' ? acc + t.xp : acc),
-      0
-    ),
     completed: tasks.filter((t) => t.status === 'done').length,
     pending: tasks.filter((t) => t.status === 'pending').length,
   };

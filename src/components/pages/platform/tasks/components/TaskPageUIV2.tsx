@@ -28,7 +28,7 @@ export default function TaskPageUI() {
         <div className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tight">Assignment Lab</h1>
           <p className="text-muted-foreground font-medium">
-            Complete specialized tasks to earn XP and climb the leaderboard.
+            Complete specialized tasks.
           </p>
         </div>
       </div>
@@ -77,10 +77,6 @@ export default function TaskPageUI() {
                     <div className="flex items-center gap-6 text-xs font-black uppercase text-muted-foreground pt-4 border-t border-border/50">
                       <span className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" /> Due: {task.deadline}
-                      </span>
-                      <span className="flex items-center gap-2">
-                        <Zap className="w-4 h-4 text-primary fill-primary" />{' '}
-                        Reward: {task.baseXP} XP
                       </span>
                       <span className="flex items-center gap-2">
                         <History className="w-4 h-4" /> Attempts:{' '}
@@ -160,16 +156,6 @@ export default function TaskPageUI() {
                         value={a.score}
                         className={`h-2 rounded-full ${a.status === 'passed' ? 'bg-green-100' : 'bg-red-100'}`}
                       />
-                    </div>
-
-                    <div className="flex items-center gap-2 pt-2">
-                      <Zap className="w-4 h-4 text-primary fill-primary" />
-                      <span className="text-sm font-black">
-                        +{a.xpEarned} XP{' '}
-                        <span className="text-[10px] font-medium text-muted-foreground opacity-60">
-                          Earned
-                        </span>
-                      </span>
                     </div>
                   </div>
                 ))

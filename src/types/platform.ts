@@ -23,7 +23,6 @@ export interface Certification {
   title: string;
   provider: string;
   description: string;
-  points: number;
   duration: string;
   status: 'available' | 'ongoing' | 'completed';
   enrolledDate?: string;
@@ -38,7 +37,6 @@ export interface TaskAttempt {
   attemptNumber: number;
   score: number;
   maxScore: number;
-  xpEarned: number;
   completedAt: string;
   status: 'passed' | 'failed';
 }
@@ -49,23 +47,7 @@ export interface Task {
   description: string;
   category: string;
   difficulty: 'easy' | 'medium' | 'hard';
-  baseXP: number;
   deadline: string;
   maxAttempts: number;
   requirements?: string[];
-}
-
-export interface LeaderboardEntry {
-  rank: number;
-  employeeId: string;
-  name: string;
-  avatarConfig: {
-    shirtColor?: string;
-    shirtType?: 'basic' | 'hoodie' | 'suit' | 'vest';
-    mood?: 'happy' | 'thinking' | 'serious';
-  };
-  totalXP: number;
-  completedTasks: number;
-  certifications: number;
-  trend: 'up' | 'down' | 'neutral';
 }

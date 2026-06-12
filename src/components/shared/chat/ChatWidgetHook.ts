@@ -119,7 +119,7 @@ export const useChatHook = () => {
     if (lowerText.includes('hello') || lowerText.includes('hi'))
       return 'Hello there! How is your progress today?';
     if (lowerText.includes('help'))
-      return 'I can help you with simulations, leaderboard info, or platform navigation.';
+      return 'I can help you with simulations or platform navigation.';
     if (lowerText.includes('simulation'))
       return 'You have completed 8/10 scheduled sessions this week. Keep it up!';
     return "That's interesting! Tell me more about it or ask me anything about the platform.";
