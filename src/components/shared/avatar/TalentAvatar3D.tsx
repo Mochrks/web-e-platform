@@ -8,7 +8,6 @@ import {
   Float as FloatDrei,
   Environment,
 } from '@react-three/drei';
-import * as THREE from 'three';
 import { RealisticAvatarModel } from './RealisticAvatarModel';
 
 interface TalentAvatar3DProps {
