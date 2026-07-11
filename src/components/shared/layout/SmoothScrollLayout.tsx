@@ -12,6 +12,11 @@ export default function SmoothScroll({
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Only enable smooth scroll on desktop with fine pointer (mouse)
+    // Disable on mobile/tablet touch devices to avoid overhead
+    const isDesktopWithMouse = window.matchMedia('(pointer: fine)').matches;
+    if (!isDesktopWithMouse) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

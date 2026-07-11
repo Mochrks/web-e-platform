@@ -112,6 +112,11 @@
     @apply border-border;
   }
 
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground shrink-0;
     font-feature-settings: 'calt', 'cv11', 'ss01';
@@ -468,6 +473,14 @@
 }
 
 @layer utilities {
+  .wise-container {
+    @apply max-w-[1920px] mx-auto w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+
+  .wise-display-responsive {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
   /* Text Utilities */
   .text-balance {
     text-wrap: balance;

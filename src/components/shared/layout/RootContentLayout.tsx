@@ -1,11 +1,19 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { ThemeProvider } from '@/components/shared/theme/ThemeProvider';
 import Providers from '@/providers/RootProvider';
 import { Toaster } from 'sonner';
-import ChatWidget from '@/components/shared/chat';
-import SmoothScroll from '@/components/shared/layout/SmoothScrollLayout';
+
+// Lazy load heavy components to reduce initial bundle
+const ChatWidget = dynamic(() => import('@/components/shared/chat'), {
+  ssr: false,
+});
+const SmoothScroll = dynamic(
+  () => import('@/components/shared/layout/SmoothScrollLayout'),
+  { ssr: false }
+);
 
 export default function RootLayoutContent({
   children,

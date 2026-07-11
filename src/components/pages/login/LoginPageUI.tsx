@@ -18,7 +18,6 @@ import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { Card } from '@/components/ui/card';
 import { ModeToggle } from '@/components/shared/theme/ModeToggle';
-import TalentAvatar from '@/components/shared/avatar';
 import { useLoginPageHook } from './LoginPageHook';
 
 export default function LoginPageUI() {
@@ -96,12 +95,7 @@ export default function LoginPageUI() {
               )}
             </h2>
             <div className="py-2">
-              <TalentAvatar
-                size={160}
-                shirtColor="#059669"
-                mood={view === 'login' ? 'happy' : 'thinking'}
-                className="-ml-2"
-              />
+              <div className="w-20 h-2 bg-primary rounded-full mb-6"></div>
             </div>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
               {view === 'login' &&

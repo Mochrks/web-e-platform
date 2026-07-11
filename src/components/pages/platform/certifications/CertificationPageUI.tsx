@@ -82,7 +82,7 @@ export default function CertificationPageUI() {
 
       {/* Admin Panel */}
       {isAdmin && (
-        <div className="p-6 rounded-3xl bg-green-500/5 dark:bg-green-500/10 border border-dashed border-green-500/30 flex items-center justify-between gap-4">
+        <div className="p-6 rounded-3xl bg-green-500/5 dark:bg-green-500/10 border border-dashed border-green-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-2xl bg-green-500/20 flex items-center justify-center">
               <Lock className="w-6 h-6 text-green-600 dark:text-green-400" />

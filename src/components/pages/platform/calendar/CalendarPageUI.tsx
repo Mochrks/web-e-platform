@@ -46,7 +46,7 @@ export default function CalendarPageUI() {
   return (
     <div className="space-y-10 pb-20 animate-fade-in px-2">
       {/* Header Board */}
-      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-10 rounded-3xl  gap-8 relative overflow-hidden mb-10">
+      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-6 md:p-10 rounded-3xl  gap-8 relative overflow-hidden mb-10">
         <div className="absolute top-0 left-0 w-32 h-32 bg-primary/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-50" />
         <div className="relative z-10 text-center md:text-left">
           <h1 className="text-4xl font-black tracking-tight mb-2">

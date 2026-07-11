@@ -193,8 +193,8 @@ export default function ProjectsPageUI(
           ))}
         </div>
       ) : (
-        <div className="bg-card rounded-xl border border-border overflow-hidden">
-          <Table>
+        <div className="bg-card rounded-xl border border-border overflow-hidden custom-scrollbar">
+          <Table className="min-w-[1000px]">
             <TableHeader>
               <TableRow>
                 <TableHead>Project</TableHead>

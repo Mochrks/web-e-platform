@@ -73,10 +73,12 @@ export default function DashboardSidebarLayout({
   isMobile,
   isCollapsed = false,
   setIsCollapsed,
+  closeMobileMenu,
 }: Readonly<{
   isMobile?: boolean;
   isCollapsed?: boolean;
   setIsCollapsed?: (val: boolean) => void;
+  closeMobileMenu?: () => void;
 }>) {
   const pathname = usePathname();
   const { role } = useAppSelector((state) => state.auth);
@@ -97,7 +99,7 @@ export default function DashboardSidebarLayout({
         'bg-card border-r border-border shrink-0 flex flex-col transition-all duration-300',
         isCollapsed ? 'w-[80px]' : 'w-72',
         isMobile
-          ? 'relative bg-card'
+          ? 'relative h-full w-full bg-card'
           : 'hidden lg:flex fixed inset-y-0 left-0 z-50 bg-card'
       )}
     >
@@ -142,7 +144,7 @@ export default function DashboardSidebarLayout({
 
       <div
         className={cn(
-          'flex-1 w-full overflow-y-auto custom-scrollbar overscroll-contain px-6 pb-6',
+          'flex-1 w-full min-h-0 overflow-y-auto custom-scrollbar overscroll-contain px-6 pb-20',
           isCollapsed && 'px-3'
         )}
       >
@@ -187,6 +189,7 @@ export default function DashboardSidebarLayout({
                       <Link
                         key={item.path + item.title}
                         href={item.path}
+                        onClick={closeMobileMenu}
                         className={cn(
                           'flex items-center gap-3 py-2.5 rounded-lg transition-all group relative',
                           isCollapsed

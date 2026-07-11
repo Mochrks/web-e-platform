@@ -133,7 +133,7 @@ export default function TimesheetsPageUI(
                 >
                   {editingId === entry.id ? (
                     <div className="flex-1 space-y-3">
-                      <div className="flex items-center gap-3">
+                      <div className="flex flex-wrap items-center gap-3">
                         <select
                           className="bg-background border border-border rounded-md text-sm p-1.5 w-full max-w-[200px]"
                           value={editEntry.project}
@@ -250,7 +250,7 @@ export default function TimesheetsPageUI(
               ))}
               {isAdding && (
                 <div className="p-4 bg-primary/5 space-y-3">
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-wrap items-center gap-3">
                     <select
                       className="bg-background border border-border rounded-md text-sm p-1.5 w-full max-w-[200px]"
                       value={newEntry.project}

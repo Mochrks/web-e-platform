@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -30,23 +30,11 @@ export default function DashboardPageUI() {
     upcomingTasks,
     attendanceStatus,
   } = useDashboardPageHook();
-  const [isMobileDevice, setIsMobileDevice] = useState(false);
-
-  // Use useCallback to prevent unnecessary function recreation
-  const checkMobile = useCallback(() => {
-    setIsMobileDevice(window.innerWidth < 768);
-  }, []);
-
-  useEffect(() => {
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, [checkMobile]);
 
   return (
-    <div className="space-y-8 animate-fade-in">
+    <div className="space-y-6 sm:space-y-8 animate-fade-in">
       {/* Hero Welcome Section — Wise Green Band */}
-      <div className="relative bg-primary p-6 md:p-10 rounded-3xl overflow-hidden group">
+      <div className="relative bg-primary p-5 sm:p-6 md:p-10 rounded-3xl overflow-hidden group">
         {/* Decorative background */}
         <div className="absolute top-0 right-0 p-10 opacity-[0.08] group-hover:scale-110 transition-transform duration-700">
           <Zap
@@ -55,10 +43,15 @@ export default function DashboardPageUI() {
           />
         </div>
 
-        <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8">
-          {/* Avatar Container */}
-          <div className="bg-white/15 p-3 rounded-3xl backdrop-blur-sm border border-white/10">
-            <TalentAvatar size={isMobileDevice ? 90 : 130} />
+        <div className="relative z-10 flex flex-col md:flex-row items-center gap-5 sm:gap-6 md:gap-8">
+          {/* Avatar Container — responsive sizing via CSS */}
+          <div className="bg-white/15 p-2 sm:p-3 rounded-3xl backdrop-blur-sm border border-white/10">
+            <div className="hidden md:block">
+              <TalentAvatar size={130} />
+            </div>
+            <div className="block md:hidden">
+              <TalentAvatar size={90} />
+            </div>
           </div>
 
           <div className="max-w-2xl text-center md:text-left">

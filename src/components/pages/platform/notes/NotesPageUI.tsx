@@ -44,7 +44,7 @@ export default function NotesPageUI() {
 
   return (
     <div className="space-y-10 pb-20 animate-fade-in">
-      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-10 rounded-3xl  gap-8 relative overflow-hidden">
+      <div className="flex flex-col md:flex-row justify-between items-center bg-card border border-border p-6 md:p-10 rounded-3xl  gap-8 relative overflow-hidden">
         <div
           className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"
           aria-hidden="true"

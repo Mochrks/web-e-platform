@@ -34,7 +34,7 @@ export default function TasksPageUI() {
   return (
     <div className="space-y-10 pb-20 animate-fade-in">
       {/* Header Stat Board */}
-      <div className="bg-card border border-border p-10 rounded-3xl  flex flex-col xl:flex-row justify-between items-center gap-10">
+      <div className="bg-card border border-border p-6 xl:p-10 rounded-3xl  flex flex-col xl:flex-row justify-between items-center gap-10">
         <div className="flex-1 space-y-4">
           <div className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary bg-primary/10 px-4 py-2 rounded-full w-fit">
             <ListChecks className="w-4 h-4" /> Goal Tracking
@@ -162,7 +162,7 @@ export default function TasksPageUI() {
         {/* Sidebar Stats */}
         <div className="w-full xl:w-96 space-y-8">
           <Card className="p-8 rounded-3xl border-border bg-gradient-to-br from-indigo-600 to-primary text-white  ">
-            <h4 className="text-xl font-black mb-6">Expert Streak ðŸ”¥</h4>
+            <h4 className="text-xl font-black mb-6">Expert Streak</h4>
             <p className="font-bold text-3xl mb-4">
               05{' '}
               <span className="text-sm opacity-80 uppercase tracking-widest">

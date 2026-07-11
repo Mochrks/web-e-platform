@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { ShirtType } from '@/types/avatar';
 
 export interface ManagedUser {
   id: string;
@@ -12,9 +11,8 @@ export interface ManagedUser {
   lastSeen: string;
   department: string;
   avatarConfig: {
-    shirtColor?: string;
-    shirtType?: ShirtType;
-    mood?: 'happy' | 'thinking' | 'serious';
+    skinColor?: string;
+    mood?: 'happy' | 'smart' | 'focused';
   };
 }
 
@@ -27,7 +25,7 @@ const MOCK_USERS: ManagedUser[] = [
     status: 'Active',
     lastSeen: 'Just now',
     department: 'Technology',
-    avatarConfig: { shirtColor: '#7c3aed', shirtType: 'hoodie', mood: 'happy' },
+    avatarConfig: { skinColor: '#fcc419', mood: 'happy' },
   },
   {
     id: 'emp-102',
@@ -37,7 +35,7 @@ const MOCK_USERS: ManagedUser[] = [
     status: 'Active',
     lastSeen: '2 hours ago',
     department: 'Design',
-    avatarConfig: { shirtColor: '#ec4899', shirtType: 'basic', mood: 'happy' },
+    avatarConfig: { skinColor: '#f5deb3', mood: 'happy' },
   },
   {
     id: 'emp-103',
@@ -47,7 +45,7 @@ const MOCK_USERS: ManagedUser[] = [
     status: 'Inactive',
     lastSeen: '3 days ago',
     department: 'Engineering',
-    avatarConfig: { shirtColor: '#3b82f6', shirtType: 'suit', mood: 'serious' },
+    avatarConfig: { skinColor: '#d2a679', mood: 'focused' },
   },
   {
     id: 'emp-104',
@@ -58,9 +56,8 @@ const MOCK_USERS: ManagedUser[] = [
     lastSeen: '10 mins ago',
     department: 'Human Resources',
     avatarConfig: {
-      shirtColor: '#10b981',
-      shirtType: 'vest',
-      mood: 'thinking',
+      skinColor: '#a87c4f',
+      mood: 'smart',
     },
   },
   {
@@ -71,7 +68,7 @@ const MOCK_USERS: ManagedUser[] = [
     status: 'Pending',
     lastSeen: 'Never',
     department: 'Sales',
-    avatarConfig: { shirtColor: '#f59e0b', shirtType: 'basic', mood: 'happy' },
+    avatarConfig: { skinColor: '#fcc419', mood: 'happy' },
   },
 ];
 

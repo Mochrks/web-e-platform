@@ -205,7 +205,7 @@ export default function AllocationPageUI() {
 
                 {editingId === a.id ? (
                   <div className="mt-4 p-4 border border-border rounded-xl bg-secondary/20 space-y-3">
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <Input
                         value={editData.projectName}
                         onChange={(e) =>
@@ -497,9 +497,9 @@ export default function AllocationPageUI() {
           </p>
         </div>
 
-        <div className="flex gap-4 w-full xl:w-auto">
+        <div className="flex flex-col sm:flex-row gap-4 w-full xl:w-auto">
           <Card className="flex-1 px-8 py-5 border-2 border-primary/20 bg-primary/5 rounded-3xl flex items-center gap-4">
-            <TrendingUp className="w-8 h-8 text-primary" />
+            <TrendingUp className="w-8 h-8 text-primary shrink-0" />
             <div>
               <p className="text-xs font-black uppercase opacity-60">
                 Avg Stability

@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Certification } from '@/types/platform';
+import { useAppSelector } from '@/store';
+import { USER_ROLES } from '@/constants';
 
 const MOCK_CERTS: Certification[] = [
   {
@@ -59,9 +61,6 @@ const MOCK_CERTS: Certification[] = [
     status: 'available',
   },
 ];
-
-import { useAppSelector } from '@/store';
-import { USER_ROLES } from '@/constants';
 
 export function useCertificationsHook() {
   const { role } = useAppSelector((state) => state.auth);

@@ -39,7 +39,18 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import DashboardSidebarLayout from './DashboardSidebarLayout';
 import { ModeToggle } from '@/components/shared/theme/ModeToggle';
 import TalentAvatar from '@/components/shared/avatar';
-import { cn } from '@/lib/utils';
+import { cn, getInitials } from '@/lib/utils';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import { useIdleTimeout } from '@/hooks/global/useIdleTimeout';
 
 import { useAppDispatch, useAppSelector } from '@/store';
 import { openChat } from '@/store/slices/chatSlice';
@@ -58,6 +69,12 @@ export default function DashboardHeaderLayout() {
 
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
   const [isMac, setIsMac] = React.useState(false);
+  const [isSignOutOpen, setIsSignOutOpen] = React.useState(false);
+
+  // 15 minutes idle timeout
+  const { isIdle, setIsIdle, resetTimer } = useIdleTimeout(15);
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -148,9 +165,9 @@ export default function DashboardHeaderLayout() {
   return (
     <header className="h-20 border-b border-border bg-card/80 backdrop-blur-xl sticky top-0 z-40 px-6 sm:px-8 flex items-center justify-between">
       <div className="flex items-center gap-4">
-        {/* Mobile Menu Trigger */}
+        {/* Mobile Menu Trigger & Sidebar */}
         <div className="lg:hidden">
-          <Sheet>
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <button
                 className="p-2.5 hover:bg-secondary rounded-xl transition-all"
@@ -160,7 +177,10 @@ export default function DashboardHeaderLayout() {
               </button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0 border-none w-72">
-              <DashboardSidebarLayout isMobile />
+              <DashboardSidebarLayout
+                isMobile
+                closeMobileMenu={() => setIsMobileMenuOpen(false)}
+              />
             </SheetContent>
           </Sheet>
         </div>
@@ -211,7 +231,7 @@ export default function DashboardHeaderLayout() {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="w-80 p-2 rounded-2xl mt-2 border-border "
+              className="w-80 max-w-[calc(100vw-2rem)] p-2 rounded-2xl mt-2 border-border"
             >
               <DropdownMenuLabel className="px-3 py-2 flex items-center justify-between">
                 <span className="text-sm font-semibold tracking-tight">
@@ -267,8 +287,8 @@ export default function DashboardHeaderLayout() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="flex items-center gap-3 p-1.5 hover:bg-secondary rounded-xl transition-all group outline-none">
-              <div className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center overflow-hidden">
-                <TalentAvatar size={36} />
+              <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center overflow-hidden text-white font-black text-xs shrink-0">
+                {getInitials(user?.fullName || user?.username || 'Guest User')}
               </div>
               <div className="hidden sm:block text-left w-24">
                 {!isMounted ? (
@@ -318,7 +338,7 @@ export default function DashboardHeaderLayout() {
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-border" />
             <DropdownMenuItem
-              onClick={handleLogout}
+              onClick={() => setIsSignOutOpen(true)}
               className="p-2.5 rounded-lg cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/5"
             >
               <LogOut className="w-4 h-4 mr-3" /> Sign Out
@@ -348,6 +368,61 @@ export default function DashboardHeaderLayout() {
           ))}
         </CommandList>
       </CommandDialog>
+
+      {/* Sign Out Confirmation Modal */}
+      <AlertDialog open={isSignOutOpen} onOpenChange={setIsSignOutOpen}>
+        <AlertDialogContent className="max-w-[400px] rounded-[32px] p-8 border-border">
+          <AlertDialogHeader className="space-y-3">
+            <AlertDialogTitle className="text-2xl font-bold text-center sm:text-left">
+              Sign Out
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-base text-center sm:text-left">
+              Are you sure you want to sign out of E-Platform? You will need to
+              log in again to access your dashboard.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="flex-col sm:flex-row gap-3 pt-6 sm:space-x-0">
+            <AlertDialogCancel className="flex-1 rounded-2xl h-12 text-sm m-0">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleLogout}
+              className="flex-1 rounded-2xl h-12 text-sm bg-destructive text-white hover:bg-destructive/90 m-0"
+            >
+              Sign Out
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Idle Timeout Modal */}
+      <AlertDialog open={isIdle} onOpenChange={setIsIdle}>
+        <AlertDialogContent className="max-w-[400px] rounded-[32px] p-8 border-border">
+          <AlertDialogHeader className="space-y-3">
+            <AlertDialogTitle className="text-2xl font-bold text-center sm:text-left">
+              Are you still there?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-base text-center sm:text-left">
+              You&apos;ve been inactive for 15 minutes. For your security, we
+              will log you out soon. Do you want to stay logged in?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="flex-col sm:flex-row gap-3 pt-6 sm:space-x-0">
+            <AlertDialogAction
+              onClick={resetTimer}
+              className="flex-1 rounded-2xl h-12 text-sm bg-primary text-white hover:bg-primary/90 m-0"
+            >
+              Stay Logged In
+            </AlertDialogAction>
+            <AlertDialogCancel
+              onClick={handleLogout}
+              className="flex-1 rounded-2xl h-12 text-sm text-destructive hover:text-destructive hover:bg-destructive/10 m-0 border-none"
+            >
+              Sign Out Now
+            </AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </header>
   );
 }

@@ -170,7 +170,7 @@ export default function PerformancePageUI(
 
         <TabsContent value="overview">
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between pb-2 border-b border-border/50">
+            <CardHeader className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 sm:pb-2 border-b border-border/50 gap-4">
               <div>
                 <CardTitle className="text-lg flex items-center">
                   <Target className="w-5 h-5 mr-2 text-blue-500" /> Current

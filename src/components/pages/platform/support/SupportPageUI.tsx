@@ -82,12 +82,15 @@ export default function SupportPageUI(
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <div className="flex items-center justify-between mb-6">
-          <TabsList className="bg-secondary/50">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+          <TabsList className="bg-secondary/50 w-full sm:w-auto grid grid-cols-2 sm:flex">
             <TabsTrigger value="tickets">My Tickets</TabsTrigger>
             <TabsTrigger value="faq">FAQs</TabsTrigger>
           </TabsList>
-          <Button onClick={openCreateModal} className="rounded-2xl font-bold">
+          <Button
+            onClick={openCreateModal}
+            className="rounded-2xl font-bold w-full sm:w-auto"
+          >
             <Plus className="w-4 h-4 mr-2" /> Create New Ticket
           </Button>
         </div>

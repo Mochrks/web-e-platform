@@ -62,7 +62,7 @@ export default function SimulationPageUI() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto space-y-10 pb-10 animate-fade-in">
+    <div className="space-y-10 pb-10 animate-fade-in">
       <div className="bg-card border border-border p-8 md:p-10 rounded-3xl relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h1 className="text-4xl font-black tracking-tight mb-2">

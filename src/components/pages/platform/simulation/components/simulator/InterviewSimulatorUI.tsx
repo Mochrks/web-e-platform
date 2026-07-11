@@ -218,7 +218,7 @@ export default function InterviewSimulatorUI({
 
   return (
     <div className="space-y-10">
-      <div className="bg-card border border-border p-10 rounded-3xl  relative overflow-hidden">
+      <div className="bg-card border border-border p-6 md:p-10 rounded-3xl  relative overflow-hidden">
         <div className="flex items-center gap-2 mb-4 text-primary text-[10px] font-black uppercase tracking-[0.2em]">
           <BookOpen className="w-4 h-4" />
           Learning Path

@@ -6,7 +6,7 @@ interface TalentAvatarProps {
   color?: string;
   accessoryColor?: string;
   size?: number;
-  mood?: 'happy' | 'thinking' | 'serious';
+  mood?: 'happy' | 'smart' | 'focused';
   hasGlasses?: boolean;
   isAnimated?: boolean;
   className?: string;
@@ -117,7 +117,7 @@ export default function TalentAvatarUI({
               className="drop-"
             />
           )}
-          {mood === 'thinking' && (
+          {mood === 'smart' && (
             <g>
               <path
                 d="M85 130H115"
@@ -135,7 +135,7 @@ export default function TalentAvatarUI({
               />
             </g>
           )}
-          {mood === 'serious' && (
+          {mood === 'focused' && (
             <path
               d="M80 135C80 135 90 125 100 125C110 125 120 135 120 135"
               stroke="white"

@@ -3,17 +3,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AvatarState } from '@/types/avatar';
 
 const initialState: AvatarState = {
-  shirtColor: '#3b82f6',
-  pantsColor: '#1e293b',
-  headphoneColor: '#1a1a1a',
-  glassesColor: '#7c3aed',
   skinColor: '#fcc419',
-  shirtType: 'basic',
-  pantsType: 'basic',
-  shoeType: 'boots',
   mood: 'happy',
-  hasGlasses: true,
-  hasHeadphones: true,
+  gender: 'male',
+  topColor: '#ffffff',
+  bottomColor: '#1e293b',
 };
 
 const avatarSlice = createSlice({

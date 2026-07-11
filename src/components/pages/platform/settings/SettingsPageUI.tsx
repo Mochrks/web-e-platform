@@ -16,14 +16,21 @@ import {
   Sun,
   Monitor,
   Mail,
+  Crown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import TalentAvatar from '@/components/shared/avatar';
 import { useSettingsPageHook } from './SettingsPageHook';
-import { presetColors, accessoryPresets } from '@/data/settingsData';
 
 export default function SettingsPageUI() {
   const { activeTab, setActiveTab, avatarState, handleUpdateAvatar } =
@@ -34,16 +41,16 @@ export default function SettingsPageUI() {
       case 'Profile & Avatar':
         return (
           <div className="space-y-10">
-            <Card className="p-10 rounded-3xl border-border bg-card  space-y-10">
+            <Card className="p-6 sm:p-8 lg:p-10 rounded-3xl border-border bg-card space-y-10">
               <div>
                 <h3 className="text-2xl font-black mb-1">Talent Avatar</h3>
                 <p className="text-sm text-muted-foreground font-bold">
-                  Customize your digital representation in the platform.
+                  Customize your digital head avatar in the platform.
                 </p>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-12 items-center">
-                <div className="bg-muted/30 p-10 rounded-3xl border border-border/50 relative group">
+              <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
+                <div className="bg-muted/30 p-6 sm:p-10 rounded-3xl border border-border/50 relative group shrink-0">
                   <TalentAvatar size={185} isAnimated={true} />
                   <button
                     type="button"
@@ -55,34 +62,58 @@ export default function SettingsPageUI() {
                 </div>
 
                 <div className="flex-1 space-y-6 w-full">
-                  {/* Accessory Toggles */}
-                  <div className="flex gap-4 p-4 bg-muted/50 rounded-2xl border border-border">
+                  {/* Gender Toggle */}
+                  <div className="flex flex-col sm:flex-row gap-4 p-4 bg-muted/50 rounded-2xl border border-border">
                     <div className="flex-1 flex items-center justify-between px-2">
                       <Label className="text-[10px] font-black uppercase tracking-widest opacity-60">
-                        Glasses
+                        Model Variant
                       </Label>
-                      <Switch
-                        checked={avatarState.hasGlasses}
-                        onCheckedChange={(val) =>
-                          handleUpdateAvatar({ hasGlasses: val })
-                        }
-                      />
-                    </div>
-                    <div className="w-px h-6 bg-border" />
-                    <div className="flex-1 flex items-center justify-between px-2">
-                      <Label className="text-[10px] font-black uppercase tracking-widest opacity-60">
-                        Headphones
-                      </Label>
-                      <Switch
-                        checked={avatarState.hasHeadphones}
-                        onCheckedChange={(val) =>
-                          handleUpdateAvatar({ hasHeadphones: val })
-                        }
-                      />
+                      <div className="flex items-center gap-2 bg-background p-1 rounded-lg border border-border">
+                        <button
+                          type="button"
+                          onClick={() => handleUpdateAvatar({ gender: 'male' })}
+                          className={`px-3 py-1 text-xs font-bold rounded-md transition-all ${avatarState.gender === 'male' ? 'bg-primary text-white shadow-sm' : 'text-muted-foreground hover:bg-secondary'}`}
+                        >
+                          Male
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            handleUpdateAvatar({ gender: 'female' })
+                          }
+                          className={`px-3 py-1 text-xs font-bold rounded-md transition-all ${avatarState.gender === 'female' ? 'bg-primary text-white shadow-sm' : 'text-muted-foreground hover:bg-secondary'}`}
+                        >
+                          Female
+                        </button>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {/* Skin Color */}
+                    <div className="space-y-3">
+                      <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+                        Skin Color
+                      </Label>
+                      <div className="flex flex-wrap gap-2">
+                        {[
+                          '#fcc419',
+                          '#f5deb3',
+                          '#d2a679',
+                          '#a87c4f',
+                          '#8b5e3c',
+                          '#4a3428',
+                        ].map((c) => (
+                          <button
+                            key={c}
+                            onClick={() => handleUpdateAvatar({ skinColor: c })}
+                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.skinColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
+                            style={{ backgroundColor: c }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
                     {/* Shirt Color */}
                     <div className="space-y-3">
                       <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
@@ -90,19 +121,17 @@ export default function SettingsPageUI() {
                       </Label>
                       <div className="flex flex-wrap gap-2">
                         {[
+                          '#ffffff',
+                          '#1e293b',
                           '#3b82f6',
-                          '#ec4899',
-                          '#7c3aed',
+                          '#ef4444',
                           '#10b981',
                           '#f59e0b',
-                          '#1e293b',
                         ].map((c) => (
                           <button
                             key={c}
-                            onClick={() =>
-                              handleUpdateAvatar({ shirtColor: c })
-                            }
-                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.shirtColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
+                            onClick={() => handleUpdateAvatar({ topColor: c })}
+                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.topColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
                             style={{ backgroundColor: c }}
                           />
                         ))}
@@ -117,185 +146,29 @@ export default function SettingsPageUI() {
                       <div className="flex flex-wrap gap-2">
                         {[
                           '#1e293b',
-                          '#64748b',
+                          '#ffffff',
                           '#0f172a',
                           '#475569',
-                          '#334155',
-                          '#94a3b8',
+                          '#1d4ed8',
+                          '#b91c1c',
                         ].map((c) => (
                           <button
                             key={c}
                             onClick={() =>
-                              handleUpdateAvatar({ pantsColor: c })
+                              handleUpdateAvatar({ bottomColor: c })
                             }
-                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.pantsColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
+                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.bottomColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
                             style={{ backgroundColor: c }}
                           />
                         ))}
                       </div>
-                    </div>
-
-                    {/* Headphone Color */}
-                    <div className="space-y-3">
-                      <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-                        Headphones
-                      </Label>
-                      <div className="flex flex-wrap gap-2">
-                        {[
-                          '#1a1a1a',
-                          '#ffffff',
-                          '#ef4444',
-                          '#22c55e',
-                          '#a855f7',
-                          '#64748b',
-                        ].map((c) => (
-                          <button
-                            key={c}
-                            onClick={() =>
-                              handleUpdateAvatar({ headphoneColor: c })
-                            }
-                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.headphoneColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
-                            style={{ backgroundColor: c }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Glasses Color */}
-                    <div className="space-y-3">
-                      <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-                        Glasses Frame
-                      </Label>
-                      <div className="flex flex-wrap gap-2">
-                        {[
-                          '#7c3aed',
-                          '#1a1a1a',
-                          '#ffffff',
-                          '#3b82f6',
-                          '#10b981',
-                          '#f97316',
-                        ].map((c) => (
-                          <button
-                            key={c}
-                            onClick={() =>
-                              handleUpdateAvatar({ glassesColor: c })
-                            }
-                            className={`w-7 h-7 rounded-lg border-2 transition-all ${avatarState.glassesColor === c ? 'border-primary scale-110 ' : 'border-transparent'}`}
-                            style={{ backgroundColor: c }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Wardrobe Variants */}
-                  <div className="space-y-4 pt-4 border-t border-border">
-                    <Label className="text-[10px] font-black uppercase tracking-widest text-primary">
-                      Wardrobe Studio
-                    </Label>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {/* Shirt Type */}
-                      <div className="space-y-2">
-                        <Label className="text-[9px] font-bold opacity-60">
-                          Shirt Style
-                        </Label>
-                        <div className="flex flex-col gap-1.5">
-                          {['basic', 'hoodie', 'suit', 'vest'].map((t) => (
-                            <button
-                              key={t}
-                              onClick={() =>
-                                handleUpdateAvatar({ shirtType: t as any })
-                              }
-                              className={`px-3 py-2 rounded-lg text-xs font-bold capitalize text-left transition-all ${avatarState.shirtType === t ? 'bg-primary text-white' : 'bg-muted/50 hover:bg-muted'}`}
-                            >
-                              {t}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Pants Type */}
-                      <div className="space-y-2">
-                        <Label className="text-[9px] font-bold opacity-60">
-                          Pants Style
-                        </Label>
-                        <div className="flex flex-col gap-1.5">
-                          {['basic', 'shorts', 'cargo'].map((t) => (
-                            <button
-                              key={t}
-                              onClick={() =>
-                                handleUpdateAvatar({ pantsType: t as any })
-                              }
-                              className={`px-3 py-2 rounded-lg text-xs font-bold capitalize text-left transition-all ${avatarState.pantsType === t ? 'bg-primary text-white' : 'bg-muted/50 hover:bg-muted'}`}
-                            >
-                              {t === 'basic' ? 'Long Pants' : t}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Shoe Type */}
-                      <div className="space-y-2">
-                        <Label className="text-[9px] font-bold opacity-60">
-                          Footwear
-                        </Label>
-                        <div className="flex flex-col gap-1.5">
-                          {['boots', 'sneakers', 'loafers'].map((t) => (
-                            <button
-                              key={t}
-                              onClick={() =>
-                                handleUpdateAvatar({ shoeType: t as any })
-                              }
-                              className={`px-3 py-2 rounded-lg text-xs font-bold capitalize text-left transition-all ${avatarState.shoeType === t ? 'bg-primary text-white' : 'bg-muted/50 hover:bg-muted'}`}
-                            >
-                              {t}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 pt-4 border-t border-border">
-                    <Label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
-                      Character Vibe
-                    </Label>
-                    <div className="flex gap-3">
-                      {[
-                        {
-                          id: 'happy',
-                          label: 'Happy',
-                          icon: <Smile className="w-3 h-3" />,
-                        },
-                        {
-                          id: 'thinking',
-                          label: 'Smart',
-                          icon: <Brain className="w-3 h-3" />,
-                        },
-                        {
-                          id: 'serious',
-                          label: 'Focused',
-                          icon: <Zap className="w-3 h-3" />,
-                        },
-                      ].map((m) => (
-                        <button
-                          key={m.id}
-                          type="button"
-                          onClick={() =>
-                            handleUpdateAvatar({ mood: m.id as any })
-                          }
-                          className={`flex-1 p-3 rounded-xl border transition-all text-xs font-bold flex items-center justify-center gap-2 ${avatarState.mood === m.id ? 'border-primary bg-primary/5 text-primary scale-105' : 'border-border hover:bg-muted text-muted-foreground'}`}
-                        >
-                          {m.icon} {m.label}
-                        </button>
-                      ))}
                     </div>
                   </div>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-10 rounded-3xl border-border bg-card  space-y-8">
+            <Card className="p-6 sm:p-8 lg:p-10 rounded-3xl border-border bg-card  space-y-8">
               <h3 className="text-xl font-black">Account Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
@@ -322,7 +195,7 @@ export default function SettingsPageUI() {
         );
       case 'Notifications':
         return (
-          <Card className="p-10 rounded-3xl border-border bg-card  space-y-8">
+          <Card className="p-6 sm:p-8 lg:p-10 rounded-3xl border-border bg-card  space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-1">
                 Notification Settings
@@ -353,10 +226,10 @@ export default function SettingsPageUI() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="flex items-center justify-between p-6 rounded-[2rem] bg-muted/30 border border-border"
+                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 sm:p-6 rounded-[2rem] bg-muted/30 border border-border gap-4"
                 >
-                  <div className="flex items-center gap-5">
-                    <div className="p-3 bg-white dark:bg-zinc-800 rounded-xl text-primary">
+                  <div className="flex items-center gap-4 sm:gap-5">
+                    <div className="p-3 bg-white dark:bg-zinc-800 rounded-xl text-primary shrink-0">
                       {item.icon}
                     </div>
                     <div>
@@ -366,7 +239,7 @@ export default function SettingsPageUI() {
                       </p>
                     </div>
                   </div>
-                  <Switch defaultChecked />
+                  <Switch defaultChecked className="shrink-0" />
                 </div>
               ))}
             </div>
@@ -374,7 +247,7 @@ export default function SettingsPageUI() {
         );
       case 'Security':
         return (
-          <Card className="p-10 rounded-3xl border-border bg-card  space-y-8">
+          <Card className="p-6 sm:p-8 lg:p-10 rounded-3xl border-border bg-card  space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-1">Security & Access</h3>
               <p className="text-sm text-muted-foreground font-bold">
@@ -428,14 +301,14 @@ export default function SettingsPageUI() {
         );
       case 'Appearance':
         return (
-          <Card className="p-10 rounded-3xl border-border bg-card  space-y-8">
+          <Card className="p-6 sm:p-8 lg:p-10 rounded-3xl border-border bg-card  space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-1">App Appearance</h3>
               <p className="text-sm text-muted-foreground font-bold">
                 Set your interface theme and visual preferences.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               {[
                 {
                   label: 'Light Mode',
@@ -456,7 +329,7 @@ export default function SettingsPageUI() {
                 <button
                   key={item.id}
                   type="button"
-                  className="p-8 rounded-[2rem] border-2 border-border hover:border-primary transition-all flex flex-col items-center gap-4 group"
+                  className="p-6 sm:p-8 rounded-[2rem] border-2 border-border hover:border-primary transition-all flex flex-col items-center gap-4 group"
                 >
                   <div className="p-4 bg-muted rounded-2xl group-hover:bg-primary/10 transition-colors">
                     {item.icon}
@@ -473,55 +346,97 @@ export default function SettingsPageUI() {
   };
 
   return (
-    <div className="space-y-10 pb-20 animate-fade-in">
-      <div className="bg-card border border-border p-10 rounded-3xl  relative overflow-hidden">
-        <h1 className="text-4xl font-black tracking-tight mb-2">
+    <div className="space-y-8 sm:space-y-10 pb-20 animate-fade-in">
+      <div className="bg-card border border-border p-6 sm:p-8 lg:p-10 rounded-3xl  relative overflow-hidden">
+        <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-2">
           Platform Settings
         </h1>
-        <p className="text-muted-foreground font-medium text-lg font-bold">
+        <p className="text-muted-foreground font-medium text-base sm:text-lg font-bold">
           Personalize your experience and manage your E-Platform profile.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 lg:gap-10">
         {/* Left: Navigation Tabs */}
-        <div className="flex flex-row xl:flex-col gap-2 overflow-x-auto xl:overflow-visible pb-4 xl:pb-0">
-          {[
-            { label: 'Profile & Avatar', icon: <User className="w-4 h-4" /> },
-            { label: 'Notifications', icon: <Bell className="w-4 h-4" /> },
-            { label: 'Security', icon: <Shield className="w-4 h-4" /> },
-            { label: 'Appearance', icon: <Palette className="w-4 h-4" /> },
-          ].map((item, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => setActiveTab(item.label)}
-              className={`
-                   flex-shrink-0 flex items-center gap-4 p-5 rounded-2xl font-bold transition-all min-w-[200px]
-                   ${activeTab === item.label ? 'bg-primary text-white   scale-105' : 'hover:bg-muted text-muted-foreground hover:text-foreground'}
-                `}
-            >
-              {item.icon}
-              <span className="text-sm">{item.label}</span>
-            </button>
-          ))}
+        <div className="flex flex-col gap-4">
+          {/* Mobile Select Dropdown */}
+          <div className="xl:hidden w-full px-0">
+            <Select value={activeTab} onValueChange={setActiveTab}>
+              <SelectTrigger className="w-full h-14 rounded-2xl bg-card border-border font-bold">
+                <SelectValue placeholder="Select Settings Category" />
+              </SelectTrigger>
+              <SelectContent className="rounded-2xl border-border">
+                {[
+                  {
+                    label: 'Profile & Avatar',
+                    icon: <User className="w-4 h-4 mr-2" />,
+                  },
+                  {
+                    label: 'Notifications',
+                    icon: <Bell className="w-4 h-4 mr-2" />,
+                  },
+                  {
+                    label: 'Security',
+                    icon: <Shield className="w-4 h-4 mr-2" />,
+                  },
+                  {
+                    label: 'Appearance',
+                    icon: <Palette className="w-4 h-4 mr-2" />,
+                  },
+                ].map((item, i) => (
+                  <SelectItem
+                    key={i}
+                    value={item.label}
+                    className="font-semibold cursor-pointer py-3 rounded-xl focus:bg-muted"
+                  >
+                    <div className="flex items-center">
+                      {item.icon} {item.label}
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Desktop Sidebar List */}
+          <div className="hidden xl:flex flex-col gap-2">
+            {[
+              { label: 'Profile & Avatar', icon: <User className="w-4 h-4" /> },
+              { label: 'Notifications', icon: <Bell className="w-4 h-4" /> },
+              { label: 'Security', icon: <Shield className="w-4 h-4" /> },
+              { label: 'Appearance', icon: <Palette className="w-4 h-4" /> },
+            ].map((item, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setActiveTab(item.label)}
+                className={`
+                     flex-shrink-0 flex items-center gap-4 p-5 rounded-2xl font-bold transition-all min-w-[200px]
+                     ${activeTab === item.label ? 'bg-primary text-white scale-105' : 'hover:bg-muted text-muted-foreground hover:text-foreground'}
+                  `}
+              >
+                {item.icon}
+                <span className="text-sm whitespace-nowrap">{item.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Center: Main Content */}
-        <div className="xl:col-span-2 space-y-10">
+        <div className="xl:col-span-2 space-y-8 sm:space-y-10">
           {renderContent()}
 
-          <div className="flex justify-end gap-3 px-4">
+          <div className="flex flex-col sm:flex-row justify-end gap-3 px-0 sm:px-4">
             <Button
               type="button"
               variant="outline"
-              className="rounded-xl font-bold px-8 h-14"
+              className="rounded-xl font-bold px-8 h-12 sm:h-14"
             >
               Discard
             </Button>
             <Button
               type="button"
-              className="rounded-xl bg-primary text-white font-black px-10 h-14  "
+              className="rounded-xl bg-primary text-white font-black px-10 h-12 sm:h-14  "
             >
               <Save className="w-5 h-5 mr-3" /> Save Changes
             </Button>

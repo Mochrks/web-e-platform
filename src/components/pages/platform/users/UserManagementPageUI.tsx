@@ -38,7 +38,7 @@ export default function UserManagementPageUI() {
   } = useUserManagementPageHook();
 
   return (
-    <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-1000 max-w-full overflow-x-hidden">
       {/* Header & Stats */}
       <div className="bg-card border border-border p-8 md:p-10 rounded-3xl relative overflow-hidden flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6">
         <div className="space-y-1">
@@ -106,8 +106,8 @@ export default function UserManagementPageUI() {
         </div>
 
         {/* User Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+        <div className="overflow-x-auto custom-scrollbar w-full">
+          <table className="w-full text-left border-collapse min-w-[1000px]">
             <thead>
               <tr className="border-b border-border/50">
                 <th className="py-6 px-8 text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">

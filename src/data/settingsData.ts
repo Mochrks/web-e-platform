@@ -1,18 +1,41 @@
-export const presetColors = [
-  '#7c3aed',
-  '#ec4899',
-  '#3b82f6',
-  '#f59e0b',
-  '#10b981',
-  '#6366f1',
+// Skin tone presets
+export const skinColorPresets = [
+  '#fcc419',
+  '#f5deb3',
+  '#d2a679',
+  '#a87c4f',
+  '#8b5e3c',
+  '#4a3428',
 ];
-export const accessoryPresets = [
-  '#10b981',
-  '#f43f5e',
-  '#fbbf24',
-  '#06b6d4',
+
+// Headphone color presets
+export const headphoneColorPresets = [
+  '#1a1a1a',
   '#ffffff',
-  '#000000',
+  '#ef4444',
+  '#22c55e',
+  '#a855f7',
+  '#64748b',
+];
+
+// Glasses frame color presets
+export const glassesColorPresets = [
+  '#7c3aed',
+  '#1a1a1a',
+  '#ffffff',
+  '#3b82f6',
+  '#10b981',
+  '#f97316',
+];
+
+// Hat color presets
+export const hatColorPresets = [
+  '#1e293b',
+  '#3b82f6',
+  '#ef4444',
+  '#10b981',
+  '#f59e0b',
+  '#ffffff',
 ];
 
 export const settingTabs = [

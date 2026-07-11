@@ -34,8 +34,8 @@ export default function AttendanceLogs({
       </div>
 
       <div className="bg-card border border-border rounded-3xl overflow-hidden ">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
+        <div className="overflow-x-auto custom-scrollbar w-full">
+          <table className="w-full text-left min-w-[800px]">
             <thead>
               <tr className="border-b border-border bg-muted/30">
                 <th className="p-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground whitespace-nowrap">

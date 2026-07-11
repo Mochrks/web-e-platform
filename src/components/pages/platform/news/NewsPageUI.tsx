@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+'use client';
 import React from 'react';
 import {
   Card,
@@ -54,12 +56,24 @@ export default function NewsPageUI(props: ReturnType<typeof useNewsPage>) {
       </div>
 
       {/* Tabs Filter */}
-      <Tabs defaultValue="All" className="w-full" onValueChange={setActiveTab}>
-        <TabsList className="mb-4 bg-secondary/50">
-          <TabsTrigger value="All">All News</TabsTrigger>
-          <TabsTrigger value="Company Update">Company Updates</TabsTrigger>
-          <TabsTrigger value="HR & Benefits">HR & Benefits</TabsTrigger>
-          <TabsTrigger value="Product Update">Product</TabsTrigger>
+      <Tabs
+        defaultValue="All"
+        className="w-full overflow-x-auto pb-2"
+        onValueChange={setActiveTab}
+      >
+        <TabsList className="mb-4 bg-secondary/50 h-auto p-1 flex w-fit min-w-full md:min-w-0">
+          <TabsTrigger value="All" className="px-4 py-2 text-sm">
+            All News
+          </TabsTrigger>
+          <TabsTrigger value="Company Update" className="px-4 py-2 text-sm">
+            Company Updates
+          </TabsTrigger>
+          <TabsTrigger value="HR & Benefits" className="px-4 py-2 text-sm">
+            HR & Benefits
+          </TabsTrigger>
+          <TabsTrigger value="Product Update" className="px-4 py-2 text-sm">
+            Product
+          </TabsTrigger>
         </TabsList>
       </Tabs>
 

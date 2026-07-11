@@ -10,7 +10,7 @@ export default function MonitoringPageUI() {
 
   return (
     <div className="space-y-10 animate-fade-in">
-      <div className="bg-card border border-border p-10 rounded-3xl  relative overflow-hidden">
+      <div className="bg-card border border-border p-6 md:p-10 rounded-3xl  relative overflow-hidden">
         <h1 className="text-4xl font-black tracking-tight mb-2">
           Platform Monitoring
         </h1>
@@ -38,7 +38,7 @@ export default function MonitoringPageUI() {
         ))}
       </div>
 
-      <Card className="p-10 rounded-3xl border-border bg-card  flex flex-col items-center justify-center min-h-[400px] text-center">
+      <Card className="p-6 md:p-10 rounded-3xl border-border bg-card  flex flex-col items-center justify-center min-h-[400px] text-center">
         <div className="w-20 h-20 rounded-full bg-primary/5 flex items-center justify-center mb-6">
           <Activity className="w-10 h-10 text-primary animate-pulse" />
         </div>

@@ -41,17 +41,19 @@ export default function ChatWidgetUI() {
   if (!isAuthenticated || !isOnboarded) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
       {/* Chat Window */}
       <div
         className={cn(
-          'mb-4 w-[350px] md:w-[400px] transition-all duration-300 transform origin-bottom-right',
+          'transition-all duration-300 transform origin-bottom-right pointer-events-auto',
+          'fixed inset-0 sm:relative sm:inset-auto sm:mb-4',
+          'w-full h-[100dvh] sm:w-[90vw] sm:max-w-[450px] sm:h-[70vh] lg:w-[400px] lg:h-[600px]',
           isOpen
             ? 'scale-100 opacity-100 translate-y-0'
             : 'scale-0 opacity-0 translate-y-10 pointer-events-none'
         )}
       >
-        <Card className="border border-border  overflow-hidden bg-card/95 backdrop-blur-md flex flex-col h-[600px] rounded-3xl">
+        <Card className="border-0 sm:border border-border overflow-hidden bg-card/95 backdrop-blur-md flex flex-col h-full rounded-none sm:rounded-3xl">
           <CardHeader className="p-0 bg-primary text-primary-foreground">
             <div className="p-4 flex flex-row items-center justify-between">
               <div className="flex items-center gap-3">
@@ -297,9 +299,9 @@ export default function ChatWidgetUI() {
       </div>
 
       {/* Floating Toggle Button */}
-      <div className="relative flex items-center gap-3">
+      <div className="relative flex items-center gap-3 pointer-events-auto">
         {!isOpen && (
-          <div className="bg-card px-3 py-1.5 rounded-xl  border border-border text-[12px] font-medium animate-in fade-in slide-in-from-right-4 duration-1000 hidden md:block mb-2 mr-1">
+          <div className="bg-card px-3 py-1.5 rounded-xl border border-border text-[12px] font-medium animate-in fade-in slide-in-from-right-4 duration-1000 hidden lg:block mb-2 mr-1">
             Need help? Ask me!
           </div>
         )}

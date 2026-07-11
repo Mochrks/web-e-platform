@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import DashboardSidebarLayout from './DashboardSidebarLayout';
 import DashboardHeaderLayout from './DashboardHeaderLayout';
 
@@ -10,6 +10,22 @@ export default function PlatformLayout({
   children: React.ReactNode;
 }>) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  // Auto-collapse sidebar on tablet (1024-1279px)
+  const handleTabletCollapse = useCallback(() => {
+    const isTablet = window.innerWidth >= 1024 && window.innerWidth < 1280;
+    if (isTablet) setIsSidebarCollapsed(true);
+  }, []);
+
+  useEffect(() => {
+    handleTabletCollapse();
+    const mq = window.matchMedia('(min-width: 1024px) and (max-width: 1279px)');
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) setIsSidebarCollapsed(true);
+    };
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, [handleTabletCollapse]);
 
   return (
     <div className="flex min-h-screen bg-background text-foreground antialiased selection:bg-primary/20">
@@ -28,8 +44,8 @@ export default function PlatformLayout({
         <DashboardHeaderLayout />
 
         {/* Main Content Area — Sage canvas for surface-contrast elevation */}
-        <main className="flex-1 p-6 lg:p-8 bg-secondary/40 relative">
-          <div className="max-w-6xl mx-auto">{children}</div>
+        <main className="flex-1 px-4 py-6 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 bg-secondary/40 relative">
+          <div className="max-w-[1540px] mx-auto w-full">{children}</div>
         </main>
 
         <style jsx global>{`
