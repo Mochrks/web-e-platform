@@ -23,12 +23,16 @@ interface TalentAvatar3DProps {
 // We have moved the 3D model code to RealisticAvatarModel.tsx
 
 export default function TalentAvatar3D(props: TalentAvatar3DProps) {
+  const containerRef = useRef<any>(null);
+
   return (
     <div
+      ref={containerRef}
       style={{ width: props.size, height: props.size }}
       className="relative bg-gradient-to-b from-primary/10 via-primary/5 to-transparent rounded-[2rem] overflow-hidden group "
     >
       <Canvas
+        eventSource={containerRef}
         shadows
         camera={{ position: [0, 0.2, 3.2], fov: 28 }}
         flat
