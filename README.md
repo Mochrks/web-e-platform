@@ -1,5 +1,19 @@
 <h1 align="center">E-Platform - Advanced Workforce Management</h1>
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-13-black" />
+  <img src="https://img.shields.io/badge/React-18-61DAFB" />
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6" />
+  <img src="https://img.shields.io/badge/Redux_Toolkit-2.x-764ABC" />
+  <img src="https://img.shields.io/badge/TanStack_Query-5.x-FF4154" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3.x-06B6D4" />
+  <img src="https://img.shields.io/badge/Three.js-Latest-000000" />
+  <img src="https://img.shields.io/badge/GSAP-3.x-88CE02" />
+  <img src="https://img.shields.io/badge/Shadcn_UI-Latest-black" />
+</p>
 
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=nextjs,react,typescript,tailwind,redux,nodejs" alt="Tech Stack Icons" />
+</p>
 ## Overview
 
 **E-Platform** is a state-of-the-art Workforce Management and Interview Simulation platform. Built for high-performance teams, it combines modern dashboarding, AI-driven interview simulations, and comprehensive employee monitoring into a single, cohesive experience.
