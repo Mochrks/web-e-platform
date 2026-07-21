@@ -14,6 +14,8 @@
 <p align="center">
   <img src="https://skillicons.dev/icons?i=nextjs,react,typescript,tailwind,redux,nodejs" alt="Tech Stack Icons" />
 </p>
+
+
 ## Overview
 
 **E-Platform** is a state-of-the-art Workforce Management and Interview Simulation platform. Built for high-performance teams, it combines modern dashboarding, AI-driven interview simulations, and comprehensive employee monitoring into a single, cohesive experience.
